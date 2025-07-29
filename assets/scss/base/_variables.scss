@@ -1,0 +1,125 @@
+// Typography
+$font-poppins: 'Poppins', sans-serif;
+$font-rubik: 'Rubik', sans-serif;
+$font-avenir: 'Avenir Next Cyr', sans-serif;
+$font-proxima: 'Proxima Nova', sans-serif;
+$font-segoe-semilight: 'Segoe UI Semilight', sans-serif;
+
+$font-family: $font-segoe-semilight !important; // Select which default font to use
+
+
+// Breakpoints
+$sm: 480px; // smaller mobile (i.e. <= 480px)
+$md: 768px; // mobile (i.e. <= 768px)
+$lg: 1024px; // tablets (i.e. <= 1024px)
+$xl: 1280px; // small laptops/desktops  (i.e. >= 1280px)
+$xxl: 1400px; // large desktops (i.e. >= 1400px)
+$xxxl: 1536px; // large desktops (i.e. >= 1536px)
+
+// Layouts
+$max-width-container-480: 480px;
+$max-width-container-992: 992px;
+$max-width-container-1300: 1300px;
+$max-width-container-1400: 1400px;
+$max-width-container-1440: 1440px;
+$max-width-container: 1200px;
+$max-width-inner-page: 792px;
+$side-padding-m: 20px;
+$side-padding: 28px;
+$section-tb-m: 2rem;
+$section-tb: 2.5rem;
+
+
+
+// Header heights
+$header-height-m: 72px;
+$header-height: 136px;
+
+
+// Black/White Colours
+$black: #000000;
+$white: #ffffff;
+$blue: #2e90b3;
+
+
+// Text Colours
+$text-0-dark: #00060C;
+$text-1-dark: #0F151B;
+$text-2-dark: #1A2026;
+$text-3-dark: #2B333B;
+$text-3-mid: #3F3F3F;
+$text-4-mid: #444444;
+$text-5-mid: #474F57;
+$text-7-mid: #676D73;
+$text-e-light: #E9EAEB;
+$text-f9-light: #F4F5F6;
+$text-f-light: #FAFBFC;
+$text-8-light: #BBBBBB;
+$text-bg-light: #f3f4f6;
+
+
+
+// Main Gradient Colours
+$primary-0: #FFFDF5;
+$primary-1: #FFFBE6;
+$primary-2: #FFF7CC;
+$primary-3: #FFF3B3;
+$primary-4: #FFEB80;
+$primary-5: #FFE34D;
+$primary-6: #FFD700; // Primary
+$primary-7: #E6C300;
+$primary-8: #CCAC00;
+$primary-9: #B39700;
+$primary: $primary-6;
+
+// Blue Gradient Colours
+$blue-0: #F0F0FF;
+$blue-1: #E6E6FF;
+$blue-2: #CCCCFF;
+$blue-3: #9999FF;
+$blue-4: #6666FF;
+$blue-5: #3333FF;
+$blue-6: #21007F; // Primary Blue
+$blue-7: #1A0066;
+$blue-8: #14004D;
+$blue-9: #0D0033;
+$blue: $blue-6;
+
+// Shade Colours
+$shade-1: #CCCCCC;
+$shade-2: #757575;
+$shade-3: #75757566;
+$shade-6: #666666;
+$shade-8: #888888;
+$shade-b: #BBBBBB;
+$shade-e: #EEEEEE;
+$shade-f3: #F3FAFD80; //50% opacity
+$shade-f: #FBFBFB;
+
+// Link Colours - Blue
+$link-light: #265686;
+$link-primary: #0E4378;
+$link-dark: #003366;
+
+
+
+
+
+// Default border colour
+$border-color: #dddddd;
+
+
+
+// Round borders sizes
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+
+
+// Button radius
+$btn-radius: 80px;
+
+// Single Blog BG Color
+$single-blog-bg-color: #F7F7F7;
+

@@ -1,0 +1,330 @@
+html {
+    overflow-x: hidden;
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: $font-family;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Ensure main content takes up available space
+  main {
+    flex: 1 0 auto;
+  }
+
+  // Ensure footer stays at bottom
+  footer {
+    flex-shrink: 0;
+  }
+  .max-width-inner-page {
+    max-width: $max-width-inner-page;
+  }
+  
+    
+  
+  svg {
+    display: inline-block;
+  }
+  img {
+    @media (max-width: $md) {
+      width: 100%;
+      &.icon {
+        width: auto;
+      }
+    }
+    &.rounded-sm {
+      border-radius: $border-radius-sm;
+    }
+    &.rounded-md {
+      border-radius: $border-radius-md;
+    }
+    &.rounded-lg {
+      border-radius: $border-radius-lg;
+    }
+  }
+  
+  
+  .rounded-sm {
+    border-radius: $border-radius-sm;
+  }
+  .rounded-md {
+    border-radius: $border-radius-md;
+  }
+  .rounded-lg {
+    border-radius: $border-radius-lg;
+  }
+  
+  
+  .btn-standard {
+    @include btn-standard;
+  }
+  .btn-primary {
+    @include btn-primary;
+  }
+  .btn-secondary {
+    @include btn-secondary;
+  }
+  .btn-secondary-transparent {
+    @include btn-secondary-transparent;
+  }
+  .btn-tertiary {
+    @include btn-tertiary;
+  }
+  .btn-blog-category {
+    @include btn-blog-category;
+  }
+  
+  
+  //////////////////////////////
+  // Text colours
+  //////////////////////////////
+  .primary {
+    color: $primary;
+  }
+  .primary-0 {
+    color: $primary-0;
+  }
+  .primary-1 {
+    color: $primary-1;
+  }
+  .primary-2 {
+    color: $primary-2;
+  }
+  .primary-3 {
+    color: $primary-3;
+  }
+  .primary-4 {
+    color: $primary-4;
+  }
+  .primary-5 {
+    color: $primary-5;
+  }
+  .primary-6 {
+    color: $primary-6;
+  }
+  .primary-7 {
+    color: $primary-7;
+  }
+  .primary-8 {
+    color: $primary-8;
+  }
+  .primary-9 {
+    color: $primary-9;
+  }
+  
+  .text-1-dark {
+    color: $text-1-dark;
+  }
+  .text-3-dark {
+    color: $text-3-dark;
+  }
+  .text-5-mid {
+    color: $text-5-mid;
+  }
+  .text-7-mid {
+    color: $text-7-mid;
+  }
+  .text-e-light {
+    color: $text-e-light;
+  }
+  .text-f-light {
+    color: $text-f-light;
+  }
+  
+  
+  
+  //////////////////////////////
+  // Background colours
+  //////////////////////////////
+  .bg-white {
+    background-color: $white;
+  }
+  .bg-primary {
+    background-color: $primary;
+  }
+  .bg-primary-0 {
+    background-color: $primary-0;
+  }
+  .bg-primary-1 {
+    background-color: $primary-1;
+  }
+  .bg-primary-2 {
+    background-color: $primary-2;
+  }
+  .bg-primary-3 {
+    background-color: $primary-3;
+  }
+  .bg-primary-4 {
+    background-color: $primary-4;
+  }
+  .bg-primary-5 {
+    background-color: $primary-5;
+  }
+  .bg-primary-6 {
+    background-color: $primary-6;
+  }
+  .bg-primary-7 {
+    background-color: $primary-7;
+  }
+  .bg-primary-8 {
+    background-color: $primary-8;
+  }
+  .bg-primary-9 {
+    background-color: $primary-9;
+  }
+
+  .bg-text-8-light {
+    background-color: $text-8-light;
+  }
+
+  .bg-text-e-light {
+    background-color: $text-e-light;
+  }
+  
+  
+  // Shade colours
+  .shade-1 {
+    color: $shade-1;
+  }
+  .shade-2 {
+    color: $shade-2;
+  }
+  .shade-3 {
+    color: $shade-3;
+  }
+
+  // Blue Gradient Colours
+  .bg-blue-0 {
+    background-color: $blue-0;
+  }
+  .bg-blue-1 {
+    background-color: $blue-1;
+  }
+  .bg-blue-2 {
+    background-color: $blue-2;
+  }
+  .bg-blue-3 {
+    background-color: $blue-3;
+  }
+  .bg-blue-4 {
+    background-color: $blue-4;
+  }
+  .bg-blue-5 {
+    background-color: $blue-5;
+  }
+  .bg-blue-6 {
+    background-color: $blue-6;
+  }
+  .bg-blue-7 {
+    background-color: $blue-7;
+  }
+  .bg-blue-8 {
+    background-color: $blue-8;
+  }
+  .bg-blue-9 {
+    background-color: $blue-9;
+  }
+  
+  // Border colours
+  .border-color {
+    border-color: $border-color;
+  }
+  .border-bottom-2-primary-3 {
+    border-bottom: 2px solid $primary-3;
+  }
+  
+  
+  
+  // Strange font weight number 750
+  .font-bold-750 {
+    font-weight: 750;
+  }
+  
+  // Ellipses
+  .ellipses-2-lines {
+    @include ellipses-2-lines;
+  }
+  
+  .ellipses-3-lines {
+    @include ellipses-3-lines;
+  }
+  
+  
+  
+  .sponsored-subtitle {
+    display: block !important;
+    margin-bottom: 0.6rem !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 1.2px !important;
+    color: $text-7-mid !important;
+    text-transform: uppercase !important;
+  }
+  
+  
+  /* header popup */
+  .newsletter-columns {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0px;
+  
+    @media (max-width: $md) {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+  
+  .newsletter-columns > div {
+    flex: 1;
+  
+    @media (max-width: $md) {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+  }
+  
+  .pum-theme-37350 .pum-container, 
+  .pum-theme-default-theme .pum-container {
+    padding: 0px;
+  
+    @media (max-width: $md) {
+      padding: 10px;
+    }
+  }
+  
+  .right-contents {
+    padding: 5px;
+  
+    @media (max-width: $md) {
+      padding: 10px 5px;
+    }
+  }
+  ul {
+    list-style: disc;
+  }
+  
+  #gform_wrapper_6 {
+    text-align: left !important;
+    background-color: transparent !important;
+    padding: 0px !important;
+    border: none !important;
+    border-radius: 0px !important;
+  
+    @media (max-width: $md) {
+      padding: 10px 0 !important;
+    }
+  }
+  
+  section.newsletter-columns {
+    border: 12px solid #f9f9f9;
+  }
+  
+  .pum-theme-37350, .pum-theme-default-theme {
+    background-color: rgb(35 32 32 / 75%);
+  }

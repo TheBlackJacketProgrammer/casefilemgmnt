@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "build:scss": "sass assets/scss/main.scss:assets/css/main.css --style compressed",
+    "watch:scss": "sass assets/scss/main.scss:assets/css/main.css --watch",
+    "build:tailwind": "tailwindcss -i assets/scss/tailwind.scss -o assets/css/tailwind.css --minify",
+    "watch:tailwind": "tailwindcss -i assets/scss/tailwind.scss -o assets/css/tailwind.css --watch --poll",
+    "dev": "concurrently \"npm run watch:scss\" \"npm run watch:tailwind\"",
+    "build": "npm run build:scss && npm run build:tailwind"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "concurrently": "^8.2.2",
+    "postcss": "^8.4.35",
+    "sass": "^1.69.5",
+    "tailwindcss": "^3.4.1"
+  }
+}

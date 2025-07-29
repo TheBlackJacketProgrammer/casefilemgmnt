@@ -1,0 +1,17 @@
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: $text-e-light;
+  border-bottom: 1px solid $text-8-light;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+  nav{
+    ul{
+      display: flex;
+      gap: 10px;
+      list-style: none;
+    }
+  }
+}

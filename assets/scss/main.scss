@@ -1,0 +1,20 @@
+// Base
+@import 'base/_variables.scss';
+@import 'base/_mixins.scss';
+@import 'base/_general.scss';
+@import 'base/_layouts.scss';
+@import 'base/_fonts.scss';
+
+// Components
+@import 'components/_header.scss';
+@import 'components/_footer.scss';
+
+// Pages
+@import 'pages/_home.scss';
+@import 'pages/_about.scss';
+@import 'pages/_login.scss';
+@import 'pages/_dashboard.scss';
+
+
+
+

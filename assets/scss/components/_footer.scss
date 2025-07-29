@@ -1,0 +1,38 @@
+footer {
+    $footer-side-padding-m: 40px;
+    // background: linear-gradient(135deg, $blue-4, $blue-6, $blue-8);
+    background: $text-e-light;
+    color: $text-3-dark;
+    // position: relative;
+    // bottom: 0;
+    width: 100%;
+    padding: 1rem 0;
+    margin-top: auto;
+    border-top: 1px solid #ddd;
+    
+    .mx-auto {
+        max-width: $max-width-container;
+        margin: 0 auto;
+        padding: 0 $side-padding-m;
+        
+        @media (width > $md) {
+            padding: 0 $side-padding;
+        }
+    }
+    
+    p {
+        margin: 0;
+        padding: 0;
+    }
+    
+    a {
+        color: $blue-6;
+        text-decoration: none;
+        transition: color 0.2s ease;
+        
+        &:hover {
+            color: $blue-8;
+            text-decoration: underline;
+        }
+    }
+}

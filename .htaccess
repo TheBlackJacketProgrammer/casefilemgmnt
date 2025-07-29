@@ -1,0 +1,19 @@
+RewriteEngine on
+RewriteCond $1 !^(index\.php|assets|images|js|css|uploads|public|favicon.png)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ ./index.php/$1 [L]
+
+# Allow direct access to image files with special characters in filenames
+<FilesMatch "\.(jpg|jpeg|png|gif|bmp|ico)$">
+  Header set Content-Disposition "attachment"
+  Order Allow,Deny
+  Allow from all
+</FilesMatch>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php80” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php80 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

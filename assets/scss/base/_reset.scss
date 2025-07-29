@@ -1,0 +1,60 @@
+
+
+// Reset and base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 { font-size: 32px; }
+h2 { font-size: 24px; }
+h3 { font-size: 20px; }
+h4 { font-size: 18px; }
+h5 { font-size: 16px; }
+h6 { font-size: 14px; }
+
+p {
+  margin-bottom: 16px;
+}
+
+// Links
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// Lists
+ul, ol {
+  margin-bottom: 16px;
+  padding-left: 24px;
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+} 

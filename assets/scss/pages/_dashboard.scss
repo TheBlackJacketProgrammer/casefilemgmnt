@@ -1,0 +1,37 @@
+main.dashboard {
+    background-color: $shade-b;
+
+    // Records Section 
+    .records-section {
+        border: 1px solid $border-color;
+        box-shadow: 0 0 10px 0 $shade-3;
+        
+        .records-header {
+            background-color: $blue-4;
+            width: 100%;
+            padding: 8px 16px !important;
+
+            h5{
+                @include h5;
+                margin: 0;
+                padding:0;
+                color: $white;
+            }
+        }
+
+        .records-main-menu{
+            width: 100%;
+            padding: 8px 16px !important;
+            gap: 16px !important;
+            
+            .btn-menu-item{
+                @include btn-tertiary;
+                min-width: 100px !important;
+                padding: 4px 16px !important;
+                font-size: unset !important;
+                font-weight: unset !important;
+                height: unset !important;;
+            }
+        }
+    }
+}

@@ -1,0 +1,491 @@
+// Typography
+@mixin h1 {
+  font-size: clamp(32px, 5vw, 40px);
+}
+@mixin h2 {
+  font-size: clamp(28px, 4vw, 32px);
+}
+@mixin h3 {
+  font-size: 30px;
+}
+@mixin h4 {
+  font-size: 24px;
+}
+@mixin h5 {
+  font-size: 18px;
+}
+@mixin h6 {
+  font-size: 18px;
+}
+@mixin p {
+  font-size: 16px;
+  font-family: $font-family;
+  font-weight: 600;  // not quite 500, but Proxima Nova Medium(500) is actually not available;
+  line-height: 1.5;
+  margin-bottom: 1em;
+  color: $text-5-mid;
+}
+@mixin a {
+  font-family: $font-family;
+  color: $link-primary;
+  &:hover,
+  &:focus,
+  &:active {
+    color: $link-primary;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+@mixin ul {
+  font-family: $font-family;
+  color: $text-5-mid;
+}
+
+@mixin typography {
+  body {
+    // Typography Resets
+    font-family: $font-family;
+    --e-global-typography-text-font-family: #{$font-family};
+    
+    // Website Typography
+    h1,h2,h3,h4,h5,h6 {
+      font-family: $font-family;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-top: 0;
+      margin-bottom: 0.6em;
+      color: $text-3-dark;
+    }
+    h1 {
+      @include h1;
+    }
+    h2 {
+      @include h2;
+    }
+    h3 {
+      @include h3;
+    }
+    h4 {
+      @include h4;
+    }
+    h5 {
+      @include h5;
+    }
+    h6 {
+      @include h6;
+    }
+    p {
+      @include p;
+    }
+    a {
+      @include a;
+    }
+    ul {
+      @include ul;
+    }
+  }
+}
+
+//
+// CTA / Buttons
+//
+@mixin btn-standard {
+  $height: 48px;
+  height: $height;
+  display: inline-flex;
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 600;
+  transition: none;
+  outline: 0;
+  border: 2px solid $primary;
+  border-radius: $border-radius-sm !important;
+  box-shadow: none;
+  background-color: $primary;
+  color: $text-1-dark;
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: none;
+  text-align: center;
+  line-height: 1;
+  padding: 12px 32px;
+  min-width: 150px;
+  @media (max-width: $md) {
+    min-width: 140px;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: none;
+    outline: 0;
+    color: $text-1-dark;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background: $primary-5;
+    border: 2px solid $primary-5;
+  }
+  &:active {
+    background: $primary-7 !important;
+    border: 2px solid $primary-7 !important;
+  }
+  &:focus-visible {
+    background: $primary;
+    border: 2px solid $primary;
+    outline: 2px solid $blue;
+    outline-offset: 2px;
+  }
+}
+@mixin btn-primary {
+  @include btn-standard;
+}
+@mixin btn-secondary {
+  @include btn-standard;
+  background: $primary-0;
+  color: $text-3-dark;
+  border: 2px solid $primary;
+  padding: 12px 24px;
+
+  @media (max-width: $md) {
+    min-width: 140px;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $text-3-dark;
+  }
+
+  &:hover {
+    background: $primary-1;
+  }
+  &:active {
+    background: $primary-3 !important;
+  }
+  &:focus-visible {
+    background: $primary-1;
+    outline: 2px solid $blue;
+    outline-offset: 2px;
+  }
+}
+@mixin btn-secondary-transparent {
+  @include btn-secondary;
+  background: $primary-0;
+  color: $white;
+  border: 2px solid $white;
+
+  @media (max-width: $md) {
+    min-width: 140px;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $white;
+    border: 2px solid $white !important;
+  }
+
+  &:hover {
+    background: rgba($white, 0.11);
+  }
+  &:active {
+    background: rgba($white, 0.20) !important;
+  }
+  &:focus-visible {
+    background: rgba($white, 0.11);
+    outline: 2px solid $white;
+    outline-offset: 2px;
+  }
+}
+@mixin btn-tertiary {
+  @include btn-secondary;
+  background: $white;
+  color: $text-1-dark;
+  border: 2px solid $border-color;
+  border-radius: $border-radius-sm !important;
+  min-width: 158px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $text-1-dark;
+  }
+
+  &:hover {
+    background: $text-e-light;
+    border: 2px solid $shade-6 !important;
+  }
+  &:active {
+    background: $primary-3 !important;
+  }
+  &:focus-visible {
+    background: $primary-1;
+    outline: 2px solid $blue;
+    outline-offset: 2px;
+  }
+}
+@mixin btn-blog-category {
+  @include btn-secondary;
+  background: $white;
+  color: $primary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-sm !important;
+  min-width: 158px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $text-1-dark;
+  }
+
+  &:hover {
+    background: $primary-1 !important;
+  }
+  &:active {
+    background: $text-e-light !important;
+    border: 1px solid $border-color !important;
+  }
+  &:focus-visible {
+    background: $primary-1 !important;
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+}
+
+
+
+//
+// Disable tapping highlight on mobile (i.e. hamburger toggle)
+//
+@mixin disable-highlight {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+
+
+//
+// Sliders
+//
+@mixin slider {
+  position: relative;
+
+  $item-gap: 24px;
+  $item-gap-m: 40px;
+
+  margin-left: -#{$item-gap / 2};
+  margin-right: -#{$item-gap / 2};
+  @media (max-width: $md) {
+    margin-left: -#{$item-gap-m / 2};
+    margin-right: -#{$item-gap-m / 2};
+  }
+
+  .slick-track {
+    display: flex;
+  }
+  .slick-slider {
+    margin-bottom: 0px;
+  }
+  .slick-slide,
+  .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: #{$item-gap / 2};
+    margin-right: #{$item-gap / 2};
+    @media (max-width: $md) {
+      margin-left: #{$item-gap-m / 2};
+      margin-right: #{$item-gap-m / 2};
+    }
+  }
+  .slick-prev,
+  .slick-next {
+    z-index: 99999;
+    &:before {
+      content: '';
+      display: block;
+      background-image: url('../images/icons/chevron-arrow-left-icon.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 14px;
+      height: 20px;
+    }
+  }
+  .slick-prev {
+    right: auto; //reset
+    @media (max-width: $md) {
+      left: 22px;
+    }
+    left: -7px;
+    @media (min-width: $xxl) {
+      left: -27px;
+    }
+  }
+  .slick-next {
+    left: auto; // reset
+    rotate: 180deg;
+    transform-origin: top;
+    @media (max-width: $md) {
+      right: 22px;
+    }
+    right: -7px;
+    @media (min-width: $xxl) {
+      right: -27px;
+    }
+  }
+  ul.slick-dots {
+    bottom: -32px;
+    li {
+      margin: 0 3px;
+      button {
+        padding: 0;
+        &:before {
+          font-size: 14px;
+          line-height: 22px;
+          color: #888;
+        }
+      }
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+// Gravity Form mixin
+@mixin gravity-form { 
+  #gform_wrapper_6,
+  #gform_wrapper_7,
+  #gform_wrapper_8 {
+    text-align: left;
+    background-color: $white;
+    padding: 24px;
+    border: 3px solid $border-color;
+    border-radius: $border-radius-xl;
+    @media (max-width: $lg) {
+      margin-top: calc(#{$side-padding-m} * 2);
+    }
+
+    .gform_title {
+      @include h4;
+    }
+
+    input {
+      &::placeholder {
+        color: $text-7-mid;
+      }
+    }
+    
+
+    fieldset { // Full name fieldset
+      width: calc(100% - 0px);
+      @media (max-width: $md) {
+        width: calc(100%);
+      }
+    }
+
+    .gform_description {
+      font-size: 14px;
+      color: $text-7-mid;
+    }
+
+    // Default layouts
+    .gform_fields {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 1.5em;
+
+      .gfield {
+        &:has(.medium) {
+          width: calc(50% - 8px);
+          @media (max-width: $md) {
+            width: calc(100%);
+          }
+        }
+        &:has(.large) {
+          width: calc(100%);
+        }
+        &.gfield--type-captcha { // reCAPTCHA
+          label {
+            display: none; // hide label
+            &:after {
+              display: none; // hide optional text
+            }
+          }
+        }
+        .medium {
+          inline-size: 100% !important;
+        }
+      }
+    }
+
+    // Default label styling
+    .gform-field-label {
+      .gfield_required {
+        display: none; // Hide the "required" text
+      }
+      &:not(:has(.gfield_required))::after {
+        content: '(optional)';
+        font-style: italic;
+        color: $text-7-mid;
+      }
+    }
+
+    .textarea {
+      min-block-size: auto;
+      height: 6rem;
+      @media (max-width: $md) {
+        height: 8rem;
+      }
+    }
+
+    input[type="submit"] {
+      @include btn-primary;
+      line-height: 0;
+      min-width: 200px;
+    }
+
+
+    // Hide unwanted max character counter
+    .ginput_counter {
+      display: none;
+    }
+  }
+
+  // Hide unwanted reCAPTCHA v3 badge
+  .grecaptcha-badge {
+    display: none !important;
+  }
+}
+
+
+//
+// Ellipses...
+//
+@mixin ellipses-2-lines {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;  // number of lines to show
+  text-overflow: ellipsis;
+}
+@mixin ellipses-3-lines {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;  // number of lines to show
+  text-overflow: ellipsis;
+}
+
+@mixin yellow-divider {
+  border-bottom: 5px solid $primary;
+  width: 160px;
+}
+
