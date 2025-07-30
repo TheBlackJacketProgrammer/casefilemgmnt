@@ -98,10 +98,10 @@
   font-weight: 600;
   transition: none;
   outline: 0;
-  border: 2px solid $primary;
+  border: 2px solid $border-color;
   border-radius: $border-radius-sm !important;
   box-shadow: none;
-  background-color: $primary;
+  background-color: $shade-b;
   color: $text-1-dark;
   text-decoration: none;
   display: inline-flex;
@@ -126,17 +126,17 @@
   }
 
   &:hover {
-    background: $primary-5;
-    border: 2px solid $primary-5;
+    background: $shade-2;
+    border: 2px solid $black;
   }
   &:active {
-    background: $primary-7 !important;
-    border: 2px solid $primary-7 !important;
+    background: $shade-2 !important;
+    border: 2px solid $black !important;
   }
   &:focus-visible {
-    background: $primary;
-    border: 2px solid $primary;
-    outline: 2px solid $blue;
+    background: $shade-2;
+    border: 2px solid $black;
+    outline: 2px solid $black;
     outline-offset: 2px;
   }
 }

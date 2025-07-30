@@ -33,5 +33,66 @@ main.dashboard {
                 height: unset !important;;
             }
         }
+
+        .modal-records{
+            background-color: $white;
+            width: 100%;
+            max-width: $max-width-container;
+            height: 100%;
+
+            h5{
+                @include h5;
+                color: $white;
+            }
+
+            .modal-records-header{
+                background-color: $blue-4;
+            }
+
+            .modal-records-body{
+                background-color: $white;
+                height: 100%;
+                max-height: 100%;
+                overflow-y: auto;
+
+                .btn-record-nav{
+                    padding: 4px;
+                    &:hover{
+                        background-color: $shade-3;
+                    }
+                }
+
+                .btn-standard{
+                    width: 100%;
+                    padding: 8px;
+                }
+
+                .blotter-details{
+                    border: 1px solid $border-color;
+                    border-radius: $border-radius-md;
+                    .blotter-details-header{
+                        background-color: $blue-4;
+                        h5{
+                            @include h5;
+                            color: $white;
+                            margin: 0;
+                        }
+                    }
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .btn-close{
+                padding: 4px;
+                &:hover{
+                    background-color: $shade-3;
+                }
+            }
+        }
     }
 }

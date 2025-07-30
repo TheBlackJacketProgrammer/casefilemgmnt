@@ -2,6 +2,9 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
     $scope.records = [];
     $scope.dataTable = null;
     $scope.selectAll = false;
+    $scope.recordIndex = 0;
+    $scope.recordCount = 1;
+    $scope.recordTotal = 0;
 
     $scope.dtOptions = {
         responsive: true,
@@ -123,6 +126,7 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
         try {
             var selectedCount = $scope.getSelectedRecords().length;
             var totalRecords = $scope.records.length;
+            $scope.recordTotal = selectedCount; // Get the total number of selected records
             $scope.selectAll = (selectedCount === totalRecords && totalRecords > 0);
             
             // Update header checkbox state
@@ -149,22 +153,28 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
     // Edit selected records
     $scope.editSelectedRecords = function() {
         var selectedRecords = $scope.getSelectedRecords();
-        if (selectedRecords.length === 1) {
-            // Single record edit
-            console.log('Editing single record:', selectedRecords[0]);
-            // Add your edit logic here
-            // alert('Edit record: ' + selectedRecords[0].case_id);
-        } else {
-            // Multiple records edit
-            console.log('Editing multiple records:', selectedRecords);
-            // Add your bulk edit logic here
-            // alert('Edit ' + selectedRecords.length + ' records');
-        }
+        console.log('Editing multiple records:', selectedRecords);
         $('#modalRecords').removeClass('hidden');
     };
 
     $scope.closeModal = function() {
         $('#modalRecords').addClass('hidden');
+    };
+
+    $scope.previousRecord = function() {
+        $scope.recordIndex--;
+        $scope.recordCount--;
+        if($scope.recordCount < 1) {
+            $scope.recordCount = 1;
+        }
+    };
+
+    $scope.nextRecord = function() {
+        $scope.recordIndex++;
+        $scope.recordCount++;
+        if($scope.recordCount >= $scope.recordTotal) {
+            $scope.recordCount = $scope.recordTotal;
+        }
     };
 
 
