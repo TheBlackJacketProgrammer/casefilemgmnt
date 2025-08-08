@@ -1479,11 +1479,31 @@ main.dashboard .records-section .modal-records {
   background-color: #ffffff;
   width: 100%;
   max-width: 1200px;
-  height: 100%;
 }
 main.dashboard .records-section .modal-records h5 {
   font-size: 18px;
   color: #ffffff;
+}
+main.dashboard .records-section .modal-records .modal-btn {
+  padding: 4px 8px;
+  border: 1px solid #dddddd;
+  background-color: #F2F2F2;
+}
+main.dashboard .records-section .modal-records .modal-btn:hover {
+  background-color: #E5E5E5;
+  border-color: #CCCCCC;
+}
+main.dashboard .records-section .modal-records .modal-btn:active {
+  background-color: #CCCCCC;
+  border-color: #999999;
+}
+main.dashboard .records-section .modal-records .modal-records-navigation {
+  padding: 8px 16px;
+  border-bottom: 1px solid #dddddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F2F2F2;
 }
 main.dashboard .records-section .modal-records .modal-records-header {
   background-color: #6666FF;

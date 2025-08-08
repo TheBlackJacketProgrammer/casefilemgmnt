@@ -38,11 +38,36 @@ main.dashboard {
             background-color: $white;
             width: 100%;
             max-width: $max-width-container;
-            height: 100%;
+            
 
             h5{
                 @include h5;
                 color: $white;
+            }
+
+            .modal-btn{
+                padding: 4px 8px;
+                border: 1px solid $border-color; 
+                background-color: $btn-classic-default;
+
+                &:hover{
+                    background-color: $btn-classic-hover;
+                    border-color: $btn-classic-active;
+                }
+
+                &:active{
+                    background-color: $btn-classic-active;
+                    border-color: $btn-classic-darker;
+                }
+            }
+
+            .modal-records-navigation{
+                padding: 8px 16px;
+                border-bottom: 1px solid $border-color;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: $btn-classic-default;
             }
 
             .modal-records-header{
