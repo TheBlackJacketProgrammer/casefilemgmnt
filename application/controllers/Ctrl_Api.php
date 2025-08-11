@@ -41,4 +41,41 @@ class Ctrl_Api extends CI_Controller {
         }
     }
 
+    public function get_crime_types()
+    {
+        $crime_types = $this->Model_Api->get_crime_types();
+        $response = [
+            'status' => 'success',
+            'message' => 'Crime types fetched successfully',
+            'crimeTypes' => $crime_types
+        ];
+        echo json_encode($response);
+    }
+
+    // public function get_crime_id()
+    // {
+    //     $crime_id = $this->Model_Api->get_crime_id();
+        
+    //     if ($crime_id !== null) {
+    //         $response = [
+    //             'status' => 'success',
+    //             'message' => 'Crime id fetched successfully',
+    //             'crimeId' => $crime_id
+    //         ];
+    //     } else {
+    //         $response = [
+    //             'status' => 'error',
+    //             'message' => 'Failed to fetch crime id'
+    //         ];
+    //     }
+
+    //     echo json_encode($response);
+    // }
+
+    public function save_record()
+    {
+        $data = json_decode(file_get_contents('php://input'),true);
+        $response = $this->Model_Api->save_record($data);
+        echo json_encode($response);
+    }
 }

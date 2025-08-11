@@ -6,6 +6,7 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
     $scope.recordCount = 1;
     $scope.recordTotal = 0;
     $scope.currentRecord = [];
+    $scope.status = "Add";
 
     $scope.dtOptions = {
         responsive: true,
@@ -45,6 +46,7 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
         ]
     };
     
+    // Get records
     $scope.getRecords = function() {
         $http({
             method: "GET",
@@ -63,6 +65,19 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
             }
         });
     };
+
+    // Get crime types
+    $scope.getCrimeTypes = function() {
+        $http({
+            method: "GET",
+            url: $scope.baseUrl + "ctrl_api/get_crime_types",
+        }).then(function successCallback(response) {
+            if(response.data.status == 'success')
+            {
+                $scope.crimeTypes = response.data.crimeTypes;
+            }
+        });
+    }
 
     // Select/Deselect all records
     $scope.toggleSelectAll = function() {
@@ -212,16 +227,46 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
         const monthName = months[now.getMonth()];
         const date = String(now.getDate()).padStart(2, '0');
         const year = now.getFullYear();
-        const hours = String(now.getHours()).padStart(2, '0');
+        const hours24 = now.getHours();
+        const hours = String(hours24 % 12 || 12).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
         const seconds = String(now.getSeconds()).padStart(2, '0');
-        const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+        const ampm = hours24 >= 12 ? 'PM' : 'AM';
         
         return `${dayName} - ${monthName}-${date}-${year} - ${hours}:${minutes}:${seconds} ${ampm}`;
     };
+
+    // Add record
+    $scope.addRecord = function() {
+        $scope.status = "Add";
+        $scope.currentRecord = [{
+            case_crimeDate: null,
+            case_crimeDetails: "",
+            case_crimeScene: "",
+            case_crimeType: "",
+            case_crimeWitness: "",
+            case_dateFiled: $scope.getCurrentDate(),
+            case_id: $scope.crimeId,
+            case_notify: "Not Notify",
+            complainant_address: "",
+            complainant_age: "",
+            complainant_birthday: null,
+            complainant_contactNum: "",
+            complainant_name: "",
+            complainee_address: "",
+            complainee_age: "",
+            complainee_birthday: null,
+            complainee_contactNum: "",
+            complainee_name: ""
+        }];
+        $scope.recordTotal = 1;
+        console.log('Converted records:', $scope.currentRecord);
+        $('#modalRecords').removeClass('hidden'); // Remove hidden class to show modal
+    }
     
     // Edit selected records
     $scope.editSelectedRecords = function() {
+        $scope.status = "Edit";
         $scope.currentRecord = angular.copy($scope.getSelectedRecords());
         
         // Convert date strings to proper format for HTML date inputs
@@ -246,6 +291,23 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
         $('#modalRecords').removeClass('hidden'); // Remove hidden class to show modal
     };
 
+    // Save record
+    $scope.saveRecord = function() {
+        console.log('Saving record:', $scope.currentRecord);
+        $http({
+            method: "POST",
+            url: $scope.baseUrl + "ctrl_api/save_record",
+            data: $scope.currentRecord[0]
+        }).then(function successCallback(response) {
+            if(response.data.status == 'success')
+            {
+                console.log('Record saved successfully');
+                $scope.closeModal();
+                $scope.getRecords();
+            }
+        });
+    };
+
     $scope.closeModal = function() {
         $('#modalRecords').addClass('hidden'); // Add hidden class to hide modal
     };
@@ -268,7 +330,8 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
         }
     };
 
-
+    // Load initial data
     $scope.getRecords();
+    $scope.getCrimeTypes();
     
 });
