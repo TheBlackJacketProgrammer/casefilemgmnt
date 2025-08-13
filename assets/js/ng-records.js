@@ -262,6 +262,7 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
         $scope.recordTotal = 1;
         console.log('Converted records:', $scope.currentRecord);
         $('#modalRecords').removeClass('hidden'); // Remove hidden class to show modal
+        $('#modalRecords').addClass('flex'); 
     }
     
     // Edit selected records
@@ -289,26 +290,28 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
         
         console.log('Converted records:', $scope.currentRecord);
         $('#modalRecords').removeClass('hidden'); // Remove hidden class to show modal
+        $('#modalRecords').addClass('flex'); 
     };
 
     // Save record
     $scope.saveRecord = function() {
-        console.log('Saving record:', $scope.currentRecord);
-        $http({
-            method: "POST",
-            url: $scope.baseUrl + "ctrl_api/save_record",
-            data: $scope.currentRecord[0]
-        }).then(function successCallback(response) {
-            if(response.data.status == 'success')
-            {
-                console.log('Record saved successfully');
-                $scope.closeModal();
-                $scope.getRecords();
-            }
-        });
+        console.log('Saving record:', $scope.currentRecord[0]);
+        // $http({
+        //     method: "POST",
+        //     url: $scope.baseUrl + "ctrl_api/save_record",
+        //     data: $scope.currentRecord[0]
+        // }).then(function successCallback(response) {
+        //     if(response.data.status == 'success')
+        //     {
+        //         console.log('Record saved successfully');
+        //         $scope.closeModal();
+        //         $scope.getRecords();
+        //     }
+        // });
     };
 
     $scope.closeModal = function() {
+        $('#modalRecords').removeClass('flex');
         $('#modalRecords').addClass('hidden'); // Add hidden class to hide modal
     };
 

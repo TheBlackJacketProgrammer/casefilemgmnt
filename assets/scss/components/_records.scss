@@ -1,0 +1,182 @@
+div.records-section{
+    border: 1px solid $border-color;
+    box-shadow: 0 0 10px 0 $shade-3;
+        
+    .records-header {
+        background-color: $blue-4;
+        width: 100%;
+         padding: 8px 16px !important;
+
+        h5{
+            @include h5;
+            margin: 0;
+            padding:0;
+            color: $white;
+        }
+    }
+
+    .records-main-menu{
+        width: 100%;
+        padding: 8px 16px !important;
+        gap: 16px !important;
+            
+        .btn-menu-item{
+            @include btn-tertiary;
+            min-width: 100px !important;
+            padding: 4px 16px !important;
+            font-size: unset !important;
+            font-weight: unset !important;
+            height: unset !important;;
+        }
+    }
+
+    .modal-records{
+        position: fixed;
+        inset: 0px;
+        z-index: 50;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($black, 0.7);
+        
+        .modal-dialog-box{
+            background-color: $white;
+            width: 100%;
+            max-width: $max-width-container;
+
+            .modal-records-header{
+                background-color: $blue-6;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px;
+            }
+
+            .modal-records-navigation{
+                padding: 8px 16px;
+                border-bottom: 1px solid $border-color;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: $btn-classic-default;
+            }
+
+            .modal-records-body{
+                display: flex;
+                gap: 12px;
+                flex-direction: column;
+                height: 100%;
+                max-height: 100%;
+                overflow-y: auto;
+                padding: 12px;
+
+                .form-container{
+                    border: 1px solid $border-color;
+                    border-radius: $border-radius-md;
+
+                    .form-header{
+                        padding: 8px 12px;
+                        background-color: $blue-4;
+                        color: $white;
+                    }
+
+                    .form-body{
+                        display: flex;
+                        gap: 12px;
+                        padding: 12px;
+
+                        .modal-btn-upload{
+                            width: 100%;
+                            padding: 4px 8px;
+                            border: 1px solid $border-color; 
+                            background-color: $btn-classic-default;
+                
+                            &:hover{
+                                background-color: $btn-classic-hover;
+                                border-color: $btn-classic-active;
+                            }
+                
+                            &:active{
+                                background-color: $btn-classic-active;
+                                border-color: $btn-classic-darker;
+                            }
+                        }
+
+                        .form-item{
+                            width: 100%;
+                            padding: 4px 8px;
+                            border: 1px solid $border-color;
+                            border-radius: $border-radius-sm;
+                            outline: 2px solid transparent;
+                            outline-offset: 2px;
+
+                            &:focus{
+                                outline: 2px solid $blue-4;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+
+
+                
+            h5{
+                @include h5;
+                color: $white;
+            }
+    
+
+    
+
+    
+
+    
+            .modal-records-body{
+                background-color: $white;
+                height: 100%;
+                max-height: 100%;
+                overflow-y: auto;
+    
+                .btn-record-nav{
+                    padding: 4px;
+                    &:hover{
+                        background-color: $shade-3;
+                    }
+                }
+    
+                .btn-standard{
+                    width: 100%;
+                    padding: 8px;
+                }
+    
+                .blotter-details{
+                    border: 1px solid $border-color;
+                    border-radius: $border-radius-md;
+                    .blotter-details-header{
+                        background-color: $blue-4;
+                        h5{
+                            @include h5;
+                            color: $white;
+                            margin: 0;
+                        }
+                    }
+                }
+    
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+    
+            .btn-close{
+                padding: 4px;
+                &:hover{
+                    background-color: $shade-3;
+                }
+            }
+        }
+    }
+
+
+}
