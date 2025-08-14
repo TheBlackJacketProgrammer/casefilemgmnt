@@ -1084,6 +1084,15 @@ div.records-section .records-main-menu .btn-menu-item:focus-visible {
   outline: 2px solid #21007F;
   outline-offset: 2px;
 }
+div.records-section .records-main-menu .btn-menu-item:disabled {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
+  cursor: not-allowed !important;
+}
+div.records-section .records-main-menu .btn-menu-item:disabled:hover {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
+}
 div.records-section .modal-records {
   position: fixed;
   inset: 0px;
@@ -1096,6 +1105,20 @@ div.records-section .modal-records .modal-dialog-box {
   background-color: #ffffff;
   width: 100%;
   max-width: 1200px;
+}
+div.records-section .modal-records .modal-dialog-box .modal-btn-upload, div.records-section .modal-records .modal-dialog-box .modal-btn-save {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid #dddddd;
+  background-color: #F2F2F2;
+}
+div.records-section .modal-records .modal-dialog-box .modal-btn-upload:hover, div.records-section .modal-records .modal-dialog-box .modal-btn-save:hover {
+  background-color: #E5E5E5;
+  border-color: #CCCCCC;
+}
+div.records-section .modal-records .modal-dialog-box .modal-btn-upload:active, div.records-section .modal-records .modal-dialog-box .modal-btn-save:active {
+  background-color: #CCCCCC;
+  border-color: #999999;
 }
 div.records-section .modal-records .modal-dialog-box .modal-records-header {
   background-color: #21007F;
@@ -1134,20 +1157,6 @@ div.records-section .modal-records .modal-dialog-box .modal-records-body .form-c
   display: flex;
   gap: 12px;
   padding: 12px;
-}
-div.records-section .modal-records .modal-dialog-box .modal-records-body .form-container .form-body .modal-btn-upload {
-  width: 100%;
-  padding: 4px 8px;
-  border: 1px solid #dddddd;
-  background-color: #F2F2F2;
-}
-div.records-section .modal-records .modal-dialog-box .modal-records-body .form-container .form-body .modal-btn-upload:hover {
-  background-color: #E5E5E5;
-  border-color: #CCCCCC;
-}
-div.records-section .modal-records .modal-dialog-box .modal-records-body .form-container .form-body .modal-btn-upload:active {
-  background-color: #CCCCCC;
-  border-color: #999999;
 }
 div.records-section .modal-records .modal-dialog-box .modal-records-body .form-container .form-body .form-item {
   width: 100%;

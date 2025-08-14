@@ -11,14 +11,14 @@
                 </svg>
                 Add Record
             </button>
-            <button class="btn-menu-item flex items-center gap-2" ng-click="editSelectedRecords()" ng-disabled="getSelectedRecords().length === 0">
+            <button class="btn-menu-item flex items-center gap-2" ng-click="editSelectedRecords()" ng-disabled="getSelectedRecords().length == 0">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                 </svg>
                 View Records {{ getSelectedRecords().length > 0 ? '(' + getSelectedRecords().length + ')' : '' }}
             </button>
-            <button class="btn-menu-item flex items-center gap-2" ng-click="editSelectedRecords()" ng-disabled="getSelectedRecords().length === 0">
+            <button class="btn-menu-item flex items-center gap-2" ng-click="editSelectedRecords()" ng-disabled="getSelectedRecords().length == 0">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                 </svg>
@@ -41,7 +41,7 @@
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                         <input type="checkbox" id="selectAll" ng-click="handleHeaderCheckbox()" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                     </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Case #</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase" hidden>Case #</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Crime Type</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Complainant</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Complainee</th>
@@ -55,12 +55,12 @@
                     <td class="px-6 py-4">
                         <input type="checkbox" id="record" ng-model="record.selected" ng-change="updateSelectAll()" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                     </td>
-                    <td class="px-6 py-4">{{ record.case_id }}</td>
+                    <td class="px-6 py-4" hidden>{{ record.case_id }}</td>
                     <td class="px-6 py-4">{{ record.case_crimeType }}</td>
                     <td class="px-6 py-4">{{ record.complainant_name }}</td>
                     <td class="px-6 py-4">{{ record.complainee_name }}</td>
-                    <td class="px-6 py-4">{{ record.case_crimeDate }}</td>
-                    <td class="px-6 py-4">{{ record.case_dateFiled }}</td>
+                    <td class="px-6 py-4">{{ convertMySQLDate(record.case_crimeDate) }}</td>
+                    <td class="px-6 py-4">{{ convertMySQLDate(record.case_dateFiled) }}</td>
                     <td class="px-6 py-4">{{ record.case_notify }}</td>
                 </tr>
             </tbody>

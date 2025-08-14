@@ -1,0 +1,19 @@
+PROGRAMMER'S NOTE
+Created by: Marvin Bergado
+==============================================================================================
+
+Date: 08 - 14 - 2025
+
+UPDATES:
+    * Can now Add and Update Records
+
+ISSUES:
+    * An error appeared out of nowhere in the system/libraries/Session/PHP8SessionWrapper
+
+REMARKS:
+    * Change the case_notify to case_status (Active, Pending, Closed) - This will be temporary values will change over time.
+    * If Edit Mode: Show the case_dateUpdate and the user that created the record and user that update the record.
+    * Apply the upload image of the complainant and complainee.
+    * Have Search Filters for easy finding records.
+
+< ========== NOTHING TO ADD ========== >

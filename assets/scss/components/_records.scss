@@ -27,6 +27,17 @@ div.records-section{
             font-size: unset !important;
             font-weight: unset !important;
             height: unset !important;;
+
+            &:disabled{
+                background-color: $btn-classic-disabled !important;
+                border-color: $btn-classic-disabled !important;
+                cursor: not-allowed !important;
+
+                &:hover{
+                    background-color: $btn-classic-disabled !important;
+                    border-color: $btn-classic-disabled !important;
+                }
+            }
         }
     }
 
@@ -42,6 +53,24 @@ div.records-section{
             background-color: $white;
             width: 100%;
             max-width: $max-width-container;
+
+            .modal-btn-upload, .modal-btn-save{
+                width: 100%;
+                padding: 4px 8px;
+                border: 1px solid $border-color; 
+                background-color: $btn-classic-default;
+    
+                &:hover{
+                    background-color: $btn-classic-hover;
+                    border-color: $btn-classic-active;
+                }
+    
+                &:active{
+                    background-color: $btn-classic-active;
+                    border-color: $btn-classic-darker;
+                }
+
+            }
 
             .modal-records-header{
                 background-color: $blue-6;
@@ -83,23 +112,6 @@ div.records-section{
                         display: flex;
                         gap: 12px;
                         padding: 12px;
-
-                        .modal-btn-upload{
-                            width: 100%;
-                            padding: 4px 8px;
-                            border: 1px solid $border-color; 
-                            background-color: $btn-classic-default;
-                
-                            &:hover{
-                                background-color: $btn-classic-hover;
-                                border-color: $btn-classic-active;
-                            }
-                
-                            &:active{
-                                background-color: $btn-classic-active;
-                                border-color: $btn-classic-darker;
-                            }
-                        }
 
                         .form-item{
                             width: 100%;

@@ -8,6 +8,11 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
     $scope.currentRecord = [];
     $scope.status = "Add";
 
+    // Date Variables
+    $scope.complainantBirthday = null;
+    $scope.complaineeBirthday = null;
+    $scope.crimeDate = null;
+
     $scope.dtOptions = {
         responsive: true,
         autoWidth: false,
@@ -166,76 +171,62 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
         }
     };
 
+    // Pad function
+    $scope.pad = function(n) { 
+        return (n < 10 ? '0' : '') + n; 
+    }
+
     // Date conversion utility function
-    $scope.convertDateStringToDateInput = function(dateString) {
-        if (!dateString) return null;
-        
-        try {
-            // Handle different date formats
-            let date;
-            
-            // Format: "February 9 2016" or "February 07 1992"
-            if (dateString.match(/^[A-Za-z]+ \d{1,2} \d{4}$/)) {
-                date = new Date(dateString);
-            }
-            // Format: "Thursday, July-06-2017, 14:09:43 PM"
-            else if (dateString.match(/^[A-Za-z]+, [A-Za-z]+-\d{2}-\d{4}, \d{2}:\d{2}:\d{2} [AP]M$/)) {
-                // Extract the date part: "July-06-2017"
-                const datePart = dateString.split(', ')[1];
-                const [month, day, year] = datePart.split('-');
-                date = new Date(year, getMonthIndex(month), parseInt(day));
-            }
-            // Format: "September 03 1992"
-            else if (dateString.match(/^[A-Za-z]+ \d{2} \d{4}$/)) {
-                date = new Date(dateString);
-            }
-            else {
-                // Try parsing as is
-                date = new Date(dateString);
-            }
-            
-            // Check if date is valid
-            if (isNaN(date.getTime())) {
-                console.warn('Invalid date string:', dateString);
-                return null;
-            }
-            
-            // Return the Date object for AngularJS ng-model
-            return date;
-        } catch (error) {
-            console.error('Error converting date string:', dateString, error);
-            return null;
+    $scope.convertDate = function(dateValue, colName) {
+
+        // Convert ng-model date (string) to Date object
+        // let tempDate = new Date(dateValue);
+        let tempDate = dateValue;
+
+        // MySQL format (YYYY-MM-DD HH:MM:SS) → set time to current time
+        let mysqlDate = tempDate.getFullYear() + '-' +
+                        $scope.pad(tempDate.getMonth() + 1) + '-' +
+                        $scope.pad(tempDate.getDate()) + ' ' +
+                        $scope.pad(tempDate.getHours()) + ':' +
+                        $scope.pad(tempDate.getMinutes()) + ':' +
+                        $scope.pad(tempDate.getSeconds());
+
+
+        if(colName == 'complainant_birthday') {
+            $scope.currentRecord[0].complainant_birthday = mysqlDate;
+        }
+        else if(colName == 'complainee_birthday') {
+            $scope.currentRecord[0].complainee_birthday = mysqlDate;
+        }
+        else if(colName == 'case_crimeDate') {
+            $scope.currentRecord[0].case_crimeDate = mysqlDate;
+        }
+        else if(colName == 'case_dateFiled') {
+            $scope.currentRecord[0].case_dateFiled = mysqlDate;
+        }
+        else if(colName == 'case_dateUpdated') {
+            $scope.currentRecord[0].case_dateUpdated = mysqlDate;
+        }
+        else{
+            return mysqlDate;
         }
     };
-    
-    // Helper function to get month index
-    function getMonthIndex(monthName) {
-        const months = {
-            'january': 0, 'february': 1, 'march': 2, 'april': 3, 'may': 4, 'june': 5,
-            'july': 6, 'august': 7, 'september': 8, 'october': 9, 'november': 10, 'december': 11
+
+    $scope.convertMySQLDate = function(dateValue) {
+        let date = (dateValue instanceof Date) ? dateValue : new Date(dateValue);
+        let options = { 
+            weekday: 'long',        // Day name
+            year: 'numeric', 
+            month: 'short',         // Abbreviated month (e.g., Aug)
+            day: '2-digit',
+            // hour: '2-digit', 
+            // minute: '2-digit', 
+            // second: '2-digit',
+            // hour12: true 
         };
-        return months[monthName.toLowerCase()] || 0;
+        return date.toLocaleString('en-US',options);
     }
     
-    // Get current date in formatted string
-    $scope.getCurrentDate = function() {
-        const now = new Date();
-        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        
-        const dayName = days[now.getDay()];
-        const monthName = months[now.getMonth()];
-        const date = String(now.getDate()).padStart(2, '0');
-        const year = now.getFullYear();
-        const hours24 = now.getHours();
-        const hours = String(hours24 % 12 || 12).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        const ampm = hours24 >= 12 ? 'PM' : 'AM';
-        
-        return `${dayName} - ${monthName}-${date}-${year} - ${hours}:${minutes}:${seconds} ${ampm}`;
-    };
-
     // Add record
     $scope.addRecord = function() {
         $scope.status = "Add";
@@ -245,8 +236,8 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
             case_crimeScene: "",
             case_crimeType: "",
             case_crimeWitness: "",
-            case_dateFiled: $scope.getCurrentDate(),
-            case_id: $scope.crimeId,
+            case_dateFiled: null,
+            case_id: null,
             case_notify: "Not Notify",
             complainant_address: "",
             complainant_age: "",
@@ -260,7 +251,7 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
             complainee_name: ""
         }];
         $scope.recordTotal = 1;
-        console.log('Converted records:', $scope.currentRecord);
+        $scope.recordIndex = 0;
         $('#modalRecords').removeClass('hidden'); // Remove hidden class to show modal
         $('#modalRecords').addClass('flex'); 
     }
@@ -269,48 +260,47 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
     $scope.editSelectedRecords = function() {
         $scope.status = "Edit";
         $scope.currentRecord = angular.copy($scope.getSelectedRecords());
-        
-        // Convert date strings to proper format for HTML date inputs
-        $scope.currentRecord.forEach(function(record) {
-            // Convert case_crimeDate
-            if (record.case_crimeDate) {
-                record.case_crimeDate = $scope.convertDateStringToDateInput(record.case_crimeDate);
-            }
-            
-            // Convert complainee_birthday
-            if (record.complainee_birthday) {
-                record.complainee_birthday = $scope.convertDateStringToDateInput(record.complainee_birthday);
-            }
-            
-            // Convert complainant_birthday
-            if (record.complainant_birthday) {
-                record.complainant_birthday = $scope.convertDateStringToDateInput(record.complainant_birthday);
-            }
+        $scope.currentRecord.forEach(function(rec) {
+            rec.complainant_birthday = new Date(rec.complainant_birthday);
+            rec.complainee_birthday = new Date(rec.complainee_birthday);
+            rec.case_crimeDate = new Date(rec.case_crimeDate);
         });
-        
-        console.log('Converted records:', $scope.currentRecord);
+        $scope.recordTotal = $scope.currentRecord.length;
         $('#modalRecords').removeClass('hidden'); // Remove hidden class to show modal
         $('#modalRecords').addClass('flex'); 
     };
 
     // Save record
     $scope.saveRecord = function() {
-        console.log('Saving record:', $scope.currentRecord[0]);
-        // $http({
-        //     method: "POST",
-        //     url: $scope.baseUrl + "ctrl_api/save_record",
-        //     data: $scope.currentRecord[0]
-        // }).then(function successCallback(response) {
-        //     if(response.data.status == 'success')
-        //     {
-        //         console.log('Record saved successfully');
-        //         $scope.closeModal();
-        //         $scope.getRecords();
-        //     }
-        // });
+        if($scope.status == 'Add') {
+            $scope.convertDate(new Date(), 'case_dateFiled');
+        }
+        else if($scope.status == 'Edit') {
+            $scope.convertDate(new Date(), 'case_dateUpdated');
+        }
+        
+        $http({
+            method: "POST",
+            url: $scope.baseUrl + "ctrl_api/save_record",
+            data: $scope.currentRecord[$scope.recordIndex]
+        }).then(function successCallback(response) {
+            if(response.data.status == 'success')
+            {
+                console.log('Record saved successfully');
+                if($scope.status == 'Add') {
+                    $scope.closeModal();
+                }
+                $scope.getRecords();
+            }
+        });
     };
 
     $scope.closeModal = function() {
+        $scope.recordIndex = 0;
+        $scope.recordCount = 1;
+        $scope.recordTotal = 0;
+        $scope.currentRecord = [];
+        $scope.status = "Add";
         $('#modalRecords').removeClass('flex');
         $('#modalRecords').addClass('hidden'); // Add hidden class to hide modal
     };

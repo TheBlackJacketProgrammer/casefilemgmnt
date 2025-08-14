@@ -84,4 +84,46 @@ class Model_Api extends CI_Model
 
         return $this->db->affected_rows();
     }
+
+    public function update_record($params)
+    {
+        // Insert complainant
+        $complainant['complainant_age'] = $params['complainant_age'];
+		$complainant['complainant_address'] = $params['complainant_address'];
+		$complainant['complainant_birthday'] = $params['complainant_birthday'];
+		$complainant['complainant_contactNum'] = $params['complainant_contactNum'];
+		$complainant['complainant_name'] = $params['complainant_name'];
+        $this->db->insert('complainant',$complainant);
+        $this->db->where('complainant_id', $params['complainant_id']);
+        $this->db->update('complainant', $complainant);
+
+        // Insert complainee
+        $complainee['complainee_age'] = $params['complainee_age'];
+		$complainee['complainee_address'] = $params['complainee_address'];
+		$complainee['complainee_birthday'] = $params['complainee_birthday'];
+		$complainee['complainee_contactNum'] = $params['complainee_contactNum'];
+		$complainee['complainee_name'] = $params['complainee_name'];
+        $this->db->insert('complainee',$complainee);
+        $this->db->where('complainee_id', $params['complainee_id']);
+        $this->db->update('complainee', $complainee);
+
+        // Get user id
+        $case['case_user_id'] = $this->session->userdata('user_id');
+        $case['case_complainant_id'] = $params['complainant_id'];
+        $case['case_complainee_id'] = $params['complainee_id'];
+
+        // Insert case
+		$case['case_crimeDate'] = $params['case_crimeDate'];
+        $case['case_crimeDetails'] = $params['case_crimeDetails'];
+		$case['case_crimeScene'] = $params['case_crimeScene'];
+		$case['case_crimeType'] = $params['case_crimeType'];
+		$case['case_crimeWitness'] = $params['case_crimeWitness'];
+        $case['case_dateUpdated'] = $params['case_dateUpdated'];
+        $case['case_notify'] = $params['case_notify'];
+
+        $this->db->where('case_id', $params['case_id']);
+        $this->db->update('records', $case);
+
+        return $this->db->affected_rows();
+    }
 }

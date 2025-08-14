@@ -13,9 +13,9 @@
         <!-- Navigation -->
         <div class="modal-records-navigation">
             <div class="flex">
-                <button class="modal-btn flex items-center gap-2" ng-click="saveRecord()">
+                <button class="modal-btn-save flex items-center gap-2" ng-click="saveRecord()">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
                     </svg>
                     <span class="text-sm font-medium">Save Record</span>
                 </button>
@@ -59,25 +59,26 @@
                         <div class="w-2/3 flex flex-col gap-2">
                             <div>
                                 <label class="block text-xs font-bold mb-1">Full Name</label>
-                                <input type="text" ng-model="currentRecord[recordIndex].complainant_name" class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Enter full name">
+                                <input type="text" ng-model="currentRecord[recordIndex].complainant_name" class="text-xs form-item" placeholder="Enter full name">
                             </div>
                             <div class="grid grid-cols-2 gap-2">
                                 <div>
                                     <label class="block text-xs font-bold mb-1">Age</label>
-                                    <input type="text" ng-model="currentRecord[recordIndex].complainant_age" class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Age" min="0" max="150">
+                                    <input type="text" ng-model="currentRecord[recordIndex].complainant_age" class="text-xs form-item" placeholder="Age" min="0" max="150">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold mb-1">Birthday</label>
-                                    <input type="date" ng-model="currentRecord[recordIndex].complainant_birthday" class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                    <input type="date" ng-model="currentRecord[recordIndex].complainant_birthday" class="text-xs form-item">
+
                                 </div>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold mb-1">Address</label>
-                                <textarea ng-model="currentRecord[recordIndex].complainant_address" rows="2" class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Enter complete address"></textarea>
+                                <textarea ng-model="currentRecord[recordIndex].complainant_address" rows="2" class="text-xs form-item" placeholder="Enter complete address"></textarea>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold mb-1">Contact Number</label>
-                                <input type="text" ng-model="currentRecord[recordIndex].complainant_contactNum" class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Enter contact number">
+                                <input type="text" ng-model="currentRecord[recordIndex].complainant_contactNum" class="text-xs form-item" placeholder="Enter contact number">
                             </div>
                         </div>
                     </div>
@@ -99,25 +100,25 @@
                         <div class="w-2/3 flex flex-col gap-2">
                             <div>
                                 <label class="block text-xs font-bold mb-1">Full Name</label>
-                                <input type="text" ng-model="currentRecord[recordIndex].complainee_name" class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Enter full name">
+                                <input type="text" ng-model="currentRecord[recordIndex].complainee_name" class="text-xs form-item" placeholder="Enter full name">
                             </div>
                             <div class="grid grid-cols-2 gap-2">
                                 <div>
                                     <label class="block text-xs font-bold mb-1">Age</label>
-                                    <input type="text" ng-model="currentRecord[recordIndex].complainee_age" class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Age" min="0" max="150">
+                                    <input type="text" ng-model="currentRecord[recordIndex].complainee_age" class="text-xs form-item" placeholder="Age" min="0" max="150">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold mb-1">Birthday</label>
-                                    <input type="date" ng-model="currentRecord[recordIndex].complainee_birthday" class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                    <input type="date" ng-model="currentRecord[recordIndex].complainee_birthday" class="text-xs form-item">
                                 </div>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold mb-1">Address</label>
-                                <textarea ng-model="currentRecord[recordIndex].complainee_address" rows="2" class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Enter complete address"></textarea>
+                                <textarea ng-model="currentRecord[recordIndex].complainee_address" rows="2" class="text-xs form-item" placeholder="Enter complete address"></textarea>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold mb-1">Contact Number</label>
-                                <input type="text" ng-model="currentRecord[recordIndex].complainee_contactNum" class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="Enter contact number">
+                                <input type="text" ng-model="currentRecord[recordIndex].complainee_contactNum" class="text-xs form-item" placeholder="Enter contact number">
                             </div>
                         </div>
                     </div>
@@ -155,7 +156,7 @@
                                 <label class="block text-xs font-bold mb-1">Crime Type</label>
                                 <select ng-model="currentRecord[recordIndex].case_crimeType" class="text-xs form-item">
                                     <option value="">-Crime Type-</option>
-                                    <option ng-repeat="crimeType in crimeTypes" value="{{ crimeType.crimeType_id }}">{{ crimeType.crimeType_crime }}</option>
+                                    <option ng-repeat="crimeType in crimeTypes" value="{{ crimeType.crimeType_crime }}">{{ crimeType.crimeType_crime }}</option>
                                 </select>
                             </div>
                         </div>

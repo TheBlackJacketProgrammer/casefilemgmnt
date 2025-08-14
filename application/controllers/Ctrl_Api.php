@@ -75,7 +75,20 @@ class Ctrl_Api extends CI_Controller {
     public function save_record()
     {
         $data = json_decode(file_get_contents('php://input'),true);
-        $response = $this->Model_Api->save_record($data);
-        echo json_encode($response);
+        if($data['case_id'] == null){
+            $response = $this->Model_Api->save_record($data);
+        }
+        else{
+            $response = $this->Model_Api->update_record($data);
+        }
+        
+        if($response > 0)
+        {
+            echo json_encode(['status' => 'success', 'message' => 'Record saved successfully']);
+        }
+        else
+        {
+            echo json_encode(['status' => 'error', 'message' => 'Failed to save record']);
+        }
     }
 }
