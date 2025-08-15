@@ -124,6 +124,17 @@ div.records-section{
                             &:focus{
                                 outline: 2px solid $blue-4;
                             }
+
+                            &:disabled{
+                                background-color: $btn-classic-disabled !important;
+                                border-color: $btn-classic-disabled !important;
+                                cursor: not-allowed !important;
+                
+                                &:hover{
+                                    background-color: $btn-classic-disabled !important;
+                                    border-color: $btn-classic-disabled !important;
+                                }
+                            }
                         }
                         
                     }

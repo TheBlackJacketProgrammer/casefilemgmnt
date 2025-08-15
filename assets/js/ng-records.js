@@ -8,10 +8,6 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
     $scope.currentRecord = [];
     $scope.status = "Add";
 
-    // Date Variables
-    $scope.complainantBirthday = null;
-    $scope.complaineeBirthday = null;
-    $scope.crimeDate = null;
 
     $scope.dtOptions = {
         responsive: true,
@@ -180,8 +176,9 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
     $scope.convertDate = function(dateValue, colName) {
 
         // Convert ng-model date (string) to Date object
-        // let tempDate = new Date(dateValue);
-        let tempDate = dateValue;
+        console.log('dateValue', dateValue);
+       let tempDate = new Date(dateValue);
+        // let tempDate = dateValue;
 
         // MySQL format (YYYY-MM-DD HH:MM:SS) → set time to current time
         let mysqlDate = tempDate.getFullYear() + '-' +
@@ -238,17 +235,19 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
             case_crimeWitness: "",
             case_dateFiled: null,
             case_id: null,
-            case_notify: "Not Notify",
+            case_status: "Pending",
             complainant_address: "",
             complainant_age: "",
             complainant_birthday: null,
             complainant_contactNum: "",
+            complainant_image: null,
             complainant_name: "",
             complainee_address: "",
             complainee_age: "",
             complainee_birthday: null,
             complainee_contactNum: "",
-            complainee_name: ""
+            complainee_name: "",
+            complainee_image: null
         }];
         $scope.recordTotal = 1;
         $scope.recordIndex = 0;
@@ -257,32 +256,81 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
     }
     
     // Edit selected records
-    $scope.editSelectedRecords = function() {
-        $scope.status = "Edit";
+    $scope.editSelectedRecords = function(status) {
+        $scope.status = status;
         $scope.currentRecord = angular.copy($scope.getSelectedRecords());
         $scope.currentRecord.forEach(function(rec) {
+            // DB Date to Input Date HTML Value
             rec.complainant_birthday = new Date(rec.complainant_birthday);
             rec.complainee_birthday = new Date(rec.complainee_birthday);
             rec.case_crimeDate = new Date(rec.case_crimeDate);
+            rec.case_dateFiled = new Date(rec.case_dateFiled);
+            rec.case_dateUpdated = (rec.case_dateUpdated != null) ? new Date(rec.case_dateUpdated) : null;
         });
         $scope.recordTotal = $scope.currentRecord.length;
         $('#modalRecords').removeClass('hidden'); // Remove hidden class to show modal
         $('#modalRecords').addClass('flex'); 
     };
 
+    // Upload Files
+    $scope.uploadFiles = function(){
+        console.log("uploadFiles - Form Data = ", formData);
+    }
+
+    // Simple image preview
+    $scope.previewImage = function(input, type) {
+        var file = input.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                if (type === 'complainant') {
+                    $scope.complainant_image_preview = e.target.result;
+                    $scope.currentRecord[$scope.recordIndex].complainant_image = file;
+                } else if (type === 'complainee') {
+                    $scope.complainee_image_preview = e.target.result;
+                    $scope.currentRecord[$scope.recordIndex].complainee_image = file;
+                }
+                $scope.$apply();
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     // Save record
     $scope.saveRecord = function() {
+        var formData = new FormData();
+        
         if($scope.status == 'Add') {
-            $scope.convertDate(new Date(), 'case_dateFiled');
+            // $scope.convertDate(new Date(), 'case_dateFiled');
+            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].case_crimeDate, 'case_crimeDate');
+            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].complainant_birthday, 'complainant_birthday');
+            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].complainee_birthday, 'complainee_birthday');
         }
         else if($scope.status == 'Edit') {
-            $scope.convertDate(new Date(), 'case_dateUpdated');
+            // $scope.convertDate(new Date(), 'case_dateUpdated');
+            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].case_dateFiled, 'case_dateFiled');
+            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].case_crimeDate, 'case_crimeDate');
+            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].complainant_birthday, 'complainant_birthday');
+            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].complainee_birthday, 'complainee_birthday');
         }
-        
+
+        // Append all record fields to FormData using a loop
+        var record = $scope.currentRecord[$scope.recordIndex];
+        Object.keys(record).forEach(function(key) {
+            formData.append(key, record[key]);
+        });
+
+        // Append images separately
+        formData.append('complainant_image', $scope.currentRecord[$scope.recordIndex].complainant_image);
+        formData.append('complainee_image', $scope.currentRecord[$scope.recordIndex].complainee_image);
+
         $http({
             method: "POST",
             url: $scope.baseUrl + "ctrl_api/save_record",
-            data: $scope.currentRecord[$scope.recordIndex]
+            data: formData,
+            headers: {
+                'Content-Type': undefined // Let browser set content type for FormData
+            }
         }).then(function successCallback(response) {
             if(response.data.status == 'success')
             {
