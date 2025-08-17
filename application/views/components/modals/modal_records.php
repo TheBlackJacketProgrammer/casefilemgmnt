@@ -49,7 +49,7 @@
                         <h5 class="m-0 text-sm font-bold">Complainant Details</h5> 
                     </div>
                     <div class="form-body">
-                        <div class="w-1/3 flex flex-col gap-2 h-full">
+                        <div class="w-1/3 flex flex-col gap-2 img-container">
                             <img src="{{ complainant_image_preview ? complainant_image_preview : baseUrl + 'assets/img/no-image.png' }}" alt="Complainant Image" class="w-full h-full object-cover border">
                             <button type="button" class="text-xs modal-btn-upload" onclick="document.getElementById('btnFileUpload').click();" ng-hide="status == 'View'">
                                 <i class="fa fa-file"></i> Upload
@@ -90,7 +90,7 @@
                         <h5 class="m-0 text-sm font-bold">Complainee Details</h5> 
                     </div>
                     <div class="form-body">
-                        <div class="w-1/3 flex flex-col gap-2 h-full">
+                        <div class="w-1/3 flex flex-col gap-2 img-container">
                             <img src="{{ complainee_image_preview ? complainee_image_preview   : baseUrl + 'assets/img/no-image.png' }}" alt="Complainee Image" class="w-full h-full object-cover border">
                             <button type="button" class="text-xs modal-btn-upload" onclick="document.getElementById('btnFileUpload2').click();" ng-hide="status == 'View'">
                                 <i class="fa fa-file"></i> Upload

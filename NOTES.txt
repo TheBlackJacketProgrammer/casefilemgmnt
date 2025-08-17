@@ -17,3 +17,16 @@ REMARKS:
     * Have Search Filters for easy finding records.
 
 < ========== NOTHING TO ADD ========== >
+
+Date: 08 - 15 - 2025
+
+UPDATES:
+    * Can now Add and Update Records with Images and initially fixed the Datetime Issues
+
+ISSUES:
+    * Edit Record - Image must be loaded if image not null
+
+REMARKS:
+    * Have Search Filters for easy finding records.
+
+< ========== NOTHING TO ADD ========== >

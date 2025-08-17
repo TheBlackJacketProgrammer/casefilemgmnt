@@ -52,25 +52,6 @@ class Ctrl_Api extends CI_Controller {
         echo json_encode($response);
     }
 
-    // public function get_crime_id()
-    // {
-    //     $crime_id = $this->Model_Api->get_crime_id();
-        
-    //     if ($crime_id !== null) {
-    //         $response = [
-    //             'status' => 'success',
-    //             'message' => 'Crime id fetched successfully',
-    //             'crimeId' => $crime_id
-    //         ];
-    //     } else {
-    //         $response = [
-    //             'status' => 'error',
-    //             'message' => 'Failed to fetch crime id'
-    //         ];
-    //     }
-
-    //     echo json_encode($response);
-    // }
 
     private function parseJavaScriptDate($dateString) {
         // Handle JavaScript Date object format: "Fri Aug 15 2025 08:00:00 GMT+0800 (Taipei Standard Time)"
@@ -118,37 +99,10 @@ class Ctrl_Api extends CI_Controller {
                 $data[$key] = $value;
             }
         }
-        
-        // Handle file uploads separately if needed
-        if (isset($_FILES['complainant_image'])) {
-            $imgname = $_FILES['complainant_image']['name'];
-            $complainant_pic = "complainant_".$data['complainant_name']."_".$imgname;
-            $location = "./assets/img/people/".$complainant_pic;
-            if(!file_exists($location))
-            {
-                // Upload File    
-                move_uploaded_file($_FILES['complainant_image']['tmp_name'], $location);
-                $data['complainant_pic'] = $location;
-            }
-            else{
-                $data['complainant_pic'] = "assets/img/no-image.png";
-            }
-        }
 
-        if (isset($_FILES['complainee_image'])) {
-            $imgname = $_FILES['complainee_image']['name'];
-            $complainee_pic = "complainee_".$data['complainee_name']."_".$imgname;
-            $location = "./assets/img/people/".$complainee_pic;
-            if(!file_exists($location))
-            {
-                // Upload File    
-                move_uploaded_file($_FILES['complainee_image']['tmp_name'], $location);
-                $data['complainee_pic'] = $location;
-            }
-            else{
-                $data['complainee_pic'] = "assets/img/no-image.png";
-            }
-        }
+        // Upload images
+        $data['complainant_pic'] = upload_file('complainant_image', 'complainant', $data['complainant_name'], $data['complainant_pic']);
+        $data['complainee_pic'] = upload_file('complainee_image', 'complainee', $data['complainee_name'], $data['complainee_pic']);
 
         // Prepare data for model
         $params = array();
@@ -179,10 +133,9 @@ class Ctrl_Api extends CI_Controller {
                 'case_crimeDetails' => $data['case_crimeDetails'],
                 'case_crimeScene' => $data['case_crimeScene'],
                 'case_crimeType' => $data['case_crimeType'],
-                'case_crimeWitness' => $data['case_crimeWitness']
+                'case_crimeWitness' => $data['case_crimeWitness'],
+                'case_status' => $data['case_status']
             );
-            
-            $params['user_id'] = $this->session->userdata('user_id');
             
             $response = $this->Model_Api->save_record($params);
         }
@@ -197,7 +150,8 @@ class Ctrl_Api extends CI_Controller {
                 'complainant_address' => $data['complainant_address'],
                 'complainant_birthday' => $this->parseJavaScriptDate($data['complainant_birthday']),
                 'complainant_contactNum' => $data['complainant_contactNum'],
-                'complainant_name' => $data['complainant_name']
+                'complainant_name' => $data['complainant_name'],
+                'complainant_pic' => $data['complainant_pic']
             );
             
             $params['complainee'] = array(
@@ -205,7 +159,8 @@ class Ctrl_Api extends CI_Controller {
                 'complainee_address' => $data['complainee_address'],
                 'complainee_birthday' => $this->parseJavaScriptDate($data['complainee_birthday']),
                 'complainee_contactNum' => $data['complainee_contactNum'],
-                'complainee_name' => $data['complainee_name']
+                'complainee_name' => $data['complainee_name'],
+                'complainee_pic' => $data['complainee_pic']
             );
             
             $params['case'] = array(

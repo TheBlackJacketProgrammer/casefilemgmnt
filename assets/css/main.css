@@ -1158,6 +1158,15 @@ div.records-section .modal-records .modal-dialog-box .modal-records-body .form-c
   gap: 12px;
   padding: 12px;
 }
+div.records-section .modal-records .modal-dialog-box .modal-records-body .form-container .form-body .img-container {
+  height: 200px;
+}
+div.records-section .modal-records .modal-dialog-box .modal-records-body .form-container .form-body .img-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 div.records-section .modal-records .modal-dialog-box .modal-records-body .form-container .form-body .form-item {
   width: 100%;
   padding: 4px 8px;
@@ -1168,6 +1177,15 @@ div.records-section .modal-records .modal-dialog-box .modal-records-body .form-c
 }
 div.records-section .modal-records .modal-dialog-box .modal-records-body .form-container .form-body .form-item:focus {
   outline: 2px solid #6666FF;
+}
+div.records-section .modal-records .modal-dialog-box .modal-records-body .form-container .form-body .form-item:disabled {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
+  cursor: not-allowed !important;
+}
+div.records-section .modal-records .modal-dialog-box .modal-records-body .form-container .form-body .form-item:disabled:hover {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
 }
 div.records-section .modal-records .modal-dialog-box h5 {
   font-size: 18px;

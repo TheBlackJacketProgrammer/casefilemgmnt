@@ -8,7 +8,7 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
     $scope.currentRecord = [];
     $scope.status = "Add";
 
-
+    // Datatable options
     $scope.dtOptions = {
         responsive: true,
         autoWidth: false,
@@ -267,15 +267,12 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
             rec.case_dateFiled = new Date(rec.case_dateFiled);
             rec.case_dateUpdated = (rec.case_dateUpdated != null) ? new Date(rec.case_dateUpdated) : null;
         });
+        $scope.complainant_image_preview = $scope.baseUrl + $scope.currentRecord[$scope.recordIndex].complainant_pic;
+        $scope.complainee_image_preview = $scope.baseUrl + $scope.currentRecord[$scope.recordIndex].complainee_pic;
         $scope.recordTotal = $scope.currentRecord.length;
         $('#modalRecords').removeClass('hidden'); // Remove hidden class to show modal
         $('#modalRecords').addClass('flex'); 
     };
-
-    // Upload Files
-    $scope.uploadFiles = function(){
-        console.log("uploadFiles - Form Data = ", formData);
-    }
 
     // Simple image preview
     $scope.previewImage = function(input, type) {
@@ -286,9 +283,11 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
                 if (type === 'complainant') {
                     $scope.complainant_image_preview = e.target.result;
                     $scope.currentRecord[$scope.recordIndex].complainant_image = file;
+                    $scope.currentRecord[$scope.recordIndex].complainant_pic = null;
                 } else if (type === 'complainee') {
                     $scope.complainee_image_preview = e.target.result;
                     $scope.currentRecord[$scope.recordIndex].complainee_image = file;
+                    $scope.currentRecord[$scope.recordIndex].complainee_pic = null;
                 }
                 $scope.$apply();
             };
@@ -299,19 +298,13 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
     // Save record
     $scope.saveRecord = function() {
         var formData = new FormData();
+
         
         if($scope.status == 'Add') {
-            // $scope.convertDate(new Date(), 'case_dateFiled');
-            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].case_crimeDate, 'case_crimeDate');
-            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].complainant_birthday, 'complainant_birthday');
-            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].complainee_birthday, 'complainee_birthday');
+            $scope.currentRecord[$scope.recordIndex].case_dateFiled = new Date();
         }
         else if($scope.status == 'Edit') {
-            // $scope.convertDate(new Date(), 'case_dateUpdated');
-            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].case_dateFiled, 'case_dateFiled');
-            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].case_crimeDate, 'case_crimeDate');
-            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].complainant_birthday, 'complainant_birthday');
-            // $scope.convertDate($scope.currentRecord[$scope.recordIndex].complainee_birthday, 'complainee_birthday');
+            $scope.currentRecord[$scope.recordIndex].case_dateUpdated = new Date();
         }
 
         // Append all record fields to FormData using a loop
@@ -349,6 +342,8 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
         $scope.recordTotal = 0;
         $scope.currentRecord = [];
         $scope.status = "Add";
+        $scope.complainant_image_preview = $scope.baseUrl + "assets/img/no-image.png";
+        $scope.complainee_image_preview = $scope.baseUrl + "assets/img/no-image.png";
         $('#modalRecords').removeClass('flex');
         $('#modalRecords').addClass('hidden'); // Add hidden class to hide modal
     };
@@ -360,6 +355,8 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
             $scope.recordCount = 1;
             $scope.recordIndex = 0;
         }
+        $scope.complainant_image_preview = $scope.baseUrl + $scope.currentRecord[$scope.recordIndex].complainant_pic;
+        $scope.complainee_image_preview = $scope.baseUrl + $scope.currentRecord[$scope.recordIndex].complainee_pic;
     };
 
     $scope.nextRecord = function() {
@@ -369,6 +366,8 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
             $scope.recordCount = $scope.recordTotal;
             $scope.recordIndex = $scope.recordTotal - 1;
         }
+        $scope.complainant_image_preview = $scope.baseUrl + $scope.currentRecord[$scope.recordIndex].complainant_pic;
+        $scope.complainee_image_preview = $scope.baseUrl + $scope.currentRecord[$scope.recordIndex].complainee_pic;
     };
 
     // Load initial data
