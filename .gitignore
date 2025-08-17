@@ -13,6 +13,7 @@ application/config/config.php
 application/config/routes.php
 
 assets/devtools/*
+assets/img/people/*
 
 composer.lock
 tests/mocks/database/ci_test.sqlite
