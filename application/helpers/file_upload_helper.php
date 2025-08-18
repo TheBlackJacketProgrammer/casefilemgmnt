@@ -20,12 +20,17 @@ function upload_file($file, $person_type, $name, $previous_file)
 {
     // Check if a new file was uploaded
     if (!isset($_FILES[$file]) || empty($_FILES[$file]['name'])) {
-        return $previous_file !== "assets/img/no-image.png" ? $previous_file : "assets/img/no-image.png";
+        return "assets/img/no-image.png";
     }
     
     $imgname = $_FILES[$file]['name'];
     $person_pic = $person_type . "_" . $name . "_" . $imgname;
     $location = "./assets/img/people/" . $person_pic;
+
+    // If previous file is null, set it to no-image.png
+    if($previous_file == "null") {
+        $previous_file = "assets/img/no-image.png";
+    }
     
     // If same file, return previous location
     if ($previous_file === $location) {

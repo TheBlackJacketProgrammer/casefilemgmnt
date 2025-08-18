@@ -30,3 +30,29 @@ REMARKS:
     * Have Search Filters for easy finding records.
 
 < ========== NOTHING TO ADD ========== >
+
+Date: 08 - 17 - 2025
+
+UPDATES:
+    * Fully working Add and Update Record Modal
+
+
+REMARKS:
+    * Have Search Filters for easy finding records.
+    * Filter Complainant and Complainee to easy create report/record
+    * Need form validation in records
+
+< ========== NOTHING TO ADD ========== >
+
+Date: 08 - 18 - 2025
+
+UPDATES:
+    * Add Tostr Library for dialog box for process status
+    * Added Form Validation in Records Modal
+
+
+REMARKS:
+    * Have Search Filters for easy finding records.
+    * Filter Complainant and Complainee to easy create report/record
+
+< ========== NOTHING TO ADD ========== >

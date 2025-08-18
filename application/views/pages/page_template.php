@@ -16,6 +16,10 @@
         <link rel="stylesheet" href="<?php echo base_url('assets/css/main.css'); ?>">
         <link rel="stylesheet" href="<?php echo base_url('assets/css/tailwind.css'); ?>">
 
+        <!-- Toastr CSS -->
+        <link rel="stylesheet" href="<?php echo base_url('assets/devtools/toastr/toastr.min.css'); ?>">
+
+
         <!-- Datatable CSS -->
         <link rel="stylesheet" href="<?php echo base_url('assets/devtools/Datatables/jquery.dataTables.min.css'); ?>">
         <link rel="stylesheet" href="<?php echo base_url('assets/devtools/Datatables/buttons.dataTables.min.css'); ?>">
@@ -42,6 +46,9 @@
 
         <!-- Custom Script -->
         <script src="<?php echo base_url('assets/js/custom-script.js'); ?>"></script>
+
+        <!-- Toastr JS -->
+        <script src="<?php echo base_url('assets/devtools/toastr/toastr.min.js'); ?>"></script>
 
         <!-- Datatable JS -->
         <script src="<?php echo base_url('assets/devtools/Datatables/jquery.dataTables.min.js'); ?>"></script>

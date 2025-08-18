@@ -1,6 +1,5 @@
 app.controller("ng-login", function ($scope, $http) {
 
-    console.log('Initializing Login');
 
     $scope.login = function() {
         console.log('Login');

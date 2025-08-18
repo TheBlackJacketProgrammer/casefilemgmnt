@@ -6,7 +6,7 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
     $scope.recordCount = 1;
     $scope.recordTotal = 0;
     $scope.currentRecord = [];
-    $scope.status = "Add";
+    $scope.status = "None";
 
     // Datatable options
     $scope.dtOptions = {
@@ -247,7 +247,9 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
             complainee_birthday: null,
             complainee_contactNum: "",
             complainee_name: "",
-            complainee_image: null
+            complainee_image: null,
+            complainant_pic: null,
+            complainee_pic: null
         }];
         $scope.recordTotal = 1;
         $scope.recordIndex = 0;
@@ -283,11 +285,9 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
                 if (type === 'complainant') {
                     $scope.complainant_image_preview = e.target.result;
                     $scope.currentRecord[$scope.recordIndex].complainant_image = file;
-                    $scope.currentRecord[$scope.recordIndex].complainant_pic = null;
                 } else if (type === 'complainee') {
                     $scope.complainee_image_preview = e.target.result;
                     $scope.currentRecord[$scope.recordIndex].complainee_image = file;
-                    $scope.currentRecord[$scope.recordIndex].complainee_pic = null;
                 }
                 $scope.$apply();
             };
@@ -327,13 +327,49 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
         }).then(function successCallback(response) {
             if(response.data.status == 'success')
             {
-                console.log('Record saved successfully');
                 if($scope.status == 'Add') {
+                    toastr.success("Record saved successfully");
                     $scope.closeModal();
+                }
+                else if($scope.status == 'Edit') {
+                    toastr.success("Record updated successfully");
                 }
                 $scope.getRecords();
             }
         });
+    };
+
+    $scope.validateAndSave = function() {
+        if($scope.isFormInvalid()) {
+            return;
+        }
+        $scope.saveRecord();
+    };
+
+    $scope.isFormInvalid = function() {
+        if($scope.status == "None") {
+            return true;
+        }
+        // Validate details
+        if($scope.currentRecord[$scope.recordIndex].complainant_name == "" ||
+            $scope.currentRecord[$scope.recordIndex].complainant_address == "" ||
+            $scope.currentRecord[$scope.recordIndex].complainant_contactNum == "" ||
+            $scope.currentRecord[$scope.recordIndex].complainant_age == "" ||
+            $scope.currentRecord[$scope.recordIndex].complainant_birthday == "" ||
+            $scope.currentRecord[$scope.recordIndex].complainee_name == "" ||
+            $scope.currentRecord[$scope.recordIndex].complainee_address == "" ||
+            $scope.currentRecord[$scope.recordIndex].complainee_contactNum == "" ||
+            $scope.currentRecord[$scope.recordIndex].complainee_age == "" ||
+            $scope.currentRecord[$scope.recordIndex].complainee_birthday == "" ||
+            $scope.currentRecord[$scope.recordIndex].case_crimeDetails == "" ||
+            $scope.currentRecord[$scope.recordIndex].case_crimeType == "" ||
+            $scope.currentRecord[$scope.recordIndex].case_crimeScene == "" ||
+            $scope.currentRecord[$scope.recordIndex].case_status == "" ||
+            $scope.currentRecord[$scope.recordIndex].case_crimeDate == "") {
+                toastr.error("Please fill in all fields");
+                return true; // Form is invalid
+        }
+        return false; // Form is valid
     };
 
     $scope.closeModal = function() {
@@ -341,7 +377,7 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
         $scope.recordCount = 1;
         $scope.recordTotal = 0;
         $scope.currentRecord = [];
-        $scope.status = "Add";
+        $scope.status = "None";
         $scope.complainant_image_preview = $scope.baseUrl + "assets/img/no-image.png";
         $scope.complainee_image_preview = $scope.baseUrl + "assets/img/no-image.png";
         $('#modalRecords').removeClass('flex');
