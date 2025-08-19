@@ -21,12 +21,17 @@ div.records-section{
         gap: 16px !important;
             
         .btn-menu-item{
-            @include btn-tertiary;
-            min-width: 100px !important;
-            padding: 4px 16px !important;
-            font-size: unset !important;
-            font-weight: unset !important;
-            height: unset !important;;
+            min-width: 100px;
+            padding: 4px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 2px solid $border-color;
+
+            &:hover{
+                background-color: $btn-classic-hover;
+                font-weight: 700;
+                transition: 0.5s ease;
+            }
 
             &:disabled{
                 background-color: $btn-classic-disabled !important;
@@ -45,12 +50,23 @@ div.records-section{
         width: 100%;
         border: 2px solid $border-color; /* border around the whole table */
         border-collapse: collapse; /* makes borders behave like one box */
+
+        tbody{
+            tr{
+                border: 1px solid $border-color;   /* inner cell borders */
+                padding: 8px;
+                transition: 0.3s ease;
+
+                &:hover {
+                    background-color: $shade-1;
+                    font-weight: 700;
+                    transition: 0.5s ease;
+                }
+            }
+        }
     }
       
-    tr{
-        border: 1px solid $border-color;   /* inner cell borders */
-        padding: 8px;
-    }
+
 
     .modal-records{
         position: fixed;

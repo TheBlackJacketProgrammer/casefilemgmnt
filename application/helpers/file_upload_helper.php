@@ -28,8 +28,8 @@ function upload_file($file, $person_type, $name, $current_pic)
         }
     }
     else {
-        $imgname = $_FILES[$file]['name'];
-        $person_pic = $person_type . "_" . $name . "_" . $imgname;
+        // $imgname = $_FILES[$file]['name'];
+        $person_pic = $person_type . "_" . $name;
         $location = "./assets/img/people/" . $person_pic;
     }
     

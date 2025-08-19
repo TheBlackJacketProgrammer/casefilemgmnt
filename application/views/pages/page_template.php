@@ -75,6 +75,7 @@
         <script src="<?php echo base_url('assets/js/ng-login.js'); ?>"></script>
         <script src="<?php echo base_url('assets/js/ng-records.js'); ?>"></script>
         <script src="<?php echo base_url('assets/js/ng-crime-options.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/js/ng-user-portal.js'); ?>"></script>
 
     </body>
 </html> 

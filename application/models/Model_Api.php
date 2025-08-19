@@ -147,4 +147,14 @@ class Model_Api extends CI_Model
             );
         }
     }
+
+    public function get_user_masterlist(){
+        $query = $this->db->query("CALL GetUserList()");
+        return $query->result_array();
+    }
+
+    public function get_org_chart(){
+        $query = $this->db->query("CALL GetOrgChart()");
+        return $query->result_array();
+    }
 }

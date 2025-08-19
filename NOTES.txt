@@ -56,3 +56,18 @@ REMARKS:
     * Filter Complainant and Complainee to easy create report/record
 
 < ========== NOTHING TO ADD ========== >
+
+Date: 08 - 19 - 2025
+
+UPDATES:
+    * Successfully created User Portal Module Design
+    * Plus.. Get User Masterlist and Org Chart List
+    * Created Table for Brgy Organizational Chart
+
+
+REMARKS:
+    * Have Search Filters for easy finding records.
+    * Filter Complainant and Complainee to easy create report/record
+    * Modal for Add and Update Userlist
+
+< ========== NOTHING TO ADD ========== >

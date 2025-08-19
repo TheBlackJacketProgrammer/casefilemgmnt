@@ -109,6 +109,17 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
         });
     };
 
+    // Open User Portal
+    $scope.openUserPortal = function() {
+        $scope.$parent.section = "";
+        $http({
+            method: "POST",
+            url:  $scope.baseUrl + "ctrl_main/open_user_portal"
+        }).then(function successCallback(response) {
+            $scope.$parent.section = response.data["view"];
+        });
+    };
+
     // Logout
     $scope.logout = function() {
         $http({

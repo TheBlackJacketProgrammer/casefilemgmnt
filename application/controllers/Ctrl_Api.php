@@ -62,7 +62,6 @@ class Ctrl_Api extends CI_Controller {
         echo json_encode($response);
     }
 
-
     private function parseJavaScriptDate($dateString) 
     {
         // Handle JavaScript Date object format: "Fri Aug 15 2025 08:00:00 GMT+0800 (Taipei Standard Time)"
@@ -212,6 +211,26 @@ class Ctrl_Api extends CI_Controller {
         else {
             $response = $this->Model_Api->update_crime_type($data);
         }
+        echo json_encode($response);
+    }
+
+    public function get_user_masterlist(){
+        $user_masterlist = $this->Model_Api->get_user_masterlist();
+        $response = [
+            'status' => 'success',
+            'message' => 'User masterlist fetched successfully',
+            'users' => $user_masterlist
+        ];
+        echo json_encode($response);
+    }
+
+    public function get_org_chart(){
+        $org_chart = $this->Model_Api->get_org_chart();
+        $response = [
+            'status' => 'success',
+            'message' => 'Org chart fetched successfully',
+            'orgchart' => $org_chart
+        ];
         echo json_encode($response);
     }
 }
