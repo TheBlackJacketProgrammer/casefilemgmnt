@@ -1,71 +1,248 @@
-###################
-What is CodeIgniter
-###################
+Barangay Case File Management System
+====================================
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+**Created and Developed by:** Marvin Verola Bergado - Full Stack Web Developer
 
-*******************
-Release Information
-*******************
+Project Overview
+----------------
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+**Barangay Case File Management System** is a comprehensive web application built with CodeIgniter 3 framework designed to manage and track barangay-level case records, complaints, and administrative tasks. The system provides a modern, responsive interface for barangay officials to efficiently handle case management, user administration, and record keeping.
 
-**************************
-Changelog and New Features
-**************************
+**Developer Information**
+~~~~~~~~~~~~~~~~~~~~~~~~~
+- **Creator & Developer**: Marvin Verola Bergado
+- **Role**: Full Stack Web Developer
+- **Specialization**: PHP, JavaScript, Modern Web Technologies
+- **Architecture**: MVC Pattern, RESTful APIs, Responsive Design
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+Architecture & Technology Stack
+-------------------------------
 
-*******************
-Server Requirements
-*******************
+Backend Framework
+~~~~~~~~~~~~~~~~~
+- **CodeIgniter 3** - PHP MVC framework
+- **PHP 5.3.7+** - Server-side scripting language
+- **MySQL/MariaDB** - Database management system
 
-PHP version 5.6 or newer is recommended.
+Frontend Technologies
+~~~~~~~~~~~~~~~~~~~~~
+- **AngularJS 1.x** - JavaScript framework for dynamic UI
+- **Tailwind CSS** - Utility-first CSS framework
+- **SCSS/Sass** - CSS preprocessor
+- **jQuery** - JavaScript library for DOM manipulation
+- **DataTables** - Advanced table functionality with export features
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+Development Tools
+~~~~~~~~~~~~~~~~~
+- **Sass** - CSS compilation and watching
+- **PostCSS** - CSS post-processing
+- **Autoprefixer** - CSS vendor prefixing
+- **Concurrently** - Parallel task execution
 
-************
-Installation
-************
+Key Features
+------------
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
+Case Management System
+~~~~~~~~~~~~~~~~~~~~~~
+- Comprehensive case record creation and management
+- Support for multiple case types and crime categories
+- Case status tracking (Pending, Active, Resolved, etc.)
+- Date tracking for case filing, updates, and crime incidents
 
-*******
-License
-*******
+Complainant & Complainee Management
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Detailed personal information storage
+- Contact information management
+- Age and birthday tracking
+- Image upload and storage capabilities
+- Address and demographic data
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+Crime Details & Documentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Crime type categorization
+- Detailed crime scene descriptions
+- Witness information recording
+- Crime date and time tracking
+- Comprehensive case documentation
 
-*********
-Resources
-*********
+User Portal & Administration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- User masterlist management
+- Organizational chart display
+- Role-based access control
+- Session management and authentication
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+Advanced Data Management
+~~~~~~~~~~~~~~~~~~~~~~~~
+- Bulk record operations (select all, batch editing)
+- Data export functionality (Excel, PDF)
+- Responsive data tables with sorting and filtering
+- Image preview and management
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+Project Structure
+-----------------
 
-***************
-Acknowledgement
-***************
+::
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+    brgycasefile/
+    ├── application/           # Application logic
+    │   ├── controllers/       # MVC Controllers
+    │   ├── models/           # Database models
+    │   ├── views/            # View templates
+    │   └── config/           # Configuration files
+    ├── assets/               # Frontend assets
+    │   ├── css/             # Compiled CSS files
+    │   ├── js/              # JavaScript modules
+    │   ├── scss/            # SCSS source files
+    │   └── img/             # Image assets
+    ├── system/               # CodeIgniter core files
+    └── index.php            # Application entry point
+
+Installation & Setup
+--------------------
+
+Prerequisites
+~~~~~~~~~~~~~
+- PHP 5.3.7 or higher
+- MySQL/MariaDB database
+- Web server (Apache/Nginx)
+- Composer (for dependency management)
+- Node.js & npm (for frontend build tools)
+
+Setup Steps
+~~~~~~~~~~~
+1. **Clone/Download** the project to your web server directory
+2. **Install PHP dependencies**: ``composer install``
+3. **Install Node.js dependencies**: ``npm install``
+4. **Configure database** connection in ``application/config/database.php``
+5. **Build frontend assets**: ``npm run build``
+6. **Set up web server** to point to the project directory
+7. **Configure URL rewriting** for CodeIgniter
+
+Development Commands
+~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    # Watch SCSS and Tailwind changes
+    npm run dev
+
+    # Build production assets
+    npm run build
+
+    # Build SCSS only
+    npm run build:scss
+
+    # Build Tailwind only
+    npm run build:tailwind
+
+Database Schema
+---------------
+
+The system manages several key entities:
+
+- **Cases** - Main case records with status and metadata
+- **Complainants** - Case initiators with personal details
+- **Complainees** - Case subjects with personal details
+- **Crime Types** - Categorization system for cases
+- **Users** - System administrators and staff
+- **Organizational Chart** - Staff hierarchy and structure
+
+Security Features
+-----------------
+
+- Session-based authentication
+- CSRF protection
+- Input validation and sanitization
+- Role-based access control
+- Secure file upload handling
+- SQL injection prevention
+
+User Interface
+--------------
+
+- **Responsive Design** - Works on desktop, tablet, and mobile
+- **Modern UI/UX** - Clean, intuitive interface using Tailwind CSS
+- **Interactive Components** - Modal dialogs, dynamic forms, real-time updates
+- **Data Tables** - Advanced table functionality with export options
+- **Image Management** - Preview and upload capabilities
+
+Performance Features
+--------------------
+
+- Optimized database queries
+- Efficient image handling
+- Minified CSS and JavaScript
+- Responsive data loading
+- Caching mechanisms
+
+API Endpoints
+-------------
+
+The system provides RESTful API endpoints for:
+
+- User authentication (``/ctrl_api/login``)
+- Record management (``/ctrl_api/get_records``, ``/ctrl_api/save_record``)
+- Crime type retrieval (``/ctrl_api/get_crime_types``)
+- User management (``/ctrl_api/get_user_masterlist``)
+- Organizational data (``/ctrl_api/get_org_chart``)
+
+Development Guidelines
+----------------------
+
+- **MVC Architecture** - Follow CodeIgniter's MVC pattern
+- **Data Conversion** - Handle data conversion logic in controllers (not models)
+- **Model Responsibilities** - Models should only manage database processes
+- **Frontend Separation** - AngularJS controllers handle UI logic
+- **Responsive Design** - Mobile-first approach with Tailwind CSS
+
+System Requirements
+-------------------
+
+- **Server**: Apache/Nginx with PHP support
+- **PHP**: 5.3.7+ with extensions (mysqli, gd, session)
+- **Database**: MySQL 5.5+ or MariaDB 10.0+
+- **Browser**: Modern browsers with JavaScript enabled
+- **Storage**: Adequate space for case files and images
+
+Use Cases
+---------
+
+- **Barangay Officials** - Case management and record keeping
+- **Law Enforcement** - Crime incident documentation
+- **Administrative Staff** - User and system management
+- **Case Workers** - Complaint processing and tracking
+
+Future Enhancements
+-------------------
+
+- Real-time notifications
+- Advanced reporting and analytics
+- Mobile application
+- Integration with government systems
+- Enhanced search and filtering
+- Document management system
+- Audit trail and logging
+
+About the Developer
+-------------------
+
+**Marvin Verola Bergado** is a Full Stack Web Developer with expertise in modern web technologies and frameworks. This project demonstrates proficiency in:
+
+- **Backend Development**: PHP, CodeIgniter, MySQL
+- **Frontend Development**: JavaScript, AngularJS, CSS/SCSS, Tailwind CSS
+- **Database Design**: Relational database architecture and optimization
+- **System Architecture**: MVC pattern implementation and API design
+- **User Experience**: Responsive design and modern UI/UX principles
+
+Contact Information
+~~~~~~~~~~~~~~~~~~~
+- **Role**: Full Stack Web Developer
+- **Email Address**: neomaster667@gmail.com
+- **Specialization**: Web Application Development, Database Design, API Development
+- **Technologies**: PHP, JavaScript, MySQL, Modern CSS Frameworks
+
+Summary
+--------
+
+This system represents a comprehensive solution for barangay-level case management, combining modern web technologies with robust backend architecture to provide an efficient, user-friendly platform for local government operations. Developed by Marvin Verola Bergado, a Full Stack Web Developer committed to creating scalable, maintainable, and user-centric web applications.
