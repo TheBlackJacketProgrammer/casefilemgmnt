@@ -13,36 +13,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @param string $file The file input name from $_FILES
  * @param string $person_type The type of person (e.g., 'complainant', 'complainee')
  * @param string $name The person's name
- * @param string $previous_file The previous file path to be deleted
+ * @param string $current_pic The previous file path to be deleted
  * @return string The file path where the file was uploaded or default image path
  */
-function upload_file($file, $person_type, $name, $previous_file)
+function upload_file($file, $person_type, $name, $current_pic)
 {
     // Check if a new file was uploaded
     if (!isset($_FILES[$file]) || empty($_FILES[$file]['name'])) {
-        return "assets/img/no-image.png";
+        if($current_pic == "null" || $current_pic == ""){
+            return "assets/img/no-image.png";
+        }
+        else{
+            return $current_pic;
+        }
+    }
+    else {
+        $imgname = $_FILES[$file]['name'];
+        $person_pic = $person_type . "_" . $name . "_" . $imgname;
+        $location = "./assets/img/people/" . $person_pic;
     }
     
-    $imgname = $_FILES[$file]['name'];
-    $person_pic = $person_type . "_" . $name . "_" . $imgname;
-    $location = "./assets/img/people/" . $person_pic;
+    if($current_pic != $location) {
+        if ($current_pic && $current_pic !== "assets/img/no-image.png" && $current_pic !== "null") {
+            unlink($current_pic);
+        }
+        // Upload new file
+        move_uploaded_file($_FILES[$file]['tmp_name'], $location);
+        return $location;
+    }
+    else{
+        return $current_pic;
+    }
 
-    // If previous file is null, set it to no-image.png
-    if($previous_file == "null") {
-        $previous_file = "assets/img/no-image.png";
-    }
-    
-    // If same file, return previous location
-    if ($previous_file === $location) {
-        return $previous_file;
-    }
-    
-    // Remove previous file if it exists and isn't the default image
-    if ($previous_file && $previous_file !== "assets/img/no-image.png" && $previous_file !== "null") {
-        unlink($previous_file);
-    }
-    
-    // Upload new file
-    move_uploaded_file($_FILES[$file]['tmp_name'], $location);
-    return $location;
 }

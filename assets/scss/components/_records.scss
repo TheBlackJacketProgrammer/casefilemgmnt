@@ -41,6 +41,17 @@ div.records-section{
         }
     }
 
+    table {
+        width: 100%;
+        border: 2px solid $border-color; /* border around the whole table */
+        border-collapse: collapse; /* makes borders behave like one box */
+    }
+      
+    tr{
+        border: 1px solid $border-color;   /* inner cell borders */
+        padding: 8px;
+    }
+
     .modal-records{
         position: fixed;
         inset: 0px;

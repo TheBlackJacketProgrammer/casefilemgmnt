@@ -36,18 +36,18 @@
     <!-- Records Table - Datatable -->
     <div class="flex flex-col items-center justify-start p-4 gap-4 w-full">
         <table id="tbl_records" class="min-w-full divide-y divide-gray-200" datatable="ng" dt-options="dtOptions" dt-instance="dtInstance">
-            <thead class="bg-gray-50">
+            <thead class="bg-shade-6">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                    <th class="px-6 py-3 text-center font-medium text-white uppercase">
                         <input type="checkbox" id="selectAll" ng-click="handleHeaderCheckbox()" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                     </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase" hidden>Case #</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Crime Type</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Complainant</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Complainee</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Crime Date</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Crime Date Filed</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase" hidden>Case #</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase">Crime Type</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase">Complainant</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase">Complainee</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase">Crime Date</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase">Crime Date Filed</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase">Status</th>
                 </tr>
             </thead>
             <tbody>

@@ -1129,6 +1129,15 @@ div.records-section .records-main-menu .btn-menu-item:disabled:hover {
   background-color: #E5E5E5 !important;
   border-color: #E5E5E5 !important;
 }
+div.records-section table {
+  width: 100%;
+  border: 2px solid #dddddd; /* border around the whole table */
+  border-collapse: collapse; /* makes borders behave like one box */
+}
+div.records-section tr {
+  border: 1px solid #dddddd; /* inner cell borders */
+  padding: 8px;
+}
 div.records-section .modal-records {
   position: fixed;
   inset: 0px;
