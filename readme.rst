@@ -1,10 +1,19 @@
 Barangay Case File Management System
 ====================================
 
+**Created and Developed by:** Marvin Verola Bergado - Full Stack Web Developer
+
 Project Overview
 ----------------
 
 **Barangay Case File Management System** is a comprehensive web application built with CodeIgniter 3 framework designed to manage and track barangay-level case records, complaints, and administrative tasks. The system provides a modern, responsive interface for barangay officials to efficiently handle case management, user administration, and record keeping.
+
+**Developer Information**
+~~~~~~~~~~~~~~~~~~~~~~~~~
+- **Creator & Developer**: Marvin Verola Bergado
+- **Role**: Full Stack Web Developer
+- **Specialization**: PHP, JavaScript, Modern Web Technologies
+- **Architecture**: MVC Pattern, RESTful APIs, Responsive Design
 
 Architecture & Technology Stack
 -------------------------------
@@ -215,7 +224,25 @@ Future Enhancements
 - Document management system
 - Audit trail and logging
 
+About the Developer
+-------------------
+
+**Marvin Verola Bergado** is a Full Stack Web Developer with expertise in modern web technologies and frameworks. This project demonstrates proficiency in:
+
+- **Backend Development**: PHP, CodeIgniter, MySQL
+- **Frontend Development**: JavaScript, AngularJS, CSS/SCSS, Tailwind CSS
+- **Database Design**: Relational database architecture and optimization
+- **System Architecture**: MVC pattern implementation and API design
+- **User Experience**: Responsive design and modern UI/UX principles
+
+Contact Information
+~~~~~~~~~~~~~~~~~~~
+- **Role**: Full Stack Web Developer
+- **Email Address**: neomaster667@gmail.com
+- **Specialization**: Web Application Development, Database Design, API Development
+- **Technologies**: PHP, JavaScript, MySQL, Modern CSS Frameworks
+
 Summary
 --------
 
-This system represents a comprehensive solution for barangay-level case management, combining modern web technologies with robust backend architecture to provide an efficient, user-friendly platform for local government operations.
+This system represents a comprehensive solution for barangay-level case management, combining modern web technologies with robust backend architecture to provide an efficient, user-friendly platform for local government operations. Developed by Marvin Verola Bergado, a Full Stack Web Developer committed to creating scalable, maintainable, and user-centric web applications.
