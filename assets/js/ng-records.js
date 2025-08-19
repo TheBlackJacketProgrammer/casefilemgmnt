@@ -80,6 +80,11 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
         });
     }
 
+    $scope.openCrimeOptions = function() {
+        $('#modalCrimeOptions').removeClass('hidden');
+        $('#modalCrimeOptions').addClass('flex');
+    }
+
     // Select/Deselect all records
     $scope.toggleSelectAll = function() {
         try {

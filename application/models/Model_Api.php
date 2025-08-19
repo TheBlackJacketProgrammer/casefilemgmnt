@@ -23,6 +23,12 @@ class Model_Api extends CI_Model
         return $query->result_array();
     }
 
+    public function get_crime_options()
+    {
+        $query = $this->db->query("CALL GetCrimeList()");
+        return $query->result_array();
+    }
+
     public function get_crime_types()
     {
         $query = $this->db->query("CALL GetCrimeTypes()");
@@ -98,6 +104,45 @@ class Model_Api extends CI_Model
             return array(
                 'success' => false,
                 'message' => 'Error updating record: ' . $e->getMessage(),
+                'error_code' => $e->getCode()
+            );
+        }
+    }
+
+    public function save_crime_type($params)
+    {
+        try {
+            $this->db->insert('crime_types', $params);
+            return array(
+                'success' => true,
+                'message' => 'Crime type saved successfully',
+                'affected_rows' => $this->db->affected_rows()
+            );
+        }
+        catch (Exception $e) {
+            return array(
+                'success' => false,
+                'message' => 'Error saving crime type: ' . $e->getMessage(),
+                'error_code' => $e->getCode()
+            );
+        }
+    }
+
+    public function update_crime_type($params)
+    {
+        try {
+            $this->db->where('crimeType_id', $params['crimeType_id']);
+            $this->db->update('crime_types', $params);
+            return array(
+                'success' => true,
+                'message' => 'Crime type updated successfully',
+                'affected_rows' => $this->db->affected_rows()
+            );
+        }
+        catch (Exception $e) {
+            return array(
+                'success' => false,
+                'message' => 'Error updating crime type: ' . $e->getMessage(),
                 'error_code' => $e->getCode()
             );
         }

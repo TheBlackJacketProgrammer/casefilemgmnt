@@ -11,6 +11,11 @@ html {
     flex-direction: column;
   }
 
+// Set Poppins as the default font for all elements
+* {
+  font-family: $font-family;
+}
+
   // Ensure main content takes up available space
   main {
     flex: 1 0 auto;

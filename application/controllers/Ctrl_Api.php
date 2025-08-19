@@ -41,6 +41,16 @@ class Ctrl_Api extends CI_Controller {
         }
     }
 
+    public function get_crime_options(){
+        $crime_options = $this->Model_Api->get_crime_options();
+        $response = [
+            'status' => 'success',
+            'message' => 'Crime options fetched successfully',
+            'crimeOptions' => $crime_options
+        ];
+        echo json_encode($response);
+    }
+
     public function get_crime_types()
     {
         $crime_types = $this->Model_Api->get_crime_types();
@@ -53,7 +63,8 @@ class Ctrl_Api extends CI_Controller {
     }
 
 
-    private function parseJavaScriptDate($dateString) {
+    private function parseJavaScriptDate($dateString) 
+    {
         // Handle JavaScript Date object format: "Fri Aug 15 2025 08:00:00 GMT+0800 (Taipei Standard Time)"
         if (preg_match('/(\w{3})\s+(\w{3})\s+(\d{1,2})\s+(\d{4})\s+(\d{2}):(\d{2}):(\d{2})\s+GMT([+-]\d{4})/', $dateString, $matches)) {
             $month = $matches[2];
@@ -190,5 +201,17 @@ class Ctrl_Api extends CI_Controller {
                 'error_code' => $response['error_code'] ?? null
             ]);
         }
+    }
+
+    public function save_crime_type()
+    {
+        $data = json_decode(file_get_contents('php://input'),true); 
+        if($data['crimeType_id'] == "null" || $data['crimeType_id'] == null || $data['crimeType_id'] == "") {
+            $response = $this->Model_Api->save_crime_type($data);
+        }
+        else {
+            $response = $this->Model_Api->update_crime_type($data);
+        }
+        echo json_encode($response);
     }
 }

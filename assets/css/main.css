@@ -5,10 +5,14 @@ html {
 
 body {
   margin: 0;
-  font-family: "Segoe UI Semilight", sans-serif !important;
+  font-family: "Poppins", sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
 }
 
 main {
@@ -60,7 +64,7 @@ img.rounded-lg {
 .btn-standard {
   height: 48px;
   display: inline-flex;
-  font-family: "Segoe UI Semilight", sans-serif !important;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 600;
   transition: none;
@@ -109,7 +113,7 @@ img.rounded-lg {
 .btn-primary {
   height: 48px;
   display: inline-flex;
-  font-family: "Segoe UI Semilight", sans-serif !important;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 600;
   transition: none;
@@ -158,7 +162,7 @@ img.rounded-lg {
 .btn-secondary {
   height: 48px;
   display: inline-flex;
-  font-family: "Segoe UI Semilight", sans-serif !important;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 600;
   transition: none;
@@ -230,7 +234,7 @@ img.rounded-lg {
 .btn-secondary-transparent {
   height: 48px;
   display: inline-flex;
-  font-family: "Segoe UI Semilight", sans-serif !important;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 600;
   transition: none;
@@ -325,7 +329,7 @@ img.rounded-lg {
 .btn-tertiary {
   height: 48px;
   display: inline-flex;
-  font-family: "Segoe UI Semilight", sans-serif !important;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 600;
   transition: none;
@@ -417,7 +421,7 @@ img.rounded-lg {
 .btn-blog-category {
   height: 48px;
   display: inline-flex;
-  font-family: "Segoe UI Semilight", sans-serif !important;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 600;
   transition: none;
@@ -898,28 +902,60 @@ main.dashboard .records-section .records-main-menu .btn-menu-item:focus-visible 
 }
 
 @font-face {
-  font-family: "Proxima Nova";
-  src: url("../fonts/ProximaNova/ProximaNova_Light.woff2");
+  font-family: "Poppins";
+  font-style: normal;
   font-weight: 300;
-  font-style: normal;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Proxima Nova";
-  src: url("../fonts/ProximaNova/ProximaNova_Regular.woff");
+  font-family: "Poppins";
+  font-style: normal;
   font-weight: 400;
-  font-style: normal;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJbecmNE.woff2) format("woff2");
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FF;
 }
 @font-face {
-  font-family: "Proxima Nova";
-  src: url("../fonts/ProximaNova/ProximaNova_Semibold.woff");
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJnecmNE.woff2) format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
   font-weight: 600;
-  font-style: normal;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Proxima Nova";
-  src: url("../fonts/ProximaNova/ProximaNova_Bold.woff");
-  font-weight: 800;
+  font-family: "Poppins";
   font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 800;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLDD3Z1xlFQ.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 header {
   display: flex;
@@ -991,7 +1027,7 @@ div.records-section .records-main-menu {
 div.records-section .records-main-menu .btn-menu-item {
   height: 48px;
   display: inline-flex;
-  font-family: "Segoe UI Semilight", sans-serif !important;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 600;
   transition: none;
@@ -1229,6 +1265,140 @@ div.records-section .modal-records .modal-dialog-box .btn-close {
 }
 div.records-section .modal-records .modal-dialog-box .btn-close:hover {
   background-color: rgba(117, 117, 117, 0.4);
+}
+
+div.modal-crime-options {
+  position: fixed;
+  inset: 0px;
+  z-index: 50;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+div.modal-crime-options .modal-dialog-box {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 480px;
+}
+div.modal-crime-options .modal-dialog-box .modal-btn-default {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid #dddddd;
+  background-color: #F2F2F2;
+}
+div.modal-crime-options .modal-dialog-box .modal-btn-default:hover {
+  background-color: #E5E5E5;
+  border-color: #CCCCCC;
+}
+div.modal-crime-options .modal-dialog-box .modal-btn-default:active {
+  background-color: #CCCCCC;
+  border-color: #999999;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-header {
+  background-color: #21007F;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-header .btn-close {
+  padding: 4px 10px;
+  color: #ffffff;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-header .btn-close:hover {
+  background-color: rgba(117, 117, 117, 0.4);
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 12px;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body table {
+  width: 100%;
+  border: 2px solid #dddddd; /* border around the whole table */
+  border-collapse: collapse; /* makes borders behave like one box */
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body th, div.modal-crime-options .modal-dialog-box .modal-crime-options-body td {
+  border: 1px solid #dddddd; /* inner cell borders */
+  padding: 8px;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body td {
+  transition: 0.5s ease;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body td:hover {
+  background-color: #CCCCCC;
+  font-weight: 700;
+  transition: 0.5s ease;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body td.selected-row {
+  background-color: #6666FF;
+  font-weight: 700;
+  color: #ffffff;
+  transition: 0.5s ease;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body .dataTables_filter {
+  width: 100% !important;
+  margin-bottom: 8px !important;
+  text-align: left !important;
+  font-size: 14px !important;
+  line-height: 16px !important;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body .dataTables_filter label {
+  padding: 2px !important;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body .dataTables_filter label input[type=search] {
+  margin: 2px !important;
+  width: 100%;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body .dataTables_filter label input[type=search]:focus {
+  outline: 2px solid #6666FF;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body .dataTables_paginate {
+  font-size: 14px !important;
+  margin-top: 8px !important;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body .form-container {
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body .form-container .form-header {
+  padding: 8px 12px;
+  background-color: #6666FF;
+  color: #ffffff;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body .form-container .form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body .form-container .form-body .form-item {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body .form-container .form-body .form-item:focus {
+  outline: 2px solid #6666FF;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body .form-container .form-body .form-item:disabled {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
+  cursor: not-allowed !important;
+}
+div.modal-crime-options .modal-dialog-box .modal-crime-options-body .form-container .form-body .form-item:disabled:hover {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
+}
+div.modal-crime-options .modal-dialog-box h5 {
+  font-size: 18px;
+  color: #ffffff;
 }
 
 main.home .btn-primary {
