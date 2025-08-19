@@ -69,5 +69,6 @@ REMARKS:
     * Have Search Filters for easy finding records.
     * Filter Complainant and Complainee to easy create report/record
     * Modal for Add and Update Userlist
+    * File Upload for Images of the Officials
 
 < ========== NOTHING TO ADD ========== >
