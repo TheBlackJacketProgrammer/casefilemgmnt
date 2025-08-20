@@ -5,7 +5,7 @@
     <div class="flex flex-col items-start justify-center user-portal-body p-4">
         <!-- Main Menu -->
         <div class="flex flex-row items-end justify-end gap-4 px-4 w-full">
-            <button class="btn-menu-item flex items-center gap-2 text-sm" ng-click="addRecord()">
+            <button class="btn-menu-item flex items-center gap-2 text-sm" ng-click="addUser()">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                 </svg>
@@ -54,4 +54,7 @@
             </table>
         </div>
     </div>
+
+    <!-- Modal -->
+    <?php $this->load->view('components/modals/modal_user_details'); ?>
 </div>

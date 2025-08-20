@@ -26,6 +26,8 @@ app.controller('UserPortalController', function($scope, $http, $timeout) {
 
     $scope.users = [];
     $scope.orgchart = [];
+    $scope.selectedRow = null;
+    $scope.crudState = "Add";
 
     // Get users
     $scope.getUsers = function() {
@@ -64,6 +66,19 @@ app.controller('UserPortalController', function($scope, $http, $timeout) {
     $scope.getPosition = function(org_code) {
         const item = $scope.orgchart.find(item => item.org_code == org_code);
         return item ? item.org_position : 'N/A';
+    }
+
+    $scope.addUser = function(){
+        $scope.status = "Add";
+        $('#modalUserDetails').removeClass('hidden');
+        $('#modalUserDetails').addClass('flex');
+    }
+
+    $scope.closeModal = function() {
+        $scope.selectedRow = null;
+        $scope.crudState = "Add";
+        $('#modalUserDetails').removeClass('flex');
+        $('#modalUserDetails').addClass('hidden');
     }
 
     $scope.init = function() {

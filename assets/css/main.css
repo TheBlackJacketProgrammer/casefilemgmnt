@@ -1418,6 +1418,95 @@ div.user-portal-section .user-portal-body .dataTables_info {
   justify-content: center !important;
   align-items: center !important;
 }
+div.user-portal-section .modal {
+  position: fixed;
+  inset: 0px;
+  z-index: 50;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+div.user-portal-section .modal .modal-dialog-box {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 992px;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-btn-default {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid #dddddd;
+  background-color: #F2F2F2;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-btn-default:hover {
+  background-color: #E5E5E5;
+  border-color: #CCCCCC;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-btn-default:active {
+  background-color: #CCCCCC;
+  border-color: #999999;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-header {
+  background-color: #21007F;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-header .btn-close {
+  padding: 4px 10px;
+  color: #ffffff;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-header .btn-close:hover {
+  background-color: rgba(117, 117, 117, 0.4);
+}
+div.user-portal-section .modal .modal-dialog-box .modal-body {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 12px;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-body .form-container {
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-body .form-container .form-header {
+  padding: 8px 12px;
+  background-color: #6666FF;
+  color: #ffffff;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-body .form-container .form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-body .form-container .form-body .form-item {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-body .form-container .form-body .form-item:focus {
+  outline: 2px solid #6666FF;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-body .form-container .form-body .form-item:disabled {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
+  cursor: not-allowed !important;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-body .form-container .form-body .form-item:disabled:hover {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
+}
+div.user-portal-section .modal .modal-dialog-box h5 {
+  font-size: 18px;
+  color: #ffffff;
+}
 
 main.home .btn-primary {
   background-color: #FFD700;
