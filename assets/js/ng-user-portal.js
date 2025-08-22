@@ -28,6 +28,7 @@ app.controller('UserPortalController', function($scope, $http, $timeout) {
     $scope.orgchart = [];
     $scope.selectedRow = null;
     $scope.crudState = "Add";
+    $scope.currentRecord = [];
 
     // Get users
     $scope.getUsers = function() {
