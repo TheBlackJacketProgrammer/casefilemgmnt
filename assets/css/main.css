@@ -1432,7 +1432,7 @@ div.user-portal-section .modal .modal-dialog-box {
   max-width: 992px;
 }
 div.user-portal-section .modal .modal-dialog-box .modal-btn-default {
-  width: 100%;
+  min-width: 120px;
   padding: 4px 8px;
   border: 1px solid #dddddd;
   background-color: #F2F2F2;
@@ -1440,10 +1440,14 @@ div.user-portal-section .modal .modal-dialog-box .modal-btn-default {
 div.user-portal-section .modal .modal-dialog-box .modal-btn-default:hover {
   background-color: #E5E5E5;
   border-color: #CCCCCC;
+  font-weight: 700;
+  transition: 0.5s ease;
 }
 div.user-portal-section .modal .modal-dialog-box .modal-btn-default:active {
   background-color: #CCCCCC;
   border-color: #999999;
+  font-weight: 700;
+  transition: 0.5s ease;
 }
 div.user-portal-section .modal .modal-dialog-box .modal-header {
   background-color: #21007F;
@@ -1493,6 +1497,7 @@ div.user-portal-section .modal .modal-dialog-box .modal-body .form-container .fo
 }
 div.user-portal-section .modal .modal-dialog-box .modal-body .form-container .form-body .form-item:focus {
   outline: 2px solid #6666FF;
+  transition: 0.5s ease;
 }
 div.user-portal-section .modal .modal-dialog-box .modal-body .form-container .form-body .form-item:disabled {
   background-color: #E5E5E5 !important;
@@ -1502,6 +1507,19 @@ div.user-portal-section .modal .modal-dialog-box .modal-body .form-container .fo
 div.user-portal-section .modal .modal-dialog-box .modal-body .form-container .form-body .form-item:disabled:hover {
   background-color: #E5E5E5 !important;
   border-color: #E5E5E5 !important;
+  transition: 0.5s ease;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-body .form-container .form-body .img-container {
+  min-height: 200px;
+  height: 100%;
+  max-width: 200px;
+  width: 100%;
+}
+div.user-portal-section .modal .modal-dialog-box .modal-body .form-container .form-body .img-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 div.user-portal-section .modal .modal-dialog-box h5 {
   font-size: 18px;

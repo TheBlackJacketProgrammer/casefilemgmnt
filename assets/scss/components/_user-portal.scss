@@ -112,7 +112,7 @@ div.user-portal-section{
             // margin-top: 10%;
 
             .modal-btn-default{
-                width: 100%;
+                min-width: 120px;
                 padding: 4px 8px;
                 border: 1px solid $border-color; 
                 background-color: $btn-classic-default;
@@ -120,11 +120,15 @@ div.user-portal-section{
                 &:hover{
                     background-color: $btn-classic-hover;
                     border-color: $btn-classic-active;
+                    font-weight: 700;
+                    transition: 0.5s ease;
                 }
 
                 &:active{
                     background-color: $btn-classic-active;
                     border-color: $btn-classic-darker;
+                    font-weight: 700;
+                    transition: 0.5s ease;
                 }
 
             }
@@ -180,6 +184,7 @@ div.user-portal-section{
 
                             &:focus{
                                 outline: 2px solid $blue-4;
+                                transition: 0.5s ease;
                             }
 
                             &:disabled{
@@ -190,12 +195,28 @@ div.user-portal-section{
                                 &:hover{
                                     background-color: $btn-classic-disabled !important;
                                     border-color: $btn-classic-disabled !important;
+                                    transition: 0.5s ease;
                                 }
+                            }
+                        }
+
+                        .img-container{
+                            min-height: 200px;
+                            height: 100%;
+                            max-width: 200px;
+                            width: 100%;
+                    
+                            img{
+                                height: 100%;
+                                width: 100%;
+                                object-fit: cover;
+                                object-position: center;
                             }
                         }
                         
                     }
                 }
+
             }
     
             h5{
@@ -204,6 +225,5 @@ div.user-portal-section{
             }
         }        
     }
-
 
 }
