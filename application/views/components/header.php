@@ -47,10 +47,10 @@
           </div>
 
           <!-- Divider -->
-          <div class="w-px h-6 bg-gray-300"></div>
+          <!-- <div class="w-px h-6 bg-gray-300"></div> -->
 
           <!-- Search Bar -->
-          <div class="relative">
+          <!-- <div class="relative">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -59,7 +59,7 @@
             <input type="text" 
                    placeholder="Search records..." 
                    class="block w-40 pl-10 pr-3 py-2 border border-gray-300 rounded-lg text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
-          </div>
+          </div> -->
 
           <!-- Divider -->
           <div class="w-px h-6 bg-gray-300"></div>
