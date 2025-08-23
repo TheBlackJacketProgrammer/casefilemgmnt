@@ -28,8 +28,16 @@ function upload_file($file, $person_type, $name, $current_pic)
         }
     }
     else {
-        // $imgname = $_FILES[$file]['name'];
+        // Get the original file name and extension
+        $original_filename = $_FILES[$file]['name'];
+        $file_extension = pathinfo($original_filename, PATHINFO_EXTENSION);
+        
+        // Create the new filename with proper extension
         $person_pic = $person_type . "_" . $name;
+        if (!empty($file_extension)) {
+            $person_pic .= "." . $file_extension;
+        }
+        
         $location = "./assets/img/people/" . $person_pic;
     }
     

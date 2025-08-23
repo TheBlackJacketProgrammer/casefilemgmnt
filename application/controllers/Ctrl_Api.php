@@ -233,4 +233,51 @@ class Ctrl_Api extends CI_Controller {
         ];
         echo json_encode($response);
     }
+
+    // Save User Details
+    public function save_user_details(){
+        $post_data = $this->input->post();
+
+        // Loop through POST data to reconstruct the user details
+        foreach($post_data as $key => $value) {
+            // Skip image fields as they're handled separately
+            if ($key !== 'user_image') {
+                $data[$key] = $value;
+            }
+        }
+
+        // Parse date
+        $data['user_birthdate'] = $this->parseJavaScriptDate($data['user_birthdate']);
+        $data['user_datecreated'] = $this->parseJavaScriptDate($data['user_datecreated']);
+
+        // Upload images
+        $data['user_pic'] = upload_file('user_image', 'user', $data['user_fullname'], $data['user_pic']);
+
+        // Set Static Values
+        $data['user_is_first_login'] = 1;
+        $data['user_status'] = 1;
+
+        if($data['user_id'] == "null"){
+            $response = $this->Model_Api->save_user_details($data);
+        }
+        else{
+            $response = $this->Model_Api->update_user_details($data);
+        }
+
+        // Check the response format from the model
+        if(isset($response['success']) && $response['success'] === true) {
+            echo json_encode([
+                'status' => 'success', 
+                'message' => $response['message'], 
+                'affected_rows' => $response['affected_rows']
+            ]);
+        } else {
+            echo json_encode([
+                'status' => 'error', 
+                'message' => $response['message'] ?? 'Failed to save record',
+                'error_code' => $response['error_code'] ?? null
+            ]);
+        }
+
+    }
 }

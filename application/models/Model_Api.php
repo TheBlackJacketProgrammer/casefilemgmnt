@@ -157,4 +157,23 @@ class Model_Api extends CI_Model
         $query = $this->db->query("CALL GetOrgChart()");
         return $query->result_array();
     }
+
+    public function save_user_details($data){
+        try{
+            $this->db->insert('user', $data);
+            return array(
+                'success' => true,
+                'message' => 'User details saved successfully',
+                'affected_rows' => $this->db->affected_rows()
+            );
+        }
+
+        catch (Exception $e) {
+            return array(
+                'success' => false,
+                'message' => 'Error saving user details: ' . $e->getMessage(),
+                'error_code' => $e->getCode()
+            );
+        }
+    }
 }

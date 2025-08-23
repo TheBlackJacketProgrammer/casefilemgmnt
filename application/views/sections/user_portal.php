@@ -34,7 +34,7 @@
                         <td class="px-6 py-4 text-sm">{{ user.user_gender }}</td>
                         <td class="px-6 py-4 text-sm">{{ convertMySQLDate(user.user_birthdate) }}</td>
                         <td class="px-6 py-4 text-sm">{{ user.user_contact_number ? user.user_contact_number : 'N/A' }}</td>
-                        <td class="px-6 py-4 text-sm">{{ user.user_status }}</td>
+                        <td class="px-6 py-4 text-sm">{{ user.user_status ? 'Active' : 'Deactivated' }}</td>
                         <td class="flex flex-col items-center justify-start gap-2">
                             <button class="btn-edit flex items-center gap-2 text-sm w-full" ng-click="editUser(user.user_id)">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
