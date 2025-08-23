@@ -72,3 +72,17 @@ REMARKS:
     * File Upload for Images of the Officials
 
 < ========== NOTHING TO ADD ========== >
+
+Date: 08 - 24 - 2025
+
+UPDATES:
+    * Successfully applied Add User feature in the User Details Modal
+    * Remove Search Bar in Header (for now)
+
+
+REMARKS:
+    * Have Search Filters for easy finding records in the record module.
+    * Filter Complainant and Complainee to easy create report/record in the record modal (Add/Update)
+    * Update feature for the User Details in User Details Modal
+
+< ========== NOTHING TO ADD ========== >
