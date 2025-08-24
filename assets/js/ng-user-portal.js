@@ -150,8 +150,17 @@ app.controller('UserPortalController', function($scope, $http, $timeout) {
     $scope.saveUser = function() {
         var formData = new FormData();
         $scope.currentUser.user_fullname = $scope.currentUser.user_firstname + " " + $scope.currentUser.user_middlename + " " + $scope.currentUser.user_lastname;
-        $scope.currentUser.user_datecreated = new Date();
+        if($scope.status == 'Add') {
+            $scope.currentUser.user_datecreated = new Date();
+        }
+
         console.log($scope.currentUser);
+
+        // Remove AngularJS $$hashKey property before sending data
+        if ($scope.currentUser.hasOwnProperty('$$hashKey')) {
+            delete $scope.currentUser.$$hashKey;
+        }
+        
 
         // Append all record fields to FormData using a loop
         var user = $scope.currentUser;
@@ -182,6 +191,15 @@ app.controller('UserPortalController', function($scope, $http, $timeout) {
                 $scope.getUsers();
             }
         });
+    }
+
+    $scope.editUser = function(index) {
+        $scope.status = "Edit";
+        $scope.currentUser = $scope.users[index];
+        $scope.currentUser.user_birthdate = new Date($scope.currentUser.user_birthdate);
+        $scope.user_image_preview = $scope.baseUrl + $scope.currentUser.user_pic;
+        $('#modalUserDetails').removeClass('hidden');
+        $('#modalUserDetails').addClass('flex');
     }
 
     $scope.closeModal = function() {

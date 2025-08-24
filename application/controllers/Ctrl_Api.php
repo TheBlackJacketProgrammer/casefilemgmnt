@@ -249,9 +249,10 @@ class Ctrl_Api extends CI_Controller {
         // Parse date
         $data['user_birthdate'] = $this->parseJavaScriptDate($data['user_birthdate']);
         $data['user_datecreated'] = $this->parseJavaScriptDate($data['user_datecreated']);
+        $person_name = $data['user_firstname'] . "_" . $data['user_middlename'] . "_" . $data['user_lastname'];
 
         // Upload images
-        $data['user_pic'] = upload_file('user_image', 'user', $data['user_fullname'], $data['user_pic']);
+        $data['user_pic'] = upload_file('user_image', 'user', $person_name , $data['user_pic']);
 
         // Set Static Values
         $data['user_is_first_login'] = 1;

@@ -176,4 +176,23 @@ class Model_Api extends CI_Model
             );
         }
     }
+
+    public function update_user_details($data){
+        try{
+            $this->db->where('user_id', $data['user_id']);
+            $this->db->update('user', $data);
+            return array(
+                'success' => true,
+                'message' => 'User details updated successfully',
+                'affected_rows' => $this->db->affected_rows()
+            );
+        }
+        catch (Exception $e) {
+            return array(
+                'success' => false,
+                'message' => 'Error updating user details: ' . $e->getMessage(),
+                'error_code' => $e->getCode()
+            );
+        }
+    }
 }

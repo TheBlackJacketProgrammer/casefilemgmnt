@@ -36,7 +36,7 @@
                         <td class="px-6 py-4 text-sm">{{ user.user_contact_number ? user.user_contact_number : 'N/A' }}</td>
                         <td class="px-6 py-4 text-sm">{{ user.user_status ? 'Active' : 'Deactivated' }}</td>
                         <td class="flex flex-col items-center justify-start gap-2">
-                            <button class="btn-edit flex items-center gap-2 text-sm w-full" ng-click="editUser(user.user_id)">
+                            <button class="btn-edit flex items-center gap-2 text-sm w-full" ng-click="editUser($index)">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                 </svg>
