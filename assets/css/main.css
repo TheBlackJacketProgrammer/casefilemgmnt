@@ -1356,7 +1356,7 @@ div.user-portal-section .user-portal-body {
   padding: 8px 16px !important;
   gap: 8px !important;
 }
-div.user-portal-section .user-portal-body .btn-menu-item, div.user-portal-section .user-portal-body .btn-deactivate, div.user-portal-section .user-portal-body .btn-edit {
+div.user-portal-section .user-portal-body .btn-menu-item, div.user-portal-section .user-portal-body .btn-deactivate, div.user-portal-section .user-portal-body .btn-edit, div.user-portal-section .user-portal-body .btn-activate {
   min-width: 100px;
   padding: 4px 16px;
   font-size: 14px;
@@ -1364,17 +1364,17 @@ div.user-portal-section .user-portal-body .btn-menu-item, div.user-portal-sectio
   border: 2px solid #dddddd;
   background-color: #ffffff;
 }
-div.user-portal-section .user-portal-body .btn-menu-item:hover, div.user-portal-section .user-portal-body .btn-deactivate:hover, div.user-portal-section .user-portal-body .btn-edit:hover {
+div.user-portal-section .user-portal-body .btn-menu-item:hover, div.user-portal-section .user-portal-body .btn-deactivate:hover, div.user-portal-section .user-portal-body .btn-edit:hover, div.user-portal-section .user-portal-body .btn-activate:hover {
   background-color: #E5E5E5;
   font-weight: 700;
   transition: 0.5s ease;
 }
-div.user-portal-section .user-portal-body .btn-menu-item:disabled, div.user-portal-section .user-portal-body .btn-deactivate:disabled, div.user-portal-section .user-portal-body .btn-edit:disabled {
+div.user-portal-section .user-portal-body .btn-menu-item:disabled, div.user-portal-section .user-portal-body .btn-deactivate:disabled, div.user-portal-section .user-portal-body .btn-edit:disabled, div.user-portal-section .user-portal-body .btn-activate:disabled {
   background-color: #E5E5E5 !important;
   border-color: #E5E5E5 !important;
   cursor: not-allowed !important;
 }
-div.user-portal-section .user-portal-body .btn-menu-item:disabled:hover, div.user-portal-section .user-portal-body .btn-deactivate:disabled:hover, div.user-portal-section .user-portal-body .btn-edit:disabled:hover {
+div.user-portal-section .user-portal-body .btn-menu-item:disabled:hover, div.user-portal-section .user-portal-body .btn-deactivate:disabled:hover, div.user-portal-section .user-portal-body .btn-edit:disabled:hover, div.user-portal-section .user-portal-body .btn-activate:disabled:hover {
   background-color: #E5E5E5 !important;
   border-color: #E5E5E5 !important;
 }
@@ -1384,6 +1384,15 @@ div.user-portal-section .user-portal-body .btn-deactivate {
 div.user-portal-section .user-portal-body .btn-deactivate:hover {
   border-color: #d42626 !important;
   background-color: #FF0000 !important;
+  color: #ffffff !important;
+  transition: 0.5s ease;
+}
+div.user-portal-section .user-portal-body .btn-activate {
+  color: #000000 !important;
+}
+div.user-portal-section .user-portal-body .btn-activate:hover {
+  border-color: #21007F !important;
+  background-color: #6666FF !important;
   color: #ffffff !important;
   transition: 0.5s ease;
 }

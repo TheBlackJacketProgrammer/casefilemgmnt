@@ -281,4 +281,12 @@ class Ctrl_Api extends CI_Controller {
         }
 
     }
+
+    // Update User Status
+    public function update_user_status(){
+        $data = json_decode(file_get_contents('php://input'),true);
+        $status = $data['user_status'] == 1 ? 0 : 1;
+        $response = $this->Model_Api->update_user_status($data, $status);
+        echo json_encode($response);
+    }
 }

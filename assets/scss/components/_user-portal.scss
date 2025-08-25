@@ -20,7 +20,7 @@ div.user-portal-section{
         padding: 8px 16px !important;
         gap: 8px !important;
 
-        .btn-menu-item, .btn-deactivate, .btn-edit{
+        .btn-menu-item, .btn-deactivate, .btn-edit, .btn-activate{
             min-width: 100px;
             padding: 4px 16px;
             font-size: 14px;
@@ -52,6 +52,17 @@ div.user-portal-section{
             &:hover{
                 border-color: $red-danger-hover !important;
                 background-color: $red-danger !important;
+                color: $white !important;
+                transition: 0.5s ease;
+            }
+        }
+
+        .btn-activate{
+            color: $black !important;
+
+            &:hover{
+                border-color: $blue-6 !important;
+                background-color: $blue-4 !important;
                 color: $white !important;
                 transition: 0.5s ease;
             }

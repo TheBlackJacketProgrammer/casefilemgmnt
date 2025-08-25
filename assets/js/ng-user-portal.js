@@ -202,6 +202,19 @@ app.controller('UserPortalController', function($scope, $http, $timeout) {
         $('#modalUserDetails').addClass('flex');
     }
 
+    $scope.updateUserStatus = function(user_id, user_status) {
+        $http({
+            method: "POST",
+            url: $scope.baseUrl + "ctrl_api/update_user_status",
+            data: {user_id: user_id, user_status: user_status}
+        }).then(function successCallback(response) {
+            if(response.data.success == true) {
+                toastr.success("User status updated successfully");
+                $scope.getUsers();
+            }
+        });
+    }
+
     $scope.closeModal = function() {
         $scope.selectedRow = null;
         $scope.crudState = "Add";
