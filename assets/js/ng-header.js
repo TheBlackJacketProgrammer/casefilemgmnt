@@ -120,6 +120,17 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
         });
     };
 
+    // Open Event Logs
+    $scope.openEventLogs = function() {
+        $scope.$parent.section = "";
+        $http({
+            method: "POST",
+            url:  $scope.baseUrl + "ctrl_main/open_event_logs"
+        }).then(function successCallback(response) {
+            $scope.$parent.section = response.data["view"];
+        });
+    };
+
     // Logout
     $scope.logout = function() {
         $http({
