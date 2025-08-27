@@ -26,9 +26,9 @@ Backend Framework
 
 Frontend Technologies
 ~~~~~~~~~~~~~~~~~~~~~
-- **AngularJS 1.x** - JavaScript framework for dynamic UI
-- **Tailwind CSS 3.x** - Utility-first CSS framework
-- **SCSS/Sass** - CSS preprocessor
+- **AngularJS 1.x** - JavaScript framework for dynamic UI with DataTables integration
+- **Tailwind CSS 3.4.1** - Utility-first CSS framework
+- **SCSS/Sass 1.69.5** - CSS preprocessor
 - **jQuery 3.7.1** - JavaScript library for DOM manipulation
 - **DataTables** - Advanced table functionality with export features
 - **Bootstrap 5.3.6** - Additional UI components and utilities
@@ -36,10 +36,11 @@ Frontend Technologies
 Development Tools
 ~~~~~~~~~~~~~~~~~
 - **Node.js & npm** - Package management and build tools
-- **Sass** - CSS compilation and watching
-- **PostCSS** - CSS post-processing
-- **Autoprefixer** - CSS vendor prefixing
-- **Concurrently** - Parallel task execution
+- **Sass 1.69.5** - CSS compilation and watching
+- **PostCSS 8.4.35** - CSS post-processing
+- **Autoprefixer 10.4.17** - CSS vendor prefixing
+- **Concurrently 8.2.2** - Parallel task execution
+- **Tailwind CSS 3.4.1** - CSS framework build tool
 
 Key Features
 ------------
@@ -51,6 +52,7 @@ Case Management System
 - Case status tracking (Pending, Active, Resolved, etc.)
 - Date tracking for case filing, updates, and crime incidents
 - Advanced search and filtering capabilities
+- Real-time case updates and modifications
 
 Complainant & Complainee Management
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -60,10 +62,11 @@ Complainant & Complainee Management
 - Image upload and storage capabilities
 - Address and demographic data
 - Bulk operations support
+- Individual record editing and updates
 
 Crime Details & Documentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- Crime type categorization
+- Crime type categorization with predefined options
 - Detailed crime scene descriptions
 - Witness information recording
 - Crime date and time tracking
@@ -76,7 +79,8 @@ User Portal & Administration
 - Organizational chart display
 - Role-based access control
 - Session management and authentication
-- User activity tracking
+- User activity tracking and event logging
+- Secure login/logout functionality
 
 Advanced Data Management
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -85,6 +89,15 @@ Advanced Data Management
 - Responsive data tables with sorting and filtering
 - Image preview and management
 - Real-time data updates
+- Touch-friendly interface for mobile devices
+
+Event Logging System
+~~~~~~~~~~~~~~~~~~~~
+- Comprehensive user activity tracking
+- Login/logout event logging
+- Case modification tracking
+- User action audit trail
+- Timestamp-based event recording
 
 Project Structure
 -----------------
@@ -94,22 +107,29 @@ Project Structure
     brgycasefile/
     ├── application/           # Application logic
     │   ├── controllers/       # MVC Controllers
-    │   │   ├── Ctrl_Api.php  # API endpoints
-    │   │   └── Ctrl_Main.php # Main application controller
+    │   │   ├── Ctrl_Api.php  # API endpoints and data operations
+    │   │   └── Ctrl_Main.php # Main application controller and navigation
     │   ├── models/           # Database models
-    │   │   ├── Model_Api.php # API data operations
-    │   │   └── Model_Main.php # Main business logic
+    │   │   ├── Model_Api.php # API data operations and business logic
+    │   │   └── Model_Main.php # Main business logic and database processes
     │   ├── views/            # View templates
-    │   │   ├── pages/        # Main page templates
-    │   │   ├── sections/     # Reusable view sections
+    │   │   ├── pages/        # Main page templates (dashboard, login)
+    │   │   ├── sections/     # Reusable view sections (records, user portal, event logs)
     │   │   └── components/   # UI components and modals
     │   └── config/           # Configuration files
     ├── assets/               # Frontend assets
     │   ├── css/             # Compiled CSS files
     │   ├── js/              # JavaScript modules
-    │   │   ├── app.js       # Main application logic
-    │   │   ├── ng-*.js      # AngularJS controllers
-    │   │   └── custom-script.js # Custom functionality
+    │   │   ├── app.js       # Main AngularJS application and directives
+    │   │   ├── ng-*.js      # AngularJS controllers for different modules
+    │   │   │   ├── ng-records.js      # Case records management
+    │   │   │   ├── ng-user-portal.js  # User administration
+    │   │   │   ├── ng-event-logs.js   # Event logging system
+    │   │   │   ├── ng-crime-options.js # Crime type management
+    │   │   │   ├── ng-header.js       # Header navigation
+    │   │   │   ├── ng-login.js        # Authentication
+    │   │   │   └── ng-variables.js    # Global variables and constants
+    │   │   └── custom-script.js # Custom functionality and utilities
     │   ├── scss/            # SCSS source files
     │   │   ├── base/        # Base styles and variables
     │   │   ├── components/  # Component-specific styles
@@ -161,19 +181,23 @@ Development Commands
     # Build Tailwind only
     npm run build:tailwind
 
-    # Clean build artifacts
-    npm run clean
+    # Watch SCSS changes
+    npm run watch:scss
+
+    # Watch Tailwind changes
+    npm run watch:tailwind
 
 Database Schema
 ---------------
 
 The system manages several key entities:
 
-- **Cases** - Main case records with status and metadata
+- **Cases (records)** - Main case records with status and metadata
 - **Complainants** - Case initiators with personal details
 - **Complainees** - Case subjects with personal details
 - **Crime Types** - Categorization system for cases
 - **Users** - System administrators and staff
+- **Event Logs** - User activity and system event tracking
 - **Organizational Chart** - Staff hierarchy and structure
 
 Security Features
@@ -186,6 +210,7 @@ Security Features
 - Secure file upload handling with type validation
 - SQL injection prevention through prepared statements
 - XSS protection through output encoding
+- Event logging for security audit trails
 
 User Interface
 --------------
@@ -196,16 +221,19 @@ User Interface
 - **Data Tables** - Advanced table functionality with export options
 - **Image Management** - Preview, upload, and management capabilities
 - **Toast Notifications** - User feedback and status updates
+- **Touch Support** - Custom touch directives for mobile devices
+- **Dynamic Loading** - Partial view loading for improved performance
 
 Performance Features
 --------------------
 
-- Optimized database queries with proper indexing
+- Optimized database queries with stored procedures
 - Efficient image handling and compression
 - Minified CSS and JavaScript for production
 - Responsive data loading with pagination
 - Caching mechanisms for static assets
 - Lazy loading for improved page performance
+- Concurrent build processes for faster development
 
 API Endpoints
 -------------
@@ -213,10 +241,39 @@ API Endpoints
 The system provides RESTful API endpoints for:
 
 - **Authentication**: ``/ctrl_api/login`` - User login and session management
-- **Records**: ``/ctrl_api/get_records``, ``/ctrl_api/save_record`` - Case record operations
+- **Records**: 
+  - ``/ctrl_api/get_records`` - Retrieve case records
+  - ``/ctrl_api/save_record`` - Create new case records
+  - ``/ctrl_api/update_record`` - Update existing case records
 - **Crime Types**: ``/ctrl_api/get_crime_types`` - Crime category management
+- **Crime Options**: ``/ctrl_api/get_crime_options`` - Available crime options
 - **Users**: ``/ctrl_api/get_user_masterlist`` - User administration
 - **Organization**: ``/ctrl_api/get_org_chart`` - Organizational structure data
+- **Event Logs**: ``/ctrl_api/save_event_log`` - Activity tracking
+
+Core Functionality
+------------------
+
+**Case Management**
+- Create, read, update, and delete case records
+- Associate complainants and complainees with cases
+- Track case status and progression
+- Manage crime type classifications
+- Handle case documentation and attachments
+
+**User Administration**
+- User account management
+- Role-based permissions
+- Session management
+- Activity monitoring
+- Organizational structure display
+
+**Data Operations**
+- Bulk record operations
+- Advanced filtering and search
+- Data export capabilities
+- Real-time updates
+- Touch-friendly interface
 
 Development Guidelines
 ----------------------
@@ -228,16 +285,19 @@ Development Guidelines
 - **Responsive Design** - Mobile-first approach with Tailwind CSS utilities
 - **Code Organization** - Maintain clear separation of concerns
 - **Error Handling** - Implement proper error handling and user feedback
+- **Event Logging** - Track all user actions for audit purposes
+- **Touch Support** - Implement touch-friendly interactions for mobile devices
 
 System Requirements
 -------------------
 
 - **Server**: Apache 2.4+ or Nginx 1.18+ with PHP support
 - **PHP**: 7.4+ with extensions (mysqli, gd, session, mbstring, json)
-- **Database**: MySQL 5.7+ or MariaDB 10.2+
+- **Database**: MySQL 5.7+ or MariaDB 10.2+ with stored procedure support
 - **Browser**: Modern browsers with JavaScript enabled (Chrome 90+, Firefox 88+, Safari 14+)
 - **Storage**: Adequate space for case files and images (minimum 1GB recommended)
 - **Memory**: PHP memory limit of 256MB or higher
+- **Mobile**: Touch-enabled devices with responsive design support
 
 Use Cases
 ---------
@@ -247,31 +307,62 @@ Use Cases
 - **Administrative Staff** - User and system management
 - **Case Workers** - Complaint processing and status tracking
 - **Supervisors** - Report generation and data analysis
+- **Field Officers** - Mobile access to case information
+- **Auditors** - Activity tracking and compliance monitoring
+
+Current Implementation Status
+----------------------------
+
+**Completed Features:**
+- ✅ User authentication and session management
+- ✅ Case record creation and management
+- ✅ Complainant and complainee management
+- ✅ Crime type categorization system
+- ✅ User portal and administration
+- ✅ Event logging and activity tracking
+- ✅ Responsive mobile-friendly interface
+- ✅ Data export and bulk operations
+- ✅ Touch support for mobile devices
+- ✅ Real-time data updates
+
+**Technical Implementation:**
+- ✅ CodeIgniter 3 MVC architecture
+- ✅ AngularJS 1.x frontend framework
+- ✅ Tailwind CSS 3.4.1 styling
+- ✅ SCSS compilation and build system
+- ✅ RESTful API endpoints
+- ✅ Stored procedure database optimization
+- ✅ Mobile-responsive design
+- ✅ Touch event handling
 
 Future Enhancements
 -------------------
 
-- **Real-time Features**: Live notifications and updates
+- **Real-time Features**: Live notifications and updates via WebSockets
 - **Advanced Analytics**: Comprehensive reporting and data visualization
 - **Mobile Application**: Native mobile app for field operations
 - **Government Integration**: API integration with other government systems
 - **Enhanced Search**: Advanced search with AI-powered suggestions
 - **Document Management**: Comprehensive document handling and versioning
-- **Audit Trail**: Detailed logging and activity tracking
+- **Audit Trail**: Enhanced logging and activity tracking
 - **Multi-language Support**: Localization for different regions
 - **Cloud Deployment**: Support for cloud hosting platforms
+- **Offline Capability**: Offline data synchronization
+- **Advanced Security**: Two-factor authentication and encryption
+- **Performance Optimization**: Database query optimization and caching
 
 About the Developer
 -------------------
 
 **Marvin Verola Bergado** is a Full Stack Web Developer with extensive expertise in modern web technologies and frameworks. This project demonstrates proficiency in:
 
-- **Backend Development**: PHP, CodeIgniter, MySQL, RESTful APIs
-- **Frontend Development**: JavaScript, AngularJS, CSS/SCSS, Tailwind CSS
-- **Database Design**: Relational database architecture and optimization
+- **Backend Development**: PHP, CodeIgniter, MySQL, RESTful APIs, Stored Procedures
+- **Frontend Development**: JavaScript, AngularJS, CSS/SCSS, Tailwind CSS, Touch Events
+- **Database Design**: Relational database architecture, optimization, and stored procedures
 - **System Architecture**: MVC pattern implementation and API design
 - **User Experience**: Responsive design and modern UI/UX principles
 - **DevOps**: Build tools, deployment, and performance optimization
+- **Mobile Development**: Touch-friendly interfaces and responsive design
 
 Contact Information
 ~~~~~~~~~~~~~~~~~~~
@@ -296,11 +387,23 @@ Summary
 This system represents a comprehensive solution for barangay-level case management, combining modern web technologies with robust backend architecture to provide an efficient, user-friendly platform for local government operations. 
 
 **Key Highlights:**
-- Modern, responsive web interface built with Tailwind CSS
-- Robust backend powered by CodeIgniter 3
+- Modern, responsive web interface built with Tailwind CSS 3.4.1
+- Robust backend powered by CodeIgniter 3 with stored procedures
 - Comprehensive case management and tracking system
 - Secure file handling and user management
 - RESTful API architecture for extensibility
-- Mobile-first responsive design
+- Mobile-first responsive design with touch support
+- Advanced event logging and audit trail system
+- Real-time data updates and bulk operations
+- Touch-friendly interface for mobile devices
+
+**Current Version Features:**
+- Complete case management system with CRUD operations
+- User authentication and role-based access control
+- Event logging and activity tracking
+- Mobile-responsive design with touch support
+- Advanced data tables with export functionality
+- Crime type categorization and management
+- Comprehensive user administration portal
 
 Developed by Marvin Verola Bergado, a Full Stack Web Developer committed to creating scalable, maintainable, and user-centric web applications that serve the needs of local government operations.
