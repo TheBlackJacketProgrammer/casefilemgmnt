@@ -61,7 +61,8 @@ class Model_Api extends CI_Model
             return array(
                 'success' => true,
                 'message' => 'Record saved successfully',
-                'affected_rows' => $this->db->affected_rows()
+                'affected_rows' => $this->db->affected_rows(),
+                'case_id' => $this->db->insert_id()
             );
         }
         catch (Exception $e) {
@@ -164,7 +165,8 @@ class Model_Api extends CI_Model
             return array(
                 'success' => true,
                 'message' => 'User details saved successfully',
-                'affected_rows' => $this->db->affected_rows()
+                'affected_rows' => $this->db->affected_rows(),
+                'user_id' => $this->db->insert_id()
             );
         }
 
@@ -212,6 +214,17 @@ class Model_Api extends CI_Model
                 'message' => 'Error updating user status: ' . $e->getMessage(),
                 'error_code' => $e->getCode()
             );
+        }
+    }
+
+    // Event Logs
+    public function save_event_log($data){
+        try{
+            $this->db->insert('event_logs', $data);
+            return true;
+        }
+        catch (Exception $e) {
+            return false;
         }
     }
 }

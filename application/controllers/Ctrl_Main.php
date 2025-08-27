@@ -41,6 +41,15 @@ class Ctrl_Main extends CI_Controller {
 
 	public function logout()
 	{
+		// Prepare Event Log
+		$log["user_id_logged_in"] = $this->session->userdata('user_id');
+		$log["date_created"] = date('Y-m-d H:i:s');
+		$log['log_action'] = 'Logout';
+
+		// Save Event Log
+		$this->Model_Api->save_event_log($log);
+
+		// Destroy Session
 		$this->session->sess_destroy();
 		return true;
 	}

@@ -17,6 +17,15 @@ class Ctrl_Api extends CI_Controller {
         {
             $this->session->set_userdata('user_id', $response['user_id']);
             $this->session->set_userdata('user_logged_in', true);
+
+            // Prepare Event Log
+            $log["user_id_logged_in"] = $response['user_id'];
+            $log["date_created"] = date('Y-m-d H:i:s');
+            $log['log_action'] = 'Login';
+
+            // Save Event Log
+            $this->Model_Api->save_event_log($log);
+
             echo json_encode(['status' => 'success', 'user' => $response]);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid credentials']);
@@ -96,9 +105,6 @@ class Ctrl_Api extends CI_Controller {
 
     public function save_record()
     {
-        // Reconstruct case data from individual form fields
-        $data = array();
-        
         // Get all POST data
         $post_data = $this->input->post();
         
@@ -148,6 +154,14 @@ class Ctrl_Api extends CI_Controller {
             );
             
             $response = $this->Model_Api->save_record($params);
+
+            // Prepare Event Log
+            $log["user_id_logged_in"] = $this->session->userdata('user_id');
+            $log["date_created"] = $this->parseJavaScriptDate($data['case_dateFiled']);
+            $log['log_action'] = 'Success Save New Record. Case ID: ' . $response['case_id'];
+
+            // Save Event Log
+            $this->Model_Api->save_event_log($log);
         }
         else{
             // Prepare data for update
@@ -184,6 +198,14 @@ class Ctrl_Api extends CI_Controller {
             );
             
             $response = $this->Model_Api->update_record($params);
+
+            // Prepare Event Log
+            $log["user_id_logged_in"] = $this->session->userdata('user_id');
+            $log["date_created"] = $this->parseJavaScriptDate($data['case_dateUpdated']);
+            $log['log_action'] = 'Success Update Record. Case ID: ' . $data['case_id'];
+
+            // Save Event Log
+            $this->Model_Api->save_event_log($log);
         }
 
         // Check the response format from the model
@@ -207,9 +229,24 @@ class Ctrl_Api extends CI_Controller {
         $data = json_decode(file_get_contents('php://input'),true); 
         if($data['crimeType_id'] == "null" || $data['crimeType_id'] == null || $data['crimeType_id'] == "") {
             $response = $this->Model_Api->save_crime_type($data);
+            // Prepare Event Log
+            $log["user_id_logged_in"] = $this->session->userdata('user_id');
+            $log["date_created"] = date('Y-m-d H:i:s');
+            $log['log_action'] = 'Success Save New Crime Type. Crime Name: ' . $data['crimeType_name'];
+
+            // Save Event Log
+            $this->Model_Api->save_event_log($log);
         }
         else {
             $response = $this->Model_Api->update_crime_type($data);
+
+            // Prepare Event Log
+            $log["user_id_logged_in"] = $this->session->userdata('user_id');
+            $log["date_created"] = date('Y-m-d H:i:s');
+            $log['log_action'] = 'Success Update Crime Type. Crime Name: ' . $data['crimeType_name'];
+
+            // Save Event Log
+            $this->Model_Api->save_event_log($log);
         }
         echo json_encode($response);
     }
@@ -260,9 +297,25 @@ class Ctrl_Api extends CI_Controller {
 
         if($data['user_id'] == "null"){
             $response = $this->Model_Api->save_user_details($data);
+
+            // Prepare Event Log
+            $log["user_id_logged_in"] = $this->session->userdata('user_id');
+            $log["date_created"] = $this->parseJavaScriptDate($data['user_datecreated']);
+            $log['log_action'] = 'Success Save New User. User ID: ' . $response['user_id'];
+
+            // Save Event Log
+            $this->Model_Api->save_event_log($log);
         }
         else{
             $response = $this->Model_Api->update_user_details($data);
+            
+            // Prepare Event Log
+            $log["user_id_logged_in"] = $this->session->userdata('user_id');
+            $log["date_created"] = date('Y-m-d H:i:s');
+            $log['log_action'] = 'Success Update User. User ID: ' . $response['user_id'];
+
+            // Save Event Log
+            $this->Model_Api->save_event_log($log);
         }
 
         // Check the response format from the model
@@ -287,6 +340,15 @@ class Ctrl_Api extends CI_Controller {
         $data = json_decode(file_get_contents('php://input'),true);
         $status = $data['user_status'] == 1 ? 0 : 1;
         $response = $this->Model_Api->update_user_status($data, $status);
+
+        // Prepare Event Log
+        $log["user_id_logged_in"] = $this->session->userdata('user_id');
+        $log["date_created"] = date('Y-m-d H:i:s');
+        $log['log_action'] = 'Success Update User Status. User ID: ' . $data['user_id'] . ' Status: ' . ($status == 1 ? 'Active' : 'Deactivated');
+
+        // Save Event Log
+        $this->Model_Api->save_event_log($log);
+
         echo json_encode($response);
     }
 }
