@@ -351,4 +351,23 @@ class Ctrl_Api extends CI_Controller {
 
         echo json_encode($response);
     }
+
+    // Get Event Logs
+    public function get_event_logs(){
+        $event_logs = $this->Model_Api->get_event_logs();
+        
+        // Format date_created to show AM/PM format
+        foreach ($event_logs as &$log) {
+            if (isset($log['date_created']) && !empty($log['date_created'])) {
+                $log['date_created'] = date('M d, Y g:i A', strtotime($log['date_created']));
+            }
+        }
+        
+        $response = [
+            'status' => 'success',
+            'message' => 'Event logs fetched successfully',
+            'eventlogs' => $event_logs
+        ];
+        echo json_encode($response);
+    }
 }

@@ -227,4 +227,10 @@ class Model_Api extends CI_Model
             return false;
         }
     }
+
+    // Get Event Logs
+    public function get_event_logs(){
+        $query = $this->db->query("CALL GetEventLogs()");
+        return $query->result_array();
+    }
 }

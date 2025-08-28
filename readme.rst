@@ -41,6 +41,7 @@ Development Tools
 - **Autoprefixer 10.4.17** - CSS vendor prefixing
 - **Concurrently 8.2.2** - Parallel task execution
 - **Tailwind CSS 3.4.1** - CSS framework build tool
+- **Custom Helpers** - File upload and utility functions
 
 Key Features
 ------------
@@ -90,6 +91,8 @@ Advanced Data Management
 - Image preview and management
 - Real-time data updates
 - Touch-friendly interface for mobile devices
+- File upload handling with custom helper functions
+- Image compression and optimization
 
 Event Logging System
 ~~~~~~~~~~~~~~~~~~~~
@@ -116,6 +119,8 @@ Project Structure
     │   │   ├── pages/        # Main page templates (dashboard, login)
     │   │   ├── sections/     # Reusable view sections (records, user portal, event logs)
     │   │   └── components/   # UI components and modals
+    │   ├── helpers/          # Custom helper functions
+    │   │   └── file_upload_helper.php # File upload and image handling
     │   └── config/           # Configuration files
     ├── assets/               # Frontend assets
     │   ├── css/             # Compiled CSS files
@@ -245,11 +250,18 @@ The system provides RESTful API endpoints for:
   - ``/ctrl_api/get_records`` - Retrieve case records
   - ``/ctrl_api/save_record`` - Create new case records
   - ``/ctrl_api/update_record`` - Update existing case records
-- **Crime Types**: ``/ctrl_api/get_crime_types`` - Crime category management
+- **Crime Types**: 
+  - ``/ctrl_api/get_crime_types`` - Crime category management
+  - ``/ctrl_api/save_crime_type`` - Create/Update crime types
 - **Crime Options**: ``/ctrl_api/get_crime_options`` - Available crime options
-- **Users**: ``/ctrl_api/get_user_masterlist`` - User administration
+- **Users**: 
+  - ``/ctrl_api/get_user_masterlist`` - User administration
+  - ``/ctrl_api/save_user_details`` - Create/Update user accounts
+  - ``/ctrl_api/update_user_status`` - Activate/Deactivate users
 - **Organization**: ``/ctrl_api/get_org_chart`` - Organizational structure data
-- **Event Logs**: ``/ctrl_api/save_event_log`` - Activity tracking
+- **Event Logs**: 
+  - ``/ctrl_api/save_event_log`` - Activity tracking
+  - ``/ctrl_api/get_event_logs`` - Retrieve activity logs
 
 Core Functionality
 ------------------
@@ -274,6 +286,8 @@ Core Functionality
 - Data export capabilities
 - Real-time updates
 - Touch-friendly interface
+- JavaScript date parsing and conversion
+- Multi-format date handling
 
 Development Guidelines
 ----------------------
@@ -324,6 +338,10 @@ Current Implementation Status
 - ✅ Data export and bulk operations
 - ✅ Touch support for mobile devices
 - ✅ Real-time data updates
+- ✅ Crime type management (CRUD operations)
+- ✅ User account management (CRUD operations)
+- ✅ File upload and image handling
+- ✅ Date parsing and conversion utilities
 
 **Technical Implementation:**
 - ✅ CodeIgniter 3 MVC architecture
@@ -334,6 +352,10 @@ Current Implementation Status
 - ✅ Stored procedure database optimization
 - ✅ Mobile-responsive design
 - ✅ Touch event handling
+- ✅ Custom helper functions for file operations
+- ✅ JavaScript date parsing utilities
+- ✅ Event logging and audit trail system
+- ✅ Image upload and management system
 
 Future Enhancements
 -------------------
@@ -405,5 +427,10 @@ This system represents a comprehensive solution for barangay-level case manageme
 - Advanced data tables with export functionality
 - Crime type categorization and management
 - Comprehensive user administration portal
+- File upload and image management system
+- JavaScript date parsing and conversion utilities
+- Custom helper functions for enhanced functionality
+- Real-time data updates and bulk operations
+- Touch-friendly interface for mobile devices
 
 Developed by Marvin Verola Bergado, a Full Stack Web Developer committed to creating scalable, maintainable, and user-centric web applications that serve the needs of local government operations.

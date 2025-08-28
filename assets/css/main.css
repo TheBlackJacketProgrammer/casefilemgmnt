@@ -1535,6 +1535,205 @@ div.user-portal-section .modal .modal-dialog-box h5 {
   color: #ffffff;
 }
 
+div.event-logs-section {
+  border: 1px solid #dddddd;
+  box-shadow: 0 0 10px 0 rgba(117, 117, 117, 0.4);
+}
+div.event-logs-section .event-logs-header {
+  background-color: #6666FF;
+  width: 100%;
+  padding: 8px 16px !important;
+}
+div.event-logs-section .event-logs-header h5 {
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+}
+div.event-logs-section .event-logs-body {
+  width: 100%;
+  padding: 8px 16px !important;
+  gap: 8px !important;
+}
+div.event-logs-section .event-logs-body .btn-menu-item, div.event-logs-section .event-logs-body .btn-deactivate, div.event-logs-section .event-logs-body .btn-edit, div.event-logs-section .event-logs-body .btn-activate {
+  min-width: 100px;
+  padding: 4px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 2px solid #dddddd;
+  background-color: #ffffff;
+}
+div.event-logs-section .event-logs-body .btn-menu-item:hover, div.event-logs-section .event-logs-body .btn-deactivate:hover, div.event-logs-section .event-logs-body .btn-edit:hover, div.event-logs-section .event-logs-body .btn-activate:hover {
+  background-color: #E5E5E5;
+  font-weight: 700;
+  transition: 0.5s ease;
+}
+div.event-logs-section .event-logs-body .btn-menu-item:disabled, div.event-logs-section .event-logs-body .btn-deactivate:disabled, div.event-logs-section .event-logs-body .btn-edit:disabled, div.event-logs-section .event-logs-body .btn-activate:disabled {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
+  cursor: not-allowed !important;
+}
+div.event-logs-section .event-logs-body .btn-menu-item:disabled:hover, div.event-logs-section .event-logs-body .btn-deactivate:disabled:hover, div.event-logs-section .event-logs-body .btn-edit:disabled:hover, div.event-logs-section .event-logs-body .btn-activate:disabled:hover {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
+}
+div.event-logs-section .event-logs-body .btn-deactivate {
+  color: #000000 !important;
+}
+div.event-logs-section .event-logs-body .btn-deactivate:hover {
+  border-color: #d42626 !important;
+  background-color: #FF0000 !important;
+  color: #ffffff !important;
+  transition: 0.5s ease;
+}
+div.event-logs-section .event-logs-body .btn-activate {
+  color: #000000 !important;
+}
+div.event-logs-section .event-logs-body .btn-activate:hover {
+  border-color: #21007F !important;
+  background-color: #6666FF !important;
+  color: #ffffff !important;
+  transition: 0.5s ease;
+}
+div.event-logs-section .event-logs-body .btn-edit {
+  color: #000000 !important;
+}
+div.event-logs-section .event-logs-body .btn-edit:hover {
+  border-color: #CCAC00 !important;
+  background-color: #FFD700 !important;
+  color: #ffffff !important;
+  transition: 0.5s ease;
+}
+div.event-logs-section .event-logs-body table {
+  width: 100%;
+  border: 2px solid #dddddd; /* border around the whole table */
+  border-collapse: collapse; /* makes borders behave like one box */
+}
+div.event-logs-section .event-logs-body table tbody tr {
+  border: 1px solid #dddddd; /* inner cell borders */
+  padding: 8px;
+  transition: 0.3s ease;
+}
+div.event-logs-section .event-logs-body table tbody tr:hover {
+  background-color: #CCCCCC;
+  font-weight: 700;
+  transition: 0.5s ease;
+}
+div.event-logs-section .event-logs-body .dataTables_info {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+div.event-logs-section .modal {
+  position: fixed;
+  inset: 0px;
+  z-index: 50;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+div.event-logs-section .modal .modal-dialog-box {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 992px;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-btn-default {
+  min-width: 120px;
+  padding: 4px 8px;
+  border: 1px solid #dddddd;
+  background-color: #F2F2F2;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-btn-default:hover {
+  background-color: #E5E5E5;
+  border-color: #CCCCCC;
+  font-weight: 700;
+  transition: 0.5s ease;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-btn-default:active {
+  background-color: #CCCCCC;
+  border-color: #999999;
+  font-weight: 700;
+  transition: 0.5s ease;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-header {
+  background-color: #21007F;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-header .btn-close {
+  padding: 4px 10px;
+  color: #ffffff;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-header .btn-close:hover {
+  background-color: rgba(117, 117, 117, 0.4);
+}
+div.event-logs-section .modal .modal-dialog-box .modal-body {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 12px;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-body .form-container {
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-body .form-container .form-header {
+  padding: 8px 12px;
+  background-color: #6666FF;
+  color: #ffffff;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-body .form-container .form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-body .form-container .form-body .form-item {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-body .form-container .form-body .form-item:focus {
+  outline: 2px solid #6666FF;
+  transition: 0.5s ease;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-body .form-container .form-body .form-item:disabled {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
+  cursor: not-allowed !important;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-body .form-container .form-body .form-item:disabled:hover {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
+  transition: 0.5s ease;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-body .form-container .form-body .img-container {
+  min-height: 200px;
+  height: 100%;
+  max-width: 200px;
+  width: 100%;
+}
+div.event-logs-section .modal .modal-dialog-box .modal-body .form-container .form-body .img-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+div.event-logs-section .modal .modal-dialog-box h5 {
+  font-size: 18px;
+  color: #ffffff;
+}
+
 main.home .btn-primary {
   background-color: #FFD700;
   color: #2B333B;
