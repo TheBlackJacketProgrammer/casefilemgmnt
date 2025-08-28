@@ -86,3 +86,20 @@ REMARKS:
     * Update feature for the User Details in User Details Modal
 
 < ========== NOTHING TO ADD ========== >
+
+Date: 08 - 28 - 2025
+
+UPDATES:
+    * User Management Module - DONE
+    * Event Log Module - DONE
+    * Activity tracking applied (Event logging)
+    * Added Menu Item for Data Statistics Module
+
+
+REMARKS:
+    * Have Search Filters for easy finding records in the record module.
+    * Filter Complainant and Complainee to easy create report/record in the record modal (Add/Update)
+    * Implement Data Statistics from the records database.
+
+
+< ========== NOTHING TO ADD ========== >
