@@ -233,4 +233,25 @@ class Model_Api extends CI_Model
         $query = $this->db->query("CALL GetEventLogs()");
         return $query->result_array();
     }
+
+    // Data Statistics Queries Here 
+
+    // Get Report by Month
+    public function get_report_by_month(){
+        $query = $this->db->query("CALL GetReportByMonth()");
+        return $query->result_array();
+    }
+
+    // Get Report by Crime Type
+    public function get_report_by_crime_type(){
+        $query = $this->db->query("CALL GetReportByCrimeType()");
+        return $query->result_array();
+    }
+
+    // Get Report by Status
+    public function get_report_by_status(){
+        $query = $this->db->query("CALL GetReportByStatus()");
+        return $query->result_array();
+    }
+
 }
