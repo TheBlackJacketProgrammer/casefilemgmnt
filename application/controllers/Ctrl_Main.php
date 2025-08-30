@@ -39,6 +39,12 @@ class Ctrl_Main extends CI_Controller {
 		echo json_encode($result);
 	}
 
+	public function open_data_statistics()
+	{
+		$result['view'] = $this->load->view('sections/data_statistics', '', true);
+		echo json_encode($result);
+	}
+
 	public function logout()
 	{
 		// Prepare Event Log

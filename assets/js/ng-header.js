@@ -131,6 +131,17 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
         });
     };
 
+    // Open Data Statistics
+    $scope.openDataStatistics = function() {
+        $scope.$parent.section = "";
+        $http({
+            method: "POST",
+            url:  $scope.baseUrl + "ctrl_main/open_data_statistics"
+        }).then(function successCallback(response) {
+            $scope.$parent.section = response.data["view"];
+        });
+    };
+
     // Logout
     $scope.logout = function() {
         $http({
