@@ -1,4 +1,4 @@
-app.controller('RecordsController', function($scope, $http, $timeout) {
+app.controller('RecordsController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
     $scope.records = [];
     $scope.dataTable = null;
     $scope.selectAll = false;
@@ -415,4 +415,4 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
     $scope.getRecords();
     $scope.getCrimeTypes();
     
-});
+}]);

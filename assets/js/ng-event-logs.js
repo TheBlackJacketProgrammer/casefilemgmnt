@@ -1,4 +1,4 @@
-app.controller('EventLogsController', function($scope, $http, $timeout) {
+app.controller('EventLogsController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
     $scope.eventlogs = [];
 
@@ -42,4 +42,4 @@ app.controller('EventLogsController', function($scope, $http, $timeout) {
 
     // Load initial data
     $scope.init();
-});
+}]);

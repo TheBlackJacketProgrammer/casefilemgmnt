@@ -68,15 +68,8 @@
         <!-- Angular JS Datatable -->
         <script src="<?php echo base_url('assets/devtools/angularjs/angular-datatables.min.js'); ?>"></script>
 
-        <!-- Angular JS Scripts -->
-        <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/js/ng-variables.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/js/ng-header.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/js/ng-login.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/js/ng-records.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/js/ng-crime-options.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/js/ng-user-portal.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/js/ng-event-logs.js'); ?>"></script>
+        <!-- Angular JS Scripts Bundle -->
+        <script src="<?php echo base_url('assets/dist/bundle.min.js'); ?>"></script>
 
     </body>
 </html> 

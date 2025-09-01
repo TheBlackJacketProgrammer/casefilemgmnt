@@ -1,4 +1,4 @@
-app.controller('CrimeOptionsController', function($scope, $http, $timeout) {
+app.controller('CrimeOptionsController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
     // Datatable options
     $scope.dtOptions_crime = {
@@ -84,4 +84,4 @@ app.controller('CrimeOptionsController', function($scope, $http, $timeout) {
 
     // Load initial data
     $scope.init();
-});
+}]);

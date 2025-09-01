@@ -1734,6 +1734,98 @@ div.event-logs-section .modal .modal-dialog-box h5 {
   color: #ffffff;
 }
 
+div.data-statistics-section {
+  border: 1px solid #dddddd;
+  box-shadow: 0 0 10px 0 rgba(117, 117, 117, 0.4);
+}
+div.data-statistics-section .data-statistics-header {
+  background-color: #6666FF;
+  width: 100%;
+  padding: 8px 16px !important;
+}
+div.data-statistics-section .data-statistics-header h5 {
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+}
+div.data-statistics-section .data-statistics-body {
+  width: 100%;
+  padding: 8px 16px !important;
+  gap: 8px !important;
+}
+div.data-statistics-section .data-statistics-body .btn-menu-item, div.data-statistics-section .data-statistics-body .btn-deactivate, div.data-statistics-section .data-statistics-body .btn-edit, div.data-statistics-section .data-statistics-body .btn-activate {
+  min-width: 100px;
+  padding: 4px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 2px solid #dddddd;
+  background-color: #ffffff;
+}
+div.data-statistics-section .data-statistics-body .btn-menu-item:hover, div.data-statistics-section .data-statistics-body .btn-deactivate:hover, div.data-statistics-section .data-statistics-body .btn-edit:hover, div.data-statistics-section .data-statistics-body .btn-activate:hover {
+  background-color: #E5E5E5;
+  font-weight: 700;
+  transition: 0.5s ease;
+}
+div.data-statistics-section .data-statistics-body .btn-menu-item:disabled, div.data-statistics-section .data-statistics-body .btn-deactivate:disabled, div.data-statistics-section .data-statistics-body .btn-edit:disabled, div.data-statistics-section .data-statistics-body .btn-activate:disabled {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
+  cursor: not-allowed !important;
+}
+div.data-statistics-section .data-statistics-body .btn-menu-item:disabled:hover, div.data-statistics-section .data-statistics-body .btn-deactivate:disabled:hover, div.data-statistics-section .data-statistics-body .btn-edit:disabled:hover, div.data-statistics-section .data-statistics-body .btn-activate:disabled:hover {
+  background-color: #E5E5E5 !important;
+  border-color: #E5E5E5 !important;
+}
+div.data-statistics-section .data-statistics-body .btn-deactivate {
+  color: #000000 !important;
+}
+div.data-statistics-section .data-statistics-body .btn-deactivate:hover {
+  border-color: #d42626 !important;
+  background-color: #FF0000 !important;
+  color: #ffffff !important;
+  transition: 0.5s ease;
+}
+div.data-statistics-section .data-statistics-body .btn-activate {
+  color: #000000 !important;
+}
+div.data-statistics-section .data-statistics-body .btn-activate:hover {
+  border-color: #21007F !important;
+  background-color: #6666FF !important;
+  color: #ffffff !important;
+  transition: 0.5s ease;
+}
+div.data-statistics-section .data-statistics-body .btn-edit {
+  color: #000000 !important;
+}
+div.data-statistics-section .data-statistics-body .btn-edit:hover {
+  border-color: #CCAC00 !important;
+  background-color: #FFD700 !important;
+  color: #ffffff !important;
+  transition: 0.5s ease;
+}
+div.data-statistics-section .data-statistics-body table {
+  width: 100%;
+  border: 2px solid #dddddd; /* border around the whole table */
+  border-collapse: collapse; /* makes borders behave like one box */
+}
+div.data-statistics-section .data-statistics-body table tbody tr {
+  border: 1px solid #dddddd; /* inner cell borders */
+  padding: 8px;
+  transition: 0.3s ease;
+}
+div.data-statistics-section .data-statistics-body table tbody tr:hover {
+  background-color: #CCCCCC;
+  font-weight: 700;
+  transition: 0.5s ease;
+}
+div.data-statistics-section .data-statistics-body .dataTables_info {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
 main.home .btn-primary {
   background-color: #FFD700;
   color: #2B333B;

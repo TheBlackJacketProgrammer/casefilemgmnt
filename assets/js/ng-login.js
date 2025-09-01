@@ -1,4 +1,4 @@
-app.controller("ng-login", function ($scope, $http) {
+app.controller("ng-login", ['$scope', '$http', function ($scope, $http) {
 
 
     $scope.login = function() {
@@ -13,4 +13,4 @@ app.controller("ng-login", function ($scope, $http) {
             window.location.href = $scope.baseUrl;
         });
     }
-});
+}]);

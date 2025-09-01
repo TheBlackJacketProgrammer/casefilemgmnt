@@ -1,4 +1,4 @@
-app.controller('UserPortalController', function($scope, $http, $timeout) {
+app.controller('UserPortalController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
     // Datatable options
     $scope.dtOptions_users = {
@@ -229,4 +229,4 @@ app.controller('UserPortalController', function($scope, $http, $timeout) {
 
     // Load initial data
     $scope.init();
-});
+}]);
