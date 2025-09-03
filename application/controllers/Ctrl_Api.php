@@ -370,4 +370,37 @@ class Ctrl_Api extends CI_Controller {
         ];
         echo json_encode($response);
     }
+
+    // Get Reports by Month
+    public function get_report_by_month(){
+        $reports = $this->Model_Api->get_report_by_month();
+        $response = [
+            'status' => 'success',
+            'message' => 'Reports fetched successfully',
+            'reports' => $reports
+        ];
+        echo json_encode($response);
+    }
+
+    // Get Reports by Crime Type
+    public function get_report_by_crime_type(){
+        $reports = $this->Model_Api->get_report_by_crime_type();
+        $response = [
+            'status' => 'success',
+            'message' => 'Reports fetched successfully',
+            'reports' => $reports
+        ];
+        echo json_encode($response);
+    }
+
+    // Get Reports by Status
+    public function get_report_by_status(){
+        $reports = $this->Model_Api->get_report_by_status();
+        $response = [
+            'status' => 'success',
+            'message' => 'Reports fetched successfully',
+            'reports' => $reports
+        ];
+        echo json_encode($response);
+    }
 }

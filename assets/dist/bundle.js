@@ -291,7 +291,7 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
     // Initialize the controller
     $scope.init();
 }]); 
-app.controller("ng-login", function ($scope, $http) {
+app.controller("ng-login", ['$scope', '$http', function ($scope, $http) {
 
 
     $scope.login = function() {
@@ -306,8 +306,8 @@ app.controller("ng-login", function ($scope, $http) {
             window.location.href = $scope.baseUrl;
         });
     }
-});
-app.controller('RecordsController', function($scope, $http, $timeout) {
+}]);
+app.controller('RecordsController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
     $scope.records = [];
     $scope.dataTable = null;
     $scope.selectAll = false;
@@ -724,8 +724,8 @@ app.controller('RecordsController', function($scope, $http, $timeout) {
     $scope.getRecords();
     $scope.getCrimeTypes();
     
-});
-app.controller('CrimeOptionsController', function($scope, $http, $timeout) {
+}]);
+app.controller('CrimeOptionsController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
     // Datatable options
     $scope.dtOptions_crime = {
@@ -811,8 +811,8 @@ app.controller('CrimeOptionsController', function($scope, $http, $timeout) {
 
     // Load initial data
     $scope.init();
-});
-app.controller('UserPortalController', function($scope, $http, $timeout) {
+}]);
+app.controller('UserPortalController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
     // Datatable options
     $scope.dtOptions_users = {
@@ -1043,8 +1043,8 @@ app.controller('UserPortalController', function($scope, $http, $timeout) {
 
     // Load initial data
     $scope.init();
-});
-app.controller('EventLogsController', function($scope, $http, $timeout) {
+}]);
+app.controller('EventLogsController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
     $scope.eventlogs = [];
 
@@ -1088,13 +1088,50 @@ app.controller('EventLogsController', function($scope, $http, $timeout) {
 
     // Load initial data
     $scope.init();
-});
-app.controller('DataStatisticsController', function($scope, $http, $timeout) {
+}]);
+app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+
+    $scope.reportsByMonth = [];
+    $scope.reportsByCrimeType = [];
+    $scope.reportsByStatus = [];
+
+    $scope.getReportByMonth = function() {
+        $http({
+            method: "GET",
+            url: $scope.baseUrl + "ctrl_api/get_report_by_month",
+        }).then(function successCallback(response) {
+            $scope.reportsByMonth = response.data.reports;
+            console.log('Reports:', $scope.reportsByMonth);
+        });
+    }
+
+    $scope.getReportByCrimeType = function() {
+        $http({
+            method: "GET",
+            url: $scope.baseUrl + "ctrl_api/get_report_by_crime_type",
+        }).then(function successCallback(response) {
+            $scope.reportsByCrimeType = response.data.reports;
+            console.log('Reports:', $scope.reportsByCrimeType);
+        });
+    }
+
+    $scope.getReportByStatus = function() {
+        $http({
+            method: "GET",
+            url: $scope.baseUrl + "ctrl_api/get_report_by_status",
+        }).then(function successCallback(response) {
+            $scope.reportsByStatus = response.data.reports;
+            console.log('Reports:', $scope.reportsByStatus);
+        });
+    }
+
 
     $scope.init = function() {
-        console.log("Data Statistics Controller Initialized");
+        $scope.getReportByMonth();
+        $scope.getReportByCrimeType();
+        $scope.getReportByStatus();
     }
 
     // Load initial data
     $scope.init();
-});
+}]);

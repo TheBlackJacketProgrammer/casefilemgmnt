@@ -259,6 +259,10 @@ The system provides RESTful API endpoints for:
 - **Organization**: ``/ctrl_api/get_org_chart`` - Organizational structure data
 - **Event Logs**: 
   - ``/ctrl_api/get_event_logs`` - Retrieve activity logs
+- **Data Statistics**: 
+  - ``/ctrl_api/get_report_by_month`` - Monthly case reports
+  - ``/ctrl_api/get_report_by_crime_type`` - Crime type statistics
+  - ``/ctrl_api/get_report_by_status`` - Case status reports
 
 
 Core Functionality
@@ -344,11 +348,12 @@ Core System
 
 Data Management
 ~~~~~~~~~~~~~~~~
-- ✅ Data statistics module basic structure implemented (functionality in development)
+- ✅ Data statistics module fully implemented with reporting functionality
 - ✅ Data export, bulk operations, and advanced search capabilities
 - ✅ Real-time data updates and modifications
 - ✅ Responsive data tables with pagination and export features
 - ✅ Date parsing and conversion utilities
+- ✅ Comprehensive reporting system (Monthly, Crime Type, Status reports)
 
 User Interface
 ~~~~~~~~~~~~~~~
@@ -406,7 +411,8 @@ Data Management
 - ✅ Event logging and audit trail system
 - ✅ Form validation and error handling system
 - ✅ Organizational chart data management
-- ✅ Data Statistics Controller and view implemented (basic structure)
+- ✅ Data Statistics Controller and view fully implemented with reporting functionality
+- ✅ Complete reporting system with three report types (Monthly, Crime Type, Status)
 
 Utilities & Helpers
 ~~~~~~~~~~~~~~~~~~~~
@@ -424,7 +430,7 @@ Core Modules
 ~~~~~~~~~~~~~~
 - ✅ **User Management Module** - Complete user administration system with CRUD operations
 - ✅ **Event Log Module** - Comprehensive activity tracking and audit trail system
-- ✅ **Data Statistics Module** - Basic structure implemented with controller and view (functionality in development)
+- ✅ **Data Statistics Module** - Fully implemented with reporting functionality (Reports by Month, Crime Type, and Status)
 - ✅ **Enhanced User Portal** - Improved user interface with organizational chart display
 
 User Experience
@@ -443,11 +449,14 @@ Technical Enhancements
 - ✅ **Gulp Build System** - JavaScript bundling and minification with Gulp 5.0.1
 - ✅ **SCSS Component Architecture** - Modular SCSS components for better maintainability
 - ✅ **JavaScript Bundle Optimization** - Minified JavaScript bundles in assets/dist directory
+- ✅ **Data Statistics API** - Complete reporting system with three report types (Monthly, Crime Type, Status)
+- ✅ **Enhanced Event Logging** - Comprehensive activity tracking for all user actions
 
 Future Enhancements
 -------------------
 
-**High Priority (Planned Features):**
+High Priority (Planned Features)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - **Search Filters**: Advanced search and filtering capabilities for case records
 - **Complainant/Complainee Filtering**: Easy filtering system for creating reports and records
 - **Data Statistics Implementation**: Complete analytics and reporting dashboard functionality
@@ -455,7 +464,8 @@ Future Enhancements
 - **Record History Tracking**: Show case update dates and user information for record modifications
 - **Image Loading Optimization**: Improved image loading for existing records in edit mode
 
-**Medium Priority:**
+Medium Priority
+~~~~~~~~~~~~~~~~
 - **Real-time Features**: Live notifications and updates via WebSockets
 - **Advanced Analytics**: Comprehensive reporting and data visualization
 - **Mobile Application**: Native mobile app for field operations
@@ -482,19 +492,19 @@ Development Roadmap
 - ✅ **Event Logging**: Comprehensive activity tracking system
 - ✅ **File Management**: Image upload and handling system
 - ✅ **Form Validation**: Enhanced data validation and error handling
-- ✅ **Data Statistics**: Basic structure implemented with controller and view
+- ✅ **Data Statistics**: Fully implemented with complete reporting functionality
 - ✅ **Build System**: Gulp-based JavaScript bundling and minification
 - ✅ **SCSS Architecture**: Modular component-based styling system
 - ⏳ **Search Filters**: Planned for next development phase
-- ⏳ **Advanced Reporting**: Analytics dashboard implementation pending
+- ⏳ **Advanced Analytics**: Enhanced reporting dashboard with charts and graphs
 
 **Next Development Phase:**
-1. Complete Data Statistics module implementation
-2. Implement advanced search and filtering capabilities
-3. Add complainant/complainee filtering system
-4. Enhance case status management
-5. Implement record history tracking
-6. Optimize image loading in edit mode
+1. Implement advanced search and filtering capabilities
+2. Add complainant/complainee filtering system
+3. Enhance case status management
+4. Implement record history tracking
+5. Optimize image loading in edit mode
+6. Add advanced analytics with charts and graphs
 
 **Long-term Goals:**
 - Real-time notifications and updates
@@ -531,11 +541,14 @@ Known Issues
 - **PHP8 Session Wrapper Error**: Occasional error in `system/libraries/Session/PHP8SessionWrapper` (investigation ongoing)
 - **Image Loading in Edit Mode**: Existing images may not load properly when editing records (pending fix)
 - **Search Functionality**: Advanced search filters are not yet implemented (planned feature)
+- **Case Status Values**: Currently using temporary values (Active, Pending, Closed) - will be enhanced
 
 **Development Notes:**
 - Case status system uses temporary values (Active, Pending, Closed) - will be enhanced
 - Record modification tracking needs implementation for showing update dates and users
 - Image upload system needs optimization for better error handling
+- Data Statistics module completed with three report types (Monthly, Crime Type, Status)
+- Event logging system fully implemented with comprehensive activity tracking
 
 Troubleshooting
 ---------------
@@ -618,7 +631,7 @@ This system represents a comprehensive solution for barangay-level case manageme
 - Complete case management system with CRUD operations
 - User authentication and role-based access control
 - Event logging and activity tracking
-- Data statistics module basic structure (functionality in development)
+- Data statistics module fully implemented with reporting functionality
 - Mobile-responsive design with touch support
 - Advanced data tables with export functionality
 - Crime type categorization and management
@@ -630,5 +643,6 @@ This system represents a comprehensive solution for barangay-level case manageme
 - Enhanced form validation and error handling
 - Organizational chart display and management
 - Advanced session management with event tracking
+- Complete reporting system (Monthly, Crime Type, Status reports)
 
 Developed by Marvin Verola Bergado, a Full Stack Web Developer committed to creating scalable, maintainable, and user-centric web applications that serve the needs of local government operations.
