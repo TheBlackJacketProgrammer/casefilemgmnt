@@ -486,7 +486,8 @@ Medium Priority
 Development Roadmap
 -------------------
 
-**Current Development Status (August 2025):**
+Current Development Status (August 2025)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - ✅ **Core System**: Fully functional case management system
 - ✅ **User Management**: Complete user administration and organizational chart
 - ✅ **Event Logging**: Comprehensive activity tracking system
@@ -498,7 +499,8 @@ Development Roadmap
 - ⏳ **Search Filters**: Planned for next development phase
 - ⏳ **Advanced Analytics**: Enhanced reporting dashboard with charts and graphs
 
-**Next Development Phase:**
+Next Development Phase
+~~~~~~~~~~~~~~~~~~~~~~~
 1. Implement advanced search and filtering capabilities
 2. Add complainant/complainee filtering system
 3. Enhance case status management
@@ -506,7 +508,8 @@ Development Roadmap
 5. Optimize image loading in edit mode
 6. Add advanced analytics with charts and graphs
 
-**Long-term Goals:**
+Long-term Goals
+~~~~~~~~~~~~~~~~
 - Real-time notifications and updates
 - Mobile application development
 - Government system integration
