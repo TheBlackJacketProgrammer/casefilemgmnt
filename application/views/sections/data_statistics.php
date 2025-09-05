@@ -4,6 +4,15 @@
         <h5>Data Statistics</h5>
     </div>
     <div class="flex flex-col items-start justify-center data-statistics-body p-4">
+        <!-- Report Filters -->
+        <div class="grid grid-cols-3 gap-4 p-4 w-full">
+            <div class="flex flex-col items-center justify-start gap-3">
+                <h3 class="m-0 text-medium font-bold uppercase">Report Filters</h3>
+            </div>
+        </div>
+        <!-- Filters Here -->
+        <!-- General Counts Here -->
+        <!-- Report Tables -->
         <div class="grid grid-cols-3 gap-4 p-4 w-full">
             <div class="flex flex-col items-center justify-start gap-3">
                 <h3 class="m-0 text-medium font-bold uppercase">Reports by Month</h3>
