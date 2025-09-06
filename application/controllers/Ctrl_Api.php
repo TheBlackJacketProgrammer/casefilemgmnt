@@ -131,7 +131,8 @@ class Ctrl_Api extends CI_Controller {
                 'complainant_birthday' => $this->parseJavaScriptDate($data['complainant_birthday']),
                 'complainant_contactNum' => $data['complainant_contactNum'],
                 'complainant_name' => $data['complainant_name'],
-                'complainant_pic' => $data['complainant_pic']
+                'complainant_pic' => $data['complainant_pic'],
+                'complainant_gender' => $data['complainant_gender']
             );
             
             $params['complainee'] = array(
@@ -140,7 +141,8 @@ class Ctrl_Api extends CI_Controller {
                 'complainee_birthday' => $this->parseJavaScriptDate($data['complainee_birthday']),
                 'complainee_contactNum' => $data['complainee_contactNum'],
                 'complainee_name' => $data['complainee_name'],
-                'complainee_pic' => $data['complainee_pic']
+                'complainee_pic' => $data['complainee_pic'],
+                'complainee_gender' => $data['complainee_gender']
             );
             
             $params['case'] = array(
@@ -175,7 +177,9 @@ class Ctrl_Api extends CI_Controller {
                 'complainant_birthday' => $this->parseJavaScriptDate($data['complainant_birthday']),
                 'complainant_contactNum' => $data['complainant_contactNum'],
                 'complainant_name' => $data['complainant_name'],
-                'complainant_pic' => $data['complainant_pic']
+                'complainant_pic' => $data['complainant_pic'],
+                'complainant_gender' => $data['complainant_gender']
+
             );
             
             $params['complainee'] = array(
@@ -184,7 +188,8 @@ class Ctrl_Api extends CI_Controller {
                 'complainee_birthday' => $this->parseJavaScriptDate($data['complainee_birthday']),
                 'complainee_contactNum' => $data['complainee_contactNum'],
                 'complainee_name' => $data['complainee_name'],
-                'complainee_pic' => $data['complainee_pic']
+                'complainee_pic' => $data['complainee_pic'],
+                'complainee_gender' => $data['complainee_gender']
             );
             
             $params['case'] = array(

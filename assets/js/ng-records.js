@@ -254,7 +254,9 @@ app.controller('RecordsController', ['$scope', '$http', '$timeout', function($sc
             complainee_name: "",
             complainee_image: null,
             complainant_pic: null,
-            complainee_pic: null
+            complainee_pic: null,
+            complainant_gender: "",
+            complainee_gender: ""
         }];
         $scope.recordTotal = 1;
         $scope.recordIndex = 0;
@@ -370,7 +372,9 @@ app.controller('RecordsController', ['$scope', '$http', '$timeout', function($sc
             $scope.currentRecord[$scope.recordIndex].case_crimeType == "" ||
             $scope.currentRecord[$scope.recordIndex].case_crimeScene == "" ||
             $scope.currentRecord[$scope.recordIndex].case_status == "" ||
-            $scope.currentRecord[$scope.recordIndex].case_crimeDate == "") {
+            $scope.currentRecord[$scope.recordIndex].case_crimeDate == "" ||
+            $scope.currentRecord[$scope.recordIndex].complainant_gender == "" ||
+            $scope.currentRecord[$scope.recordIndex].complainee_gender == "") {
                 toastr.error("Please fill in all fields");
                 return true; // Form is invalid
         }

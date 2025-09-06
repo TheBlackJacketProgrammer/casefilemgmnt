@@ -61,7 +61,7 @@
                                 <label class="block text-xs font-bold mb-1">Full Name</label>
                                 <input type="text" ng-model="currentRecord[recordIndex].complainant_name" class="text-xs form-item" placeholder="Enter full name" ng-disabled="status == 'View'">
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
+                            <div class="grid grid-cols-3 gap-2">
                                 <div>
                                     <label class="block text-xs font-bold mb-1">Age</label>
                                     <input type="text" ng-model="currentRecord[recordIndex].complainant_age" class="text-xs form-item" placeholder="Age" min="0" max="150" ng-disabled="status == 'View'">
@@ -70,6 +70,14 @@
                                     <label class="block text-xs font-bold mb-1">Birthday</label>
                                     <input type="date" ng-model="currentRecord[recordIndex].complainant_birthday" class="text-xs form-item" ng-disabled="status == 'View'">
 
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold mb-1">Gender</label>
+                                    <select ng-model="currentRecord[recordIndex].complainant_gender" class="text-xs form-item" ng-disabled="status == 'View'">
+                                        <option value="" selected>Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
                                 </div>
                             </div>
                             <div>
@@ -102,7 +110,7 @@
                                 <label class="block text-xs font-bold mb-1">Full Name</label>
                                 <input type="text" ng-model="currentRecord[recordIndex].complainee_name" class="text-xs form-item" placeholder="Enter full name" ng-disabled="status == 'View'">
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
+                            <div class="grid grid-cols-3 gap-2">
                                 <div>
                                     <label class="block text-xs font-bold mb-1">Age</label>
                                     <input type="text" ng-model="currentRecord[recordIndex].complainee_age" class="text-xs form-item" placeholder="Age" min="0" max="150" ng-disabled="status == 'View'">
@@ -110,6 +118,14 @@
                                 <div>
                                     <label class="block text-xs font-bold mb-1">Birthday</label>
                                     <input type="date" ng-model="currentRecord[recordIndex].complainee_birthday" class="text-xs form-item" ng-disabled="status == 'View'">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold mb-1">Gender</label>
+                                    <select ng-model="currentRecord[recordIndex].complainee_gender" class="text-xs form-item" ng-disabled="status == 'View'">
+                                        <option value="" selected>Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
                                 </div>
                             </div>
                             <div>
