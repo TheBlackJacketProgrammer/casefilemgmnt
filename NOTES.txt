@@ -116,3 +116,17 @@ REMARKS:
 
 
 < ========== NOTHING TO ADD ========== >
+
+Date: 09 - 06 - 2025
+
+UPDATES:
+    * Added GENDER to the complainant and complainee
+    * Updated Parameters added Gender to the CRUD Functionality
+
+REMARKS:
+    TODO:
+        * Filters for the Data Statistics - Ongoing in SQL side
+        * General Counts for the Data Statistics - Ongoing in SQL side
+
+
+< ========== NOTHING TO ADD ========== >
