@@ -130,3 +130,17 @@ REMARKS:
 
 
 < ========== NOTHING TO ADD ========== >
+
+Date: 09 - 07 - 2025
+
+UPDATES:
+    * Added more Complainee, Complainant and Report Data for the Data Statistics Module Use - SQL
+
+REMARKS:
+    TODO:
+        * Filters for the Data Statistics - Ongoing in SQL side
+        * General Counts for the Data Statistics - Ongoing in SQL side
+        * Use Charts and Graphs for the Data Analytics (Possible to use Chartjs)
+
+
+< ========== NOTHING TO ADD ========== >
