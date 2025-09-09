@@ -144,3 +144,19 @@ REMARKS:
 
 
 < ========== NOTHING TO ADD ========== >
+
+Date: 09 - 09 - 2025
+
+UPDATES:
+    * Created SP (GetRecordTotals and GetRecordStatusTotals) - SQL
+    * Created API function for the Get Records Total and Record Status Total
+    * Updated the Data Statistics Dashboard Page with the General Records Count Panel
+
+REMARKS:
+    TODO:
+        * Filters for the Data Statistics - Ongoing in SQL side
+        * Add dynamic counting feature in the general records panel - NEXT
+        * Use Charts and Graphs for the Data Analytics (Possible to use Chartjs)
+
+
+< ========== NOTHING TO ADD ========== >

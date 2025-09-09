@@ -263,6 +263,8 @@ The system provides RESTful API endpoints for:
   - ``/ctrl_api/get_report_by_month`` - Monthly case reports
   - ``/ctrl_api/get_report_by_crime_type`` - Crime type statistics
   - ``/ctrl_api/get_report_by_status`` - Case status reports
+  - ``/ctrl_api/get_record_totals`` - General record counts (total, monthly, weekly, daily)
+  - ``/ctrl_api/get_record_status_totals`` - Record status counts (ongoing, pending, completed, closed)
 
 
 Core Functionality
@@ -348,12 +350,15 @@ Core System
 
 Data Management
 ~~~~~~~~~~~~~~~~
-- ✅ Data statistics module fully implemented with reporting functionality
+- ✅ Data statistics module fully implemented with comprehensive reporting functionality
 - ✅ Data export, bulk operations, and advanced search capabilities
 - ✅ Real-time data updates and modifications
 - ✅ Responsive data tables with pagination and export features
 - ✅ Date parsing and conversion utilities
 - ✅ Comprehensive reporting system (Monthly, Crime Type, Status reports)
+- ✅ Dynamic record counting system with real-time totals
+- ✅ Gender field integration for complainant and complainee records
+- ✅ Stored procedures for efficient data aggregation (GetRecordTotals, GetRecordStatusTotals)
 
 User Interface
 ~~~~~~~~~~~~~~~
@@ -411,8 +416,11 @@ Data Management
 - ✅ Event logging and audit trail system
 - ✅ Form validation and error handling system
 - ✅ Organizational chart data management
-- ✅ Data Statistics Controller and view fully implemented with reporting functionality
+- ✅ Data Statistics Controller and view fully implemented with comprehensive reporting functionality
 - ✅ Complete reporting system with three report types (Monthly, Crime Type, Status)
+- ✅ Dynamic record counting with real-time totals and status counts
+- ✅ Gender field integration for enhanced data collection
+- ✅ Stored procedures for optimized data aggregation and counting
 
 Utilities & Helpers
 ~~~~~~~~~~~~~~~~~~~~
@@ -424,14 +432,15 @@ Utilities & Helpers
 New Updates
 -----------
 
-**Latest Improvements (August 2025 - Current Version 1.0.0):**
+**Latest Improvements (September 2025 - Current Version 1.0.0):**
 
 Core Modules
 ~~~~~~~~~~~~~~
 - ✅ **User Management Module** - Complete user administration system with CRUD operations
 - ✅ **Event Log Module** - Comprehensive activity tracking and audit trail system
-- ✅ **Data Statistics Module** - Fully implemented with reporting functionality (Reports by Month, Crime Type, and Status)
+- ✅ **Data Statistics Module** - Fully implemented with comprehensive reporting functionality
 - ✅ **Enhanced User Portal** - Improved user interface with organizational chart display
+- ✅ **Gender Field Integration** - Added gender field to complainant and complainee records
 
 User Experience
 ~~~~~~~~~~~~~~~~
@@ -442,6 +451,7 @@ User Experience
 - ✅ **Mobile Responsiveness** - Optimized touch-friendly interface for mobile devices
 - ✅ **Organizational Chart** - Visual representation of barangay staff hierarchy
 - ✅ **Session Management** - Improved login/logout functionality with event tracking
+- ✅ **General Records Count Panel** - Dynamic counting feature in data statistics dashboard
 
 Technical Enhancements
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -451,6 +461,8 @@ Technical Enhancements
 - ✅ **JavaScript Bundle Optimization** - Minified JavaScript bundles in assets/dist directory
 - ✅ **Data Statistics API** - Complete reporting system with three report types (Monthly, Crime Type, Status)
 - ✅ **Enhanced Event Logging** - Comprehensive activity tracking for all user actions
+- ✅ **Stored Procedures Integration** - GetRecordTotals and GetRecordStatusTotals for efficient data counting
+- ✅ **Dynamic Data Counting** - Real-time record totals and status counts in statistics dashboard
 
 Future Enhancements
 -------------------
@@ -486,16 +498,18 @@ Medium Priority
 Development Roadmap
 -------------------
 
-Current Development Status (August 2025)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Current Development Status (September 2025)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - ✅ **Core System**: Fully functional case management system
 - ✅ **User Management**: Complete user administration and organizational chart
 - ✅ **Event Logging**: Comprehensive activity tracking system
 - ✅ **File Management**: Image upload and handling system
 - ✅ **Form Validation**: Enhanced data validation and error handling
-- ✅ **Data Statistics**: Fully implemented with complete reporting functionality
+- ✅ **Data Statistics**: Fully implemented with complete reporting functionality and dynamic counting
 - ✅ **Build System**: Gulp-based JavaScript bundling and minification
 - ✅ **SCSS Architecture**: Modular component-based styling system
+- ✅ **Gender Field Integration**: Added gender field to complainant and complainee records
+- ✅ **Dynamic Data Counting**: Real-time record totals and status counts
 - ⏳ **Search Filters**: Planned for next development phase
 - ⏳ **Advanced Analytics**: Enhanced reporting dashboard with charts and graphs
 
@@ -550,8 +564,11 @@ Known Issues
 - Case status system uses temporary values (Active, Pending, Closed) - will be enhanced
 - Record modification tracking needs implementation for showing update dates and users
 - Image upload system needs optimization for better error handling
-- Data Statistics module completed with three report types (Monthly, Crime Type, Status)
+- Data Statistics module completed with comprehensive reporting functionality and dynamic counting
 - Event logging system fully implemented with comprehensive activity tracking
+- Gender field integration completed for complainant and complainee records
+- Stored procedures implemented for efficient data aggregation and counting
+- Gulp build system implemented for JavaScript bundling and minification
 
 Troubleshooting
 ---------------
@@ -634,7 +651,7 @@ This system represents a comprehensive solution for barangay-level case manageme
 - Complete case management system with CRUD operations
 - User authentication and role-based access control
 - Event logging and activity tracking
-- Data statistics module fully implemented with reporting functionality
+- Data statistics module fully implemented with comprehensive reporting functionality
 - Mobile-responsive design with touch support
 - Advanced data tables with export functionality
 - Crime type categorization and management
@@ -647,5 +664,9 @@ This system represents a comprehensive solution for barangay-level case manageme
 - Organizational chart display and management
 - Advanced session management with event tracking
 - Complete reporting system (Monthly, Crime Type, Status reports)
+- Dynamic record counting with real-time totals and status counts
+- Gender field integration for complainant and complainee records
+- Stored procedures for optimized data aggregation and counting
+- Gulp-based JavaScript bundling and minification system
 
 Developed by Marvin Verola Bergado, a Full Stack Web Developer committed to creating scalable, maintainable, and user-centric web applications that serve the needs of local government operations.
