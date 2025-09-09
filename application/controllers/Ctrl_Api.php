@@ -408,4 +408,26 @@ class Ctrl_Api extends CI_Controller {
         ];
         echo json_encode($response);
     }
+
+    // Get Record Totals
+    public function get_record_totals(){
+        $record_totals = $this->Model_Api->get_record_totals();
+        $response = [
+            'status' => 'success',
+            'message' => 'Record totals fetched successfully',
+            'counts' => $record_totals
+        ];
+        echo json_encode($response);
+    }
+
+    // Get Record Status Totals
+    public function get_record_status_totals(){
+        $record_status_totals = $this->Model_Api->get_record_status_totals();
+        $response = [
+            'status' => 'success',
+            'message' => 'Record status totals fetched successfully',
+            'counts' => $record_status_totals
+        ];
+        echo json_encode($response);
+    }
 }

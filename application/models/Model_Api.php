@@ -254,4 +254,16 @@ class Model_Api extends CI_Model
         return $query->result_array();
     }
 
+    // Get Record Totals
+    public function get_record_totals(){
+        $query = $this->db->query("CALL GetRecordTotals()");
+        return $query->result_array();
+    }
+
+    // Get Record Status Totals
+    public function get_record_status_totals(){
+        $query = $this->db->query("CALL GetRecordStatusTotals()");
+        return $query->result_array();
+    }
+
 }

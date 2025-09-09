@@ -6,6 +6,12 @@
     <div class="flex flex-col items-start justify-center data-statistics-body p-4">
         <!-- Filters Here -->
         <!-- General Counts Here -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="counts-item">
+                <h3 class="m-0 text-medium font-bold uppercase">Total Records</h3>
+                <p class="m-0 text-medium">{{ recordTotals.total }}</p>
+            </div>
+        </div>
         <!-- Report Tables -->
         <div class="grid grid-cols-3 gap-4 p-4 w-full justify-start items-start">
             <div class="flex flex-col items-center justify-start gap-3">
