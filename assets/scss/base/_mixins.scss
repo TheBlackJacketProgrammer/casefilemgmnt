@@ -23,7 +23,7 @@
   font-weight: 600;  // not quite 500, but Proxima Nova Medium(500) is actually not available;
   line-height: 1.5;
   margin-bottom: 1em;
-  color: $text-5-mid;
+  color: $text-6;
 }
 @mixin a {
   font-family: $font-family;
@@ -38,7 +38,7 @@
 }
 @mixin ul {
   font-family: $font-family;
-  color: $text-5-mid;
+  color: $text-6;
 }
 
 @mixin typography {
@@ -54,7 +54,7 @@
       line-height: 1.2;
       margin-top: 0;
       margin-bottom: 0.6em;
-      color: $text-3-dark;
+      color: $text-3;
     }
     h1 {
       @include h1;
@@ -101,8 +101,8 @@
   border: 2px solid $border-color;
   border-radius: $border-radius-sm !important;
   box-shadow: none;
-  background-color: $shade-b;
-  color: $text-1-dark;
+  background-color: $shade-6;
+  color: $text-1;
   text-decoration: none;
   display: inline-flex;
   justify-content: center;
@@ -121,7 +121,7 @@
   &:active {
     box-shadow: none;
     outline: 0;
-    color: $text-1-dark;
+    color: $text-1;
     text-decoration: none;
   }
 
@@ -146,7 +146,7 @@
 @mixin btn-secondary {
   @include btn-standard;
   background: $primary-0;
-  color: $text-3-dark;
+  color: $text-3;
   border: 2px solid $primary;
   padding: 12px 24px;
 
@@ -157,7 +157,7 @@
   &:hover,
   &:focus,
   &:active {
-    color: $text-3-dark;
+    color: $text-3;
   }
 
   &:hover {
@@ -204,7 +204,7 @@
 @mixin btn-tertiary {
   @include btn-secondary;
   background: $white;
-  color: $text-1-dark;
+  color: $text-1;
   border: 2px solid $border-color;
   border-radius: $border-radius-sm !important;
   min-width: 158px;
@@ -212,12 +212,12 @@
   &:hover,
   &:focus,
   &:active {
-    color: $text-1-dark;
+    color: $text-1;
   }
 
   &:hover {
-    background: $text-e-light;
-    border: 2px solid $shade-6 !important;
+    background: $text-8;
+    border: 2px solid $shade-4 !important;
   }
   &:active {
     background: $primary-3 !important;
@@ -239,14 +239,14 @@
   &:hover,
   &:focus,
   &:active {
-    color: $text-1-dark;
+    color: $text-1;
   }
 
   &:hover {
     background: $primary-1 !important;
   }
   &:active {
-    background: $text-e-light !important;
+    background: $text-8 !important;
     border: 1px solid $border-color !important;
   }
   &:focus-visible {

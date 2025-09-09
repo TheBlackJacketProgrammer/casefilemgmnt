@@ -2,7 +2,7 @@ main.about {
     // Button Styles
     .btn-primary{
         background-color: $primary;
-        color: $text-3-dark;
+        color: $text-3;
         &:hover{
             background-color: $primary-7;
             color: $white;
@@ -11,7 +11,7 @@ main.about {
 
     .btn-secondary{
         background-color: $white;
-        color: $text-3-dark;
+        color: $text-3;
         &:hover{
             background-color: $white;
             color: $primary;
@@ -20,7 +20,7 @@ main.about {
 
     h2{
         @include h2;
-        color: $text-3-dark;
+        color: $text-3;
         max-width: $md;
         font-size: 40px;
         font-weight: 900;
@@ -30,7 +30,7 @@ main.about {
     }
 
     p{
-        color: $text-5-mid;
+        color: $text-6;
         letter-spacing: 1px;
         line-height: 1.5;
     }

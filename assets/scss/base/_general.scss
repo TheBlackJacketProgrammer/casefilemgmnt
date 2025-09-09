@@ -122,22 +122,22 @@ html {
   }
   
   .text-1-dark {
-    color: $text-1-dark;
+    color: $text-1;
   }
   .text-3-dark {
-    color: $text-3-dark;
+    color: $text-3;
   }
   .text-5-mid {
-    color: $text-5-mid;
+    color: $text-6;
   }
   .text-7-mid {
-    color: $text-7-mid;
+    color: $text-7;
   }
   .text-e-light {
-    color: $text-e-light;
+    color: $text-8;
   }
   .text-f-light {
-    color: $text-f-light;
+    color: $text-10;
   }
   
   
@@ -183,11 +183,11 @@ html {
   }
 
   .bg-text-8-light {
-    background-color: $text-8-light;
+    background-color: $text-11;
   }
 
   .bg-text-e-light {
-    background-color: $text-e-light;
+    background-color: $text-8;
   }
   
   
@@ -202,22 +202,22 @@ html {
     background-color: $shade-3;
   }
   .bg-shade-6 {
-    background-color: $shade-6;
+    background-color: $shade-4;
   }
   .bg-shade-8 {
-    background-color: $shade-8;
+    background-color: $shade-5;
   }
   .bg-shade-b {
-    background-color: $shade-b;
+    background-color: $shade-6;
   }
   .bg-shade-e {
-    background-color: $shade-e;
+    background-color: $shade-7;
   }
   .bg-shade-f3 {
-    background-color: $shade-f3;
+    background-color: $shade-8;
   }
   .bg-shade-f {  
-    background-color: $shade-f;
+    background-color: $shade-9;
   }
   
   // Blue Gradient Colours
@@ -289,7 +289,7 @@ html {
     font-size: 13px !important;
     font-weight: 600 !important;
     letter-spacing: 1.2px !important;
-    color: $text-7-mid !important;
+    color: $text-7 !important;
     text-transform: uppercase !important;
   }
   

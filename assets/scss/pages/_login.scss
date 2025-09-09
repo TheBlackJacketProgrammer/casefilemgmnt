@@ -6,13 +6,13 @@ main.login {
         }
     }
 
-    background-color: $shade-f;
+    background-color: $shade-9;
     .login-card {
         background-color: $white;
         width: $max-width-container-480;
         border: 1px solid $border-color;
         // border-radius: $border-radius-md;
-        box-shadow: 0 2px 2px $shade-6;
+        box-shadow: 0 2px 2px $shade-4;
         
         .login-card-header{
             background-color: $blue-4;

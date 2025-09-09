@@ -3,7 +3,7 @@ main.home {
     // Button Styles
     .btn-primary{
         background-color: $primary;
-        color: $text-3-dark;
+        color: $text-3;
         &:hover{
             background-color: $primary-7;
             color: $white;
@@ -12,7 +12,7 @@ main.home {
 
     .btn-secondary{
         background-color: $white;
-        color: $text-3-dark;
+        color: $text-3;
         &:hover{
             background-color: $white;
             color: $primary;
@@ -113,18 +113,18 @@ main.home {
   
     // About Section
     .about-section {
-        background-color: $shade-e;
+        background-color: $shade-7;
 
         strong{
             // color: #ffbf00;
-            color: $text-3-dark;
+            color: $text-3;
         }
 
         h2 {
             @include h2;
             text-transform: uppercase;
             font-weight: 900;
-            color: $text-3-dark;
+            color: $text-3;
             margin: 0px;
         }
 
@@ -133,7 +133,7 @@ main.home {
             text-transform: uppercase;
             font-size: 75px;
             font-weight: 900;
-            color: $text-3-dark;
+            color: $text-3;
             margin: 0;
             padding: 0;
             letter-spacing: 0;
@@ -141,7 +141,7 @@ main.home {
         }
 
         p{
-            color: $text-5-mid;
+            color: $text-6;
             margin: 24px 0px;
             letter-spacing: 1px;
             line-height: 1.5;
@@ -163,7 +163,7 @@ main.home {
             text-transform: uppercase;
             font-size: 40px;
             font-weight: 700;
-            color: $text-3-dark;
+            color: $text-3;
             margin: 0;
             padding: 0;
             letter-spacing: 0;
@@ -182,7 +182,7 @@ main.home {
         h4{
             @include h4;
             font-weight: 700;
-            color: $text-3-dark;
+            color: $text-3;
             margin: 0;
             padding: 0;
             letter-spacing: 0;
@@ -202,13 +202,13 @@ main.home {
     }
 
     .testimonials-section{
-        background-color: $shade-f;
+        background-color: $shade-9;
         h3{
             @include h3;
             text-transform: uppercase;
             font-size: 40px;
             font-weight: 700;
-            color: $text-3-dark;
+            color: $text-3;
             margin: 0;
             padding: 0;
             letter-spacing: 0;
@@ -217,7 +217,7 @@ main.home {
         }
 
         p{
-            color: $text-5-mid;
+            color: $text-6;
             letter-spacing: 1px;
             line-height: 1.5;
             margin-inline: 0;
