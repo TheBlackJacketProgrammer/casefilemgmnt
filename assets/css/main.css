@@ -1825,7 +1825,11 @@ div.data-statistics-section .data-statistics-body .dataTables_info {
   justify-content: center !important;
   align-items: center !important;
 }
-div.data-statistics-section .data-statistics-body .counts-item {
+div.data-statistics-section .data-statistics-body .general-counts {
+  padding: 8px;
+  background-color: #EEEEEE;
+}
+div.data-statistics-section .data-statistics-body .general-counts .counts-item {
   width: 100%;
   display: flex;
   flex-direction: row;

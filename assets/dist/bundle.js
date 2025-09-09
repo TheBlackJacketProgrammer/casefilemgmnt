@@ -1098,6 +1098,8 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
     $scope.reportsByMonth = [];
     $scope.reportsByCrimeType = [];
     $scope.reportsByStatus = [];
+    $scope.recordTotals = [];
+    $scope.recordStatusTotals = [];
 
     $scope.getReportByMonth = function() {
         $http({
@@ -1135,6 +1137,7 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
             url: $scope.baseUrl + "ctrl_api/get_record_totals",
         }).then(function successCallback(response) {
             $scope.recordTotals = response.data.counts;
+            console.log('Record Totals:', $scope.recordTotals);
         });
     }
 
@@ -1144,6 +1147,7 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
             url: $scope.baseUrl + "ctrl_api/get_record_status_totals",
         }).then(function successCallback(response) {
             $scope.recordStatusTotals = response.data.counts;
+            console.log('Record Status Totals:', $scope.recordStatusTotals);
         });
     }
 

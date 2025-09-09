@@ -3,13 +3,43 @@
     <div class="flex flex-row items-center justify-start data-statistics-header">
         <h5>Data Statistics</h5>
     </div>
-    <div class="flex flex-col items-start justify-center data-statistics-body p-4">
+    <div class="flex flex-col items-start justify-center data-statistics-body p-4 gap-4">
         <!-- Filters Here -->
         <!-- General Counts Here -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="counts-item">
-                <h3 class="m-0 text-medium font-bold uppercase">Total Records</h3>
-                <p class="m-0 text-medium">{{ recordTotals.total }}</p>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 w-full general-counts">
+            <div class="counts-item bg-primary">
+                <h3 class="m-0 text-medium uppercase text-white">Total Records: </h3>
+                <p class="m-0 text-medium font-bold text-white">{{ recordTotals[0].GrandTotal }}</p>
+            </div>
+            <div class="counts-item bg-white">
+                <h3 class="m-0 text-medium uppercase">Total this month: </h3>
+                <p class="m-0 text-medium font-bold ">{{ recordTotals[0].CurrentMonthTotal }}</p>
+            </div>
+            <div class="counts-item bg-white">
+                <h3 class="m-0 text-medium uppercase">Total this week: </h3>
+                <p class="m-0 text-medium font-bold ">{{ recordTotals[0].CurrentWeekTotal }}</p>
+            </div>
+            <div class="counts-item bg-white">
+                <h3 class="m-0 text-medium uppercase">Total today: </h3>
+                <p class="m-0 text-medium font-bold ">{{ recordTotals[0].CurrentDayTotal }}</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 w-full general-counts">
+            <div class="counts-item bg-white">
+                <h3 class="m-0 text-medium uppercase">Ongoing Records: </h3>
+                <p class="m-0 text-medium font-bold">{{ recordStatusTotals[0].Ongoing }}</p>
+            </div>
+            <div class="counts-item bg-white">
+                <h3 class="m-0 text-medium uppercase">Pending Records: </h3>
+                <p class="m-0 text-medium font-bold ">{{ recordStatusTotals[0].Pending }}</p>
+            </div>
+            <div class="counts-item bg-white">
+                <h3 class="m-0 text-medium uppercase">Completed Records: </h3>
+                <p class="m-0 text-medium font-bold ">{{ recordStatusTotals[0].Completed }}</p>
+            </div>
+            <div class="counts-item bg-white">
+                <h3 class="m-0 text-medium uppercase">Closed Records: </h3>
+                <p class="m-0 text-medium font-bold ">{{ recordStatusTotals[0].Closed }}</p>
             </div>
         </div>
         <!-- Report Tables -->
