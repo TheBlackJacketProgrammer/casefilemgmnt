@@ -1151,6 +1151,14 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
         });
     }
 
+    $scope.getRecordStatusTotal = function(type) {
+        // Remove active class from all count items
+        $(".counts-item").removeClass("active");
+        $("." + type).addClass("active");
+        
+        console.log('Type:', type);
+    }
+
     $scope.init = function() {
         $scope.getReportByMonth();
         $scope.getReportByCrimeType();

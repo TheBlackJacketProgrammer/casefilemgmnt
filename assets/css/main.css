@@ -1829,7 +1829,7 @@ div.data-statistics-section .data-statistics-body .general-counts {
   padding: 8px;
   background-color: #EEEEEE;
 }
-div.data-statistics-section .data-statistics-body .general-counts .counts-item {
+div.data-statistics-section .data-statistics-body .general-counts .counts-item, div.data-statistics-section .data-statistics-body .general-counts .counts-status {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -1838,6 +1838,38 @@ div.data-statistics-section .data-statistics-body .general-counts .counts-item {
   gap: 8px;
   padding: 8px;
   border: 2px solid #dddddd;
+}
+div.data-statistics-section .data-statistics-body .general-counts .counts-item {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+div.data-statistics-section .data-statistics-body .general-counts .counts-item:hover {
+  background-color: #E5E5E5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+div.data-statistics-section .data-statistics-body .general-counts .counts-item:hover p {
+  font-weight: 700;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+div.data-statistics-section .data-statistics-body .general-counts .counts-item.active {
+  background-color: #21007F !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-color: #21007F !important;
+}
+div.data-statistics-section .data-statistics-body .general-counts .counts-item.active p {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 16px;
+}
+div.data-statistics-section .data-statistics-body .general-counts .counts-item.active:hover {
+  background-color: #6666FF !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 main.home .btn-primary {

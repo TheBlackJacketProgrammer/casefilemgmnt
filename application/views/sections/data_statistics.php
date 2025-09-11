@@ -7,38 +7,42 @@
         <!-- Filters Here -->
         <!-- General Counts Here -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 w-full general-counts">
-            <div class="counts-item bg-primary">
+            <!-- <div class="counts-item bg-primary">
                 <h3 class="m-0 text-medium uppercase text-white">Total Records: </h3>
                 <p class="m-0 text-medium font-bold text-white">{{ recordTotals[0].GrandTotal }}</p>
-            </div>
-            <div class="counts-item bg-white">
-                <h3 class="m-0 text-medium uppercase">Total this month: </h3>
+            </div> -->
+            <button class="counts-item gen-total active" ng-click="getRecordStatusTotal('gen-total')">
+                <p class="m-0 text-medium uppercase">Total Records: </p>
+                <p class="m-0 text-medium font-bold">{{ recordTotals[0].GrandTotal }}</p>
+            </button>
+            <button class="counts-item curr-month" ng-click="getRecordStatusTotal('curr-month')">
+                <p class="m-0 text-medium uppercase">Total this month: </p>
                 <p class="m-0 text-medium font-bold ">{{ recordTotals[0].CurrentMonthTotal }}</p>
-            </div>
-            <div class="counts-item bg-white">
-                <h3 class="m-0 text-medium uppercase">Total this week: </h3>
+            </button>
+            <button class="counts-item curr-week" ng-click="getRecordStatusTotal('curr-week')">
+                <p class="m-0 text-medium uppercase">Total this week: </p>
                 <p class="m-0 text-medium font-bold ">{{ recordTotals[0].CurrentWeekTotal }}</p>
-            </div>
-            <div class="counts-item bg-white">
-                <h3 class="m-0 text-medium uppercase">Total today: </h3>
+            </button>
+            <button class="counts-item curr-day" ng-click="getRecordStatusTotal('curr-day')">
+                <p class="m-0 text-medium uppercase">Total today: </p>
                 <p class="m-0 text-medium font-bold ">{{ recordTotals[0].CurrentDayTotal }}</p>
-            </div>
+            </button>
         </div>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 w-full general-counts">
-            <div class="counts-item bg-white">
-                <h3 class="m-0 text-medium uppercase">Ongoing Records: </h3>
+            <div class="counts-status bg-white">
+                <p class="m-0 text-medium uppercase">Ongoing Records: </p>
                 <p class="m-0 text-medium font-bold">{{ recordStatusTotals[0].Ongoing }}</p>
             </div>
-            <div class="counts-item bg-white">
-                <h3 class="m-0 text-medium uppercase">Pending Records: </h3>
+            <div class="counts-status bg-white">
+                <p class="m-0 text-medium uppercase">Pending Records: </p>
                 <p class="m-0 text-medium font-bold ">{{ recordStatusTotals[0].Pending }}</p>
             </div>
-            <div class="counts-item bg-white">
-                <h3 class="m-0 text-medium uppercase">Completed Records: </h3>
+            <div class="counts-status bg-white">
+                <p class="m-0 text-medium uppercase">Completed Records: </p>
                 <p class="m-0 text-medium font-bold ">{{ recordStatusTotals[0].Completed }}</p>
             </div>
-            <div class="counts-item bg-white">
-                <h3 class="m-0 text-medium uppercase">Closed Records: </h3>
+            <div class="counts-status bg-white">
+                <p class="m-0 text-medium uppercase">Closed Records: </p>
                 <p class="m-0 text-medium font-bold ">{{ recordStatusTotals[0].Closed }}</p>
             </div>
         </div>
