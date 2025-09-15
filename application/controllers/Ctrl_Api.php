@@ -430,4 +430,17 @@ class Ctrl_Api extends CI_Controller {
         ];
         echo json_encode($response);
     }
+
+    // Get Record Status Totals Filtered by Time Period
+    public function get_total_status_per_period(){
+        $data = json_decode(file_get_contents('php://input'),true);
+        $data['time_period'] = ($data['time_period'] == "default") ? "" : $data['time_period'];
+        $record_status_totals = $this->Model_Api->get_total_status_per_period($data['time_period']);
+        $response = [
+            'status' => 'success',
+            'message' => 'Record status totals fetched successfully',
+            'counts' => $record_status_totals
+        ];
+        echo json_encode($response);
+    }
 }

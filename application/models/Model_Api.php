@@ -266,4 +266,10 @@ class Model_Api extends CI_Model
         return $query->result_array();
     }
 
+    // Get Record Status Filtered by Time Period
+    public function get_total_status_per_period($time_period){
+        $query = $this->db->query("CALL GetTotalStatusPerPeriod('$time_period')");
+        return $query->result_array();
+    }
+
 }

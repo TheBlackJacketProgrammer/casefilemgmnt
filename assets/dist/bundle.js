@@ -1152,11 +1152,17 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
     }
 
     $scope.getRecordStatusTotal = function(type) {
-        // Remove active class from all count items
-        $(".counts-item").removeClass("active");
-        $("." + type).addClass("active");
+        $http({
+            method: "POST",
+            url: $scope.baseUrl + "ctrl_api/get_total_status_per_period",
+            data: { time_period: type }
+        }).then(function successCallback(response) {
+            $scope.recordStatusTotals = response.data.counts;
+            console.log('Record Status Totals:', $scope.recordStatusTotals);
+            $(".counts-item").removeClass("active");
+            $("." + type).addClass("active");
+        });
         
-        console.log('Type:', type);
     }
 
     $scope.init = function() {
