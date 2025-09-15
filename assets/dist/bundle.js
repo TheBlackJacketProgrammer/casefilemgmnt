@@ -1216,7 +1216,7 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
         $scope.getReportByCrimeType();
         $scope.getReportByStatus();
         $scope.getRecordTotals();
-        $scope.getRecordStatusTotals();
+        $scope.getRecordStatusTotals(); 
     }
 
     // Load initial data

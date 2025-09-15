@@ -62,6 +62,9 @@
         <script src="<?php echo base_url('assets/devtools/Datatables/pdfmake.min.js'); ?>"></script>
         <script src="<?php echo base_url('assets/devtools/Datatables/vfs_fonts.js'); ?>"></script>
 
+        <!-- Chart JS -->
+        <script src="<?php echo base_url('assets/devtools/Chartjs/chart.js'); ?>"></script>
+
         <!-- AngularJS -->
         <script src="<?php echo base_url('assets/devtools/angularjs/angular.min.js'); ?>"></script>
 

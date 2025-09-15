@@ -4,7 +4,6 @@
         <h5>Data Statistics</h5>
     </div>
     <div class="flex flex-col items-start justify-center data-statistics-body p-4 gap-4">
-        <!-- Filters Here -->
         <!-- General Counts Here -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 w-full general-counts">
             <!-- <div class="counts-item bg-primary">
