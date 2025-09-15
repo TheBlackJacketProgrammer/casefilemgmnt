@@ -291,6 +291,52 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
     // Initialize the controller
     $scope.init();
 }]); 
+app.controller('DatatablesOptionsController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+
+
+    // Datatable options
+    $scope.dtOpt_CountsByType = {
+        responsive: true,
+        autoWidth: false,
+        scrollX: true,
+        scrollCollapse: true,
+        width: '100%',
+        dom: 'Bfrtip', // Buttons, filter, table
+        order: [[1, 'desc']],
+        pageLength: 12,
+        buttons: [
+            {
+            extend: 'excelHtml5',
+            title: 'User Data'
+            },
+            {
+            extend: 'pdfHtml5', 
+            title: 'User Data'
+            }
+        ]
+    };
+
+    $scope.dtOpt_CountsByMonths = {
+        responsive: true,
+        autoWidth: false,
+        scrollX: true,
+        scrollCollapse: true,
+        width: '100%',
+        dom: 'Bfrtip', // Buttons, filter, table
+        order: [[1, 'desc']],
+        pageLength: 12,
+        buttons: [
+            {
+            extend: 'excelHtml5',
+            title: 'User Data'
+            },
+            {
+            extend: 'pdfHtml5', 
+            title: 'User Data'
+            }
+        ]
+    };
+}]);
 app.controller("ng-login", ['$scope', '$http', function ($scope, $http) {
 
 

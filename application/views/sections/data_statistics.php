@@ -47,7 +47,7 @@
             </div>
         </div>
         <!-- Report Tables -->
-        <div class="grid grid-cols-2 gap-4 p-4 w-full justify-start items-start">
+        <div class="grid grid-cols-2 gap-4 p-4 w-full justify-start items-start" ng-controller="DatatablesOptionsController">
             <div class="flex flex-col items-center justify-start gap-3">
                 <h3 class="m-0 text-medium font-bold uppercase">Reports by Month</h3>
                 <?php $this->load->view('components/tables/table_report_by_month'); ?>

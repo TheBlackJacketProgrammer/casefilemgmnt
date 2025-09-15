@@ -1,4 +1,4 @@
-<table id="tbl_report_by_month" class="min-w-full divide-y divide-gray-200">
+<table id="tbl_report_by_month" class="min-w-full divide-y divide-gray-200" datatable="ng" dt-options="dtOpt_CountsByMonths" dt-instance="dtInstance">
     <thead class="bg-shade-6">
         <tr>
             <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase">Month</th>
