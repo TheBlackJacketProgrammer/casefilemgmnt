@@ -63,10 +63,8 @@
         <!-- Charts and Graphs Here -->
         <div class="flex grid-cols-2 gap-4 p-4 w-full justify-start items-start">
             <!-- Charts and Graphs 1-->
-            <h3 class="m-0 text-medium font-bold uppercase">Chart / Graph 1</h3>
             <?php $this->load->view('components/graph-charts/graph_1'); ?>
             <!-- Charts and Graphs 2-->
-            <h3 class="m-0 text-medium font-bold uppercase">Chart / Graph 2</h3>
             <?php $this->load->view('components/graph-charts/graph_2'); ?>
         </div>
     </div>

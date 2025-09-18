@@ -1184,6 +1184,8 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
         }).then(function successCallback(response) {
             $scope.recordTotals = response.data.counts;
             console.log('Record Totals:', $scope.recordTotals);
+            // Initialize graph after data is loaded
+            $scope.initGraph1();
         });
     }
 
@@ -1209,6 +1211,80 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
             $("." + type).addClass("active");
         });
         
+    }
+
+    $scope.createChart = function(canvasId, labels, data, type) {
+        const ctx = document.getElementById(canvasId).getContext('2d');
+
+        if (type === 'pie') {
+            new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Records',
+                        data: data,
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Chart.js Pie Chart'
+                        }
+                    }
+                }
+            }); 
+        }
+        else {
+            new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Records',
+                        data: data,
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });    
+        }
+        
+    }
+
+    $scope.initGraph1 = function() {
+        
+        // Extract months and totals from reportsByMonth
+        let months = [];
+        let totals = [];
+
+        for (let i = 0; i < $scope.reportsByMonth.length; i++) {
+            months.push($scope.reportsByMonth[i].month);
+            totals.push($scope.reportsByMonth[i].total);
+        }
+
+        // Create charts
+        $scope.createChart('barChart', months, totals, 'bar');
+        $scope.createChart('pieChart', months, totals, 'pie');
+        $scope.createChart('barChart-3', months, totals, 'bar');
+        $scope.createChart('barChart-4', months, totals, 'bar');
     }
 
     $scope.init = function() {
