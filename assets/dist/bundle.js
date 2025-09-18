@@ -1262,6 +1262,7 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    devicePixelRatio: 1,
                     plugins: {
                         legend: {
                             position: 'bottom',
@@ -1301,6 +1302,7 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    devicePixelRatio: 1,
                     interaction: {
                         intersect: false,
                         mode: 'index'
@@ -1313,14 +1315,6 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
                                 font: {
                                     size: 12
                                 }
-                            }
-                        },
-                        title: {
-                            display: true,
-                            text: 'Reports by Month',
-                            font: {
-                                size: 16,
-                                weight: 'bold'
                             }
                         }
                     },
@@ -1368,9 +1362,9 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
 
         // Create charts
         $scope.createChart('barChart', months, totals, 'bar');
-        $scope.createChart('pieChart', months, totals, 'pie');
-        $scope.createChart('barChart-3', months, totals, 'bar');
-        $scope.createChart('barChart-4', months, totals, 'bar');
+        // $scope.createChart('pieChart', months, totals, 'pie');
+        // $scope.createChart('barChart-3', months, totals, 'bar');
+        // $scope.createChart('barChart-4', months, totals, 'bar');
     }
 
     $scope.init = function() {
