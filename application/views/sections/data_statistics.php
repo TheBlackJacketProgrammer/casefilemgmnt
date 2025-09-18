@@ -46,26 +46,20 @@
             </div>
         </div>
         <!-- Report Tables -->
-        <div class="grid grid-cols-2 gap-4 p-4 w-full justify-start items-start" ng-controller="DatatablesOptionsController">
-            <div class="flex flex-col items-center justify-start gap-3">
-                <h3 class="m-0 text-medium font-bold uppercase">Reports by Month</h3>
-                <?php $this->load->view('components/tables/table_report_by_month'); ?>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 w-full justify-start items-start" ng-controller="DatatablesOptionsController">
+            <div class="col-span-2">
+                <?php $this->load->view('components/graph-charts/gc_reports_by_month'); ?>
             </div>
-            <div class="flex flex-col items-center justify-center gap-3">
+        
+            <div class="flex flex-col items-center justify-center gap-3 col-span-1">
                 <h3 class="m-0 text-medium font-bold uppercase">Reports by Crime Type</h3>
                 <?php $this->load->view('components/tables/table_report_by_crime_type'); ?>
             </div>
-            <!-- <div class="flex flex-col items-center justify-center gap-3">
-                <h3 class="m-0 text-medium font-bold uppercase">Reports by Status</h3>
-                <?php $this->load->view('components/tables/table_report_by_status'); ?>
-            </div> -->
         </div>
         <!-- Charts and Graphs Here -->
         <div class="flex grid-cols-2 gap-4 p-4 w-full justify-start items-start">
             <!-- Charts and Graphs 1-->
-            <?php $this->load->view('components/graph-charts/graph_1'); ?>
             <!-- Charts and Graphs 2-->
-            <?php $this->load->view('components/graph-charts/graph_2'); ?>
         </div>
     </div>
 </div>

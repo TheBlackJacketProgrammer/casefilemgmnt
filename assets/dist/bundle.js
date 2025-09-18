@@ -301,7 +301,11 @@ app.controller('DatatablesOptionsController', ['$scope', '$http', '$timeout', fu
         scrollX: true,
         scrollCollapse: true,
         width: '100%',
-        dom: 'Bfrtip', // Buttons, filter, table
+        dom:    "<'flex flex-wrap'<'flex flex-col w-full sm:w-1/2 text-sm items-start justify-end mb-1'B><'w-full sm:w-1/2 text-sm mb-2'f>>" +
+                "<'flex flex-wrap'<'w-full text-sm mb-2'tr>>" +
+                "<'flex flex-wrap'<'flex w-full text-sm justify-center items-center mb-2'p>>" +
+                // "<'flex flex-wrap'<'w-full text-sm text-center'i>>",
+                "<'flex flex-wrap'<'w-full text-sm text-center'>>",
         order: [[1, 'desc']],
         pageLength: 12,
         buttons: [
@@ -1185,7 +1189,7 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
             $scope.recordTotals = response.data.counts;
             console.log('Record Totals:', $scope.recordTotals);
             // Initialize graph after data is loaded
-            $scope.initGraph1();
+            $scope.initGraphReportsByMonth();
         });
     }
 
@@ -1215,7 +1219,7 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
 
     $scope.createChart = function(canvasId, labels, data, type) {
         const ctx = document.getElementById(canvasId).getContext('2d');
-
+ 
         if (type === 'pie') {
             new Chart(ctx, {
                 type: type,
@@ -1224,20 +1228,58 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
                     datasets: [{
                         label: 'Records',
                         data: data,
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 205, 86, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(153, 102, 255, 0.6)',
+                            'rgba(255, 159, 64, 0.6)',
+                            'rgba(199, 199, 199, 0.6)',
+                            'rgba(83, 102, 255, 0.6)',
+                            'rgba(255, 99, 255, 0.6)',
+                            'rgba(99, 255, 132, 0.6)',
+                            'rgba(255, 132, 99, 0.6)',
+                            'rgba(132, 99, 255, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 205, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(199, 199, 199, 1)',
+                            'rgba(83, 102, 255, 1)',
+                            'rgba(255, 99, 255, 1)',
+                            'rgba(99, 255, 132, 1)',
+                            'rgba(255, 132, 99, 1)',
+                            'rgba(132, 99, 255, 1)'
+                        ],
                         borderWidth: 1
                     }]
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            position: 'top',
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                                font: {
+                                    size: 12
+                                }
+                            }
                         },
                         title: {
                             display: true,
-                            text: 'Chart.js Pie Chart'
+                            text: 'Reports by Month',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
                         }
                     }
                 }
@@ -1258,9 +1300,53 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Reports by Month',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        }
+                    },
                     scales: {
+                        x: {
+                            ticks: {
+                                maxRotation: 45,
+                                minRotation: 0,
+                                font: {
+                                    size: 11
+                                }
+                            },
+                            grid: {
+                                display: true
+                            }
+                        },
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    size: 11
+                                }
+                            },
+                            grid: {
+                                display: true
+                            }
                         }
                     }
                 }
@@ -1269,7 +1355,7 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
         
     }
 
-    $scope.initGraph1 = function() {
+    $scope.initGraphReportsByMonth = function() {
         
         // Extract months and totals from reportsByMonth
         let months = [];
