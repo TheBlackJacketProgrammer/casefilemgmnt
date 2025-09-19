@@ -443,4 +443,49 @@ class Ctrl_Api extends CI_Controller {
         ];
         echo json_encode($response);
     }
+
+    // Get Total Records by Gender
+    public function get_records_per_gender(){
+        $records_per_gender = $this->Model_Api->get_records_per_gender();
+        $response = [
+            'status' => 'success',
+            'message' => 'Records per gender fetched successfully',
+            'counts' => $records_per_gender
+        ];
+        echo json_encode($response);
+    }
+
+    // Get Total Records by Age Group
+    public function get_records_per_age_group(){
+        $records_per_age_group = $this->Model_Api->get_records_per_age_group();
+        $response = [
+            'status' => 'success',
+            'message' => 'Records per age group fetched successfully',
+            'counts' => $records_per_age_group
+        ];
+        echo json_encode($response);
+    }
+
+    // Get Total Records per Hour Range
+    public function get_records_per_hour(){
+        $records_per_hour = $this->Model_Api->get_records_per_hour();
+        $response = [
+            'status' => 'success',
+            'message' => 'Records per hour fetched successfully',
+            'counts' => $records_per_hour
+        ];
+        echo json_encode($response);
+    }
+
+    // Get Total Records per Day of the Week
+    public function get_records_per_day_of_week(){
+        $records_per_day_of_week = $this->Model_Api->get_records_per_day_of_week();
+        $response = [
+            'status' => 'success',
+            'message' => 'Records per day of week fetched successfully',
+            'counts' => $records_per_day_of_week
+        ];
+        echo json_encode($response);
+    }
+    
 }

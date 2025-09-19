@@ -1230,31 +1230,11 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
                         data: data,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.6)',
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(255, 205, 86, 0.6)',
-                            'rgba(75, 192, 192, 0.6)',
-                            'rgba(153, 102, 255, 0.6)',
-                            'rgba(255, 159, 64, 0.6)',
-                            'rgba(199, 199, 199, 0.6)',
-                            'rgba(83, 102, 255, 0.6)',
-                            'rgba(255, 99, 255, 0.6)',
-                            'rgba(99, 255, 132, 0.6)',
-                            'rgba(255, 132, 99, 0.6)',
-                            'rgba(132, 99, 255, 0.6)'
+                            'rgba(54, 162, 235, 0.6)'
                         ],
                         borderColor: [
                             'rgba(255, 99, 132, 1)',
                             'rgba(54, 162, 235, 1)',
-                            'rgba(255, 205, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)',
-                            'rgba(199, 199, 199, 1)',
-                            'rgba(83, 102, 255, 1)',
-                            'rgba(255, 99, 255, 1)',
-                            'rgba(99, 255, 132, 1)',
-                            'rgba(255, 132, 99, 1)',
-                            'rgba(132, 99, 255, 1)'
                         ],
                         borderWidth: 1
                     }]
@@ -1362,7 +1342,7 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
 
         // Create charts
         $scope.createChart('barChart', months, totals, 'bar');
-        // $scope.createChart('pieChart', months, totals, 'pie');
+        // $scope.createChart('pcGender', genders, totals, 'pie');
         // $scope.createChart('barChart-3', months, totals, 'bar');
         // $scope.createChart('barChart-4', months, totals, 'bar');
     }

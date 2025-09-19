@@ -49,6 +49,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 w-full justify-start items-start" ng-controller="DatatablesOptionsController">
             <div class="col-span-2">
                 <?php $this->load->view('components/graph-charts/gc_reports_by_month'); ?>
+                <?php $this->load->view('components/graph-charts/gc_reports_by_gender'); ?>
             </div>
         
             <div class="flex flex-col items-center justify-center gap-3 col-span-1">

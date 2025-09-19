@@ -272,4 +272,28 @@ class Model_Api extends CI_Model
         return $query->result_array();
     }
 
+    // Get Total Records by Gender
+    public function get_records_per_gender(){
+        $query = $this->db->query("CALL GetRecordsPerGender()");
+        return $query->result_array();
+    }
+
+    // Get Total Records by Age Group
+    public function get_records_per_age_group(){
+        $query = $this->db->query("CALL GetAgeRange(3)");
+        return $query->result_array();
+    }
+
+    // Get Total Records per Hour Range
+    public function get_records_per_hour(){
+        $query = $this->db->query("CALL GetRecordsPerHour()");
+        return $query->result_array();
+    }
+
+    // Get Total Records per Day of the Week
+    public function get_records_per_day_of_week(){
+        $query = $this->db->query("CALL GetRecordsPerDayOfWeek()");
+        return $query->result_array();
+    }
+
 }
