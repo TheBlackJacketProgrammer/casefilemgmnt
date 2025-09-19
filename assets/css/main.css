@@ -1881,13 +1881,40 @@ div.data-statistics-section .data-statistics-body .gc-reports-by-month {
 }
 div.data-statistics-section .data-statistics-body .gc-reports-by-month canvas {
   width: 100% !important;
-  height: 100% !important;
   max-width: 100%;
-  max-height: 305px;
+  height: 305px;
 }
 @media (width < 768px) {
   div.data-statistics-section .data-statistics-body .gc-reports-by-month canvas {
-    max-height: 300px;
+    height: 300px;
+  }
+}
+div.data-statistics-section .data-statistics-body .gc-reports-by-age-group {
+  width: 100%;
+  height: 100%;
+}
+div.data-statistics-section .data-statistics-body .gc-reports-by-age-group canvas {
+  width: 100% !important;
+  max-width: 100%;
+  height: 300px;
+}
+@media (width < 768px) {
+  div.data-statistics-section .data-statistics-body .gc-reports-by-age-group canvas {
+    height: 500px;
+  }
+}
+div.data-statistics-section .data-statistics-body .gc-reports-by-hour-range {
+  width: 100%;
+  height: 100%;
+}
+div.data-statistics-section .data-statistics-body .gc-reports-by-hour-range canvas {
+  width: 100% !important;
+  max-width: 100%;
+  height: 300px;
+}
+@media (width < 768px) {
+  div.data-statistics-section .data-statistics-body .gc-reports-by-hour-range canvas {
+    height: 500px;
   }
 }
 

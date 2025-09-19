@@ -70,6 +70,16 @@ app.controller("ng-variables",
             // $scope.loadInitialData();
         };
 
+        $scope.reportsByMonth = [];
+        $scope.reportsByCrimeType = [];
+        $scope.reportsByStatus = [];
+        $scope.recordTotals = [];
+        $scope.recordStatusTotals = [];
+        $scope.recordsPerGender = [];
+        $scope.recordsPerAgeGroup = [];
+        $scope.recordsPerHour = [];
+        $scope.recordsPerDayOfWeek = [];
+
         $scope.section = "";
 
         $scope.baseUrl = window.location.protocol + '//' + window.location.host + '/brgycasefile/';
@@ -1145,80 +1155,251 @@ app.controller('EventLogsController', ['$scope', '$http', '$timeout', function($
 }]);
 app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
-    $scope.reportsByMonth = [];
-    $scope.reportsByCrimeType = [];
-    $scope.reportsByStatus = [];
-    $scope.recordTotals = [];
-    $scope.recordStatusTotals = [];
 
     $scope.getReportByMonth = function() {
-        $http({
+        return $http({
             method: "GET",
             url: $scope.baseUrl + "ctrl_api/get_report_by_month",
         }).then(function successCallback(response) {
-            $scope.reportsByMonth = response.data.reports;
-            console.log('Reports:', $scope.reportsByMonth);
+            if (response.data && response.data.status === 'success' && response.data.reports) {
+                $scope.reportsByMonth = response.data.reports;
+                // console.log('Reports by Month:', $scope.reportsByMonth);
+                return response.data.reports;
+            } else {
+                console.error('Invalid response format for reports by month:', response.data);
+                $scope.reportsByMonth = [];
+                return [];
+            }
+        }, function errorCallback(error) {
+            console.error('Error fetching reports by month:', error);
+            $scope.reportsByMonth = [];
+            return [];
         });
     }
 
     $scope.getReportByCrimeType = function() {
-        $http({
+        return $http({
             method: "GET",
             url: $scope.baseUrl + "ctrl_api/get_report_by_crime_type",
         }).then(function successCallback(response) {
-            $scope.reportsByCrimeType = response.data.reports;
-            console.log('Reports:', $scope.reportsByCrimeType);
+            if (response.data && response.data.status === 'success' && response.data.reports) {
+                $scope.reportsByCrimeType = response.data.reports;
+                // console.log('Reports by Crime Type:', $scope.reportsByCrimeType);
+                return response.data.reports;
+            } else {
+                console.error('Invalid response format for reports by crime type:', response.data);
+                $scope.reportsByCrimeType = [];
+                return [];
+            }
+        }, function errorCallback(error) {
+            console.error('Error fetching reports by crime type:', error);
+            $scope.reportsByCrimeType = [];
+            return [];
         });
     }
 
     $scope.getReportByStatus = function() {
-        $http({
+        return $http({
             method: "GET",
             url: $scope.baseUrl + "ctrl_api/get_report_by_status",
         }).then(function successCallback(response) {
-            $scope.reportsByStatus = response.data.reports;
-            console.log('Reports:', $scope.reportsByStatus);
+            if (response.data && response.data.status === 'success' && response.data.reports) {
+                $scope.reportsByStatus = response.data.reports;
+                // console.log('Reports by Status:', $scope.reportsByStatus);
+                return response.data.reports;
+            } else {
+                console.error('Invalid response format for reports by status:', response.data);
+                $scope.reportsByStatus = [];
+                return [];
+            }
+        }, function errorCallback(error) {
+            console.error('Error fetching reports by status:', error);
+            $scope.reportsByStatus = [];
+            return [];
         });
     }
 
     $scope.getRecordTotals = function() {
-        $http({
+        return $http({
             method: "GET",
             url: $scope.baseUrl + "ctrl_api/get_record_totals",
         }).then(function successCallback(response) {
-            $scope.recordTotals = response.data.counts;
-            console.log('Record Totals:', $scope.recordTotals);
-            // Initialize graph after data is loaded
-            $scope.initGraphReportsByMonth();
+            if (response.data && response.data.status === 'success' && response.data.counts) {
+                $scope.recordTotals = response.data.counts;
+                // console.log('Record Totals:', $scope.recordTotals);
+                return response.data.counts;
+            } else {
+                console.error('Invalid response format for record totals:', response.data);
+                $scope.recordTotals = [];
+                return [];
+            }
+        }, function errorCallback(error) {
+            console.error('Error fetching record totals:', error);
+            $scope.recordTotals = [];
+            return [];
         });
     }
 
     $scope.getRecordStatusTotals = function() {
-        $http({
+        return $http({
             method: "GET",
             url: $scope.baseUrl + "ctrl_api/get_record_status_totals",
         }).then(function successCallback(response) {
-            $scope.recordStatusTotals = response.data.counts;
-            console.log('Record Status Totals:', $scope.recordStatusTotals);
+            if (response.data && response.data.status === 'success' && response.data.counts) {
+                $scope.recordStatusTotals = response.data.counts;
+                // console.log('Record Status Totals:', $scope.recordStatusTotals);
+                return response.data.counts;
+            } else {
+                console.error('Invalid response format for record status totals:', response.data);
+                $scope.recordStatusTotals = [];
+                return [];
+            }
+        }, function errorCallback(error) {
+            console.error('Error fetching record status totals:', error);
+            $scope.recordStatusTotals = [];
+            return [];
         });
     }
 
     $scope.getRecordStatusTotal = function(type) {
-        $http({
+        return $http({
             method: "POST",
             url: $scope.baseUrl + "ctrl_api/get_total_status_per_period",
             data: { time_period: type }
         }).then(function successCallback(response) {
-            $scope.recordStatusTotals = response.data.counts;
-            console.log('Record Status Totals:', $scope.recordStatusTotals);
-            $(".counts-item").removeClass("active");
-            $("." + type).addClass("active");
+            if (response.data && response.data.status === 'success' && response.data.counts) {
+                $scope.recordStatusTotals = response.data.counts;
+                // console.log('Record Status Totals:', $scope.recordStatusTotals);
+                $(".counts-item").removeClass("active");
+                $("." + type).addClass("active");
+                return response.data.counts;
+            } else {
+                console.error('Invalid response format for record status totals:', response.data);
+                $scope.recordStatusTotals = [];
+                return [];
+            }
+        }, function errorCallback(error) {
+            console.error('Error fetching record status totals:', error);
+            $scope.recordStatusTotals = [];
+            return [];
         });
-        
+    }
+
+    $scope.getRecordsPerGender = function() {
+        return $http({
+            method: "GET",
+            url: $scope.baseUrl + "ctrl_api/get_records_per_gender",
+        }).then(function successCallback(response) {
+            if (response.data && response.data.status === 'success' && response.data.counts) {
+                $scope.recordsPerGender = response.data.counts;
+                // console.log('Records per gender:', $scope.recordsPerGender);
+                return response.data.counts;
+            } else {
+                console.error('Invalid response format for records per gender:', response.data);
+                $scope.recordsPerGender = [];
+                return [];
+            }
+        }, function errorCallback(error) {
+            console.error('Error fetching records per gender:', error);
+            $scope.recordsPerGender = [];
+            return [];
+        });
+    }
+
+    $scope.getRecordsPerAgeGroup = function() {
+        return $http({
+            method: "GET",
+            url: $scope.baseUrl + "ctrl_api/get_records_per_age_group",
+        }).then(function successCallback(response) {
+            if (response.data && response.data.status === 'success' && response.data.counts) {
+                $scope.recordsPerAgeGroup = response.data.counts;
+                return response.data.counts;
+            } else {
+                console.error('Invalid response format for records per age group:', response.data);
+                $scope.recordsPerAgeGroup = [];
+                return [];
+            }
+        }, function errorCallback(error) {
+            console.error('Error fetching records per age group:', error);
+            $scope.recordsPerAgeGroup = [];
+            return [];
+        });
+    }
+
+    $scope.getRecordsPerHour = function() {
+        return $http({
+            method: "GET",
+            url: $scope.baseUrl + "ctrl_api/get_records_per_hour",
+        }).then(function successCallback(response) {
+            if (response.data && response.data.status === 'success' && response.data.counts) {
+                $scope.recordsPerHour = response.data.counts;
+                return response.data.counts;
+            } else {
+                console.error('Invalid response format for records per hour:', response.data);
+                $scope.recordsPerHour = [];
+                return [];
+            }
+        }, function errorCallback(error) {
+            console.error('Error fetching records per hour:', error);
+            $scope.recordsPerHour = [];
+            return [];
+        });
+    }
+
+    $scope.getRecordsPerDayOfWeek = function() {
+        return $http({
+            method: "GET",
+            url: $scope.baseUrl + "ctrl_api/get_records_per_day_of_week",
+        }).then(function successCallback(response) {
+            if (response.data && response.data.status === 'success' && response.data.counts) {
+                $scope.recordsPerDayOfWeek = response.data.counts;
+                return response.data.counts;
+            } else {
+                console.error('Invalid response format for records per day of week:', response.data);
+                $scope.recordsPerDayOfWeek = [];
+                return [];
+            }
+        }, function errorCallback(error) {
+            console.error('Error fetching records per day of week:', error);
+            $scope.recordsPerDayOfWeek = [];
+            return [];
+        });
     }
 
     $scope.createChart = function(canvasId, labels, data, type) {
-        const ctx = document.getElementById(canvasId).getContext('2d');
+        // Validate inputs
+        if (!canvasId || !labels || !data || !type) {
+            console.error('Invalid parameters for chart creation:', { canvasId, labels, data, type });
+            return;
+        }
+
+        // Check if canvas element exists
+        const canvasElement = document.getElementById(canvasId);
+        if (!canvasElement) {
+            console.error('Canvas element not found:', canvasId);
+            return;
+        }
+
+        // Validate data arrays
+        if (!Array.isArray(labels) || !Array.isArray(data) || labels.length === 0 || data.length === 0) {
+            console.error('Invalid data for chart:', { labels, data });
+            return;
+        }
+
+        // Check if data contains valid numbers
+        const hasValidData = data.some(value => typeof value === 'number' && !isNaN(value) && value > 0);
+        if (!hasValidData) {
+            console.error('No valid data found for chart:', data);
+            return;
+        }
+
+        // Check if chart already exists and destroy it
+        var chartExist = Chart.getChart(canvasId);
+        if (chartExist != undefined) {
+            chartExist.destroy();
+        }
+
+        const ctx = canvasElement.getContext('2d');
  
         if (type === 'pie') {
             new Chart(ctx, {
@@ -1229,12 +1410,12 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
                         label: 'Records',
                         data: data,
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.6)',
-                            'rgba(54, 162, 235, 0.6)'
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
                         ],
                         borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
                         ],
                         borderWidth: 1
                     }]
@@ -1245,7 +1426,7 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
                     devicePixelRatio: 1,
                     plugins: {
                         legend: {
-                            position: 'bottom',
+                            position: 'top',
                             labels: {
                                 padding: 20,
                                 usePointStyle: true,
@@ -1253,18 +1434,35 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
                                     size: 12
                                 }
                             }
-                        },
-                        title: {
-                            display: true,
-                            text: 'Reports by Month',
-                            font: {
-                                size: 16,
-                                weight: 'bold'
-                            }
                         }
                     }
                 }
             }); 
+        }
+        if (type === 'line') {
+            new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Records',
+                        data: data,
+                        borderColor: "blue",
+                        backgroundColor: "rgba(0, 0, 255, 0.2)",
+                        tension: 0.3,
+                        fill: true,
+                        pointRadius: 5,
+                        pointBackgroundColor: "blue"
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: true } },
+                    scales: {
+                      y: { beginAtZero: true }
+                    }
+                }
+            });
         }
         else {
             new Chart(ctx, {
@@ -1329,31 +1527,239 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
         
     }
 
+    // Initialize Graph Reports by Month
     $scope.initGraphReportsByMonth = function() {
-        
-        // Extract months and totals from reportsByMonth
-        let months = [];
-        let totals = [];
-
-        for (let i = 0; i < $scope.reportsByMonth.length; i++) {
-            months.push($scope.reportsByMonth[i].month);
-            totals.push($scope.reportsByMonth[i].total);
+        if (!$scope.reportsByMonth || !Array.isArray($scope.reportsByMonth) || $scope.reportsByMonth.length === 0) {
+            console.warn('No data available for reports by month chart');
+            return;
         }
 
-        // Create charts
-        $scope.createChart('barChart', months, totals, 'bar');
-        // $scope.createChart('pcGender', genders, totals, 'pie');
-        // $scope.createChart('barChart-3', months, totals, 'bar');
-        // $scope.createChart('barChart-4', months, totals, 'bar');
+        let months = [];
+        let totals = [];
+        for (let i = 0; i < $scope.reportsByMonth.length; i++) {
+            if ($scope.reportsByMonth[i].month && $scope.reportsByMonth[i].total !== undefined) {
+                months.push($scope.reportsByMonth[i].month);
+                totals.push(parseInt($scope.reportsByMonth[i].total) || 0);
+            }
+        }
+        
+        if (months.length > 0 && totals.length > 0) {
+            $scope.initChartData('barChart', months, totals, 'bar');
+        } else {
+            console.warn('No valid data found for reports by month chart');
+        }
+    }
+
+    // Initialize Graph Reports by Gender
+    $scope.initGraphReportsByGender = function() {
+        if (!$scope.recordsPerGender || !Array.isArray($scope.recordsPerGender) || $scope.recordsPerGender.length === 0) {
+            console.warn('No data available for reports by gender chart');
+            return;
+        }
+
+        let genders = [];
+        let totals = [];
+        for (let i = 0; i < $scope.recordsPerGender.length; i++) {
+            if ($scope.recordsPerGender[i].gender && $scope.recordsPerGender[i].total !== undefined) {
+                genders.push($scope.recordsPerGender[i].gender);
+                totals.push(parseInt($scope.recordsPerGender[i].total) || 0);
+            }
+        }
+        
+        if (genders.length > 0 && totals.length > 0) {
+            $scope.initChartData('pcGender', genders, totals, 'pie');
+        } else {
+            console.warn('No valid data found for reports by gender chart');
+        }
+    }
+
+    // Initialize Graph Reports by Age Group
+    $scope.initGraphReportsByAgeGroup = function() {
+        if (!$scope.recordsPerAgeGroup || !Array.isArray($scope.recordsPerAgeGroup) || $scope.recordsPerAgeGroup.length === 0) {
+            console.warn('No data available for reports by age group chart');
+            return;
+        }
+
+        let age_ranges = [];
+        let totals = [];
+        for (let i = 0; i < $scope.recordsPerAgeGroup.length; i++) {
+            if ($scope.recordsPerAgeGroup[i].age_range && $scope.recordsPerAgeGroup[i].total !== undefined) {
+                age_ranges.push($scope.recordsPerAgeGroup[i].age_range);
+                totals.push(parseInt($scope.recordsPerAgeGroup[i].total) || 0);
+            }
+        }
+        
+        if (age_ranges.length > 0 && totals.length > 0) {
+            $scope.initChartData('gcReportsByAgeGroup', age_ranges, totals, 'bar');
+        } else {
+            console.warn('No valid data found for reports by age group chart');
+        }
+    }
+
+    // Initialize Graph Reports by Hour Range
+    $scope.initGraphReportsByHourRange = function() {
+        if (!$scope.recordsPerHour || !Array.isArray($scope.recordsPerHour) || $scope.recordsPerHour.length === 0) {
+            console.warn('No data available for reports by age group chart');
+            return;
+        }
+
+        let hour_ranges = [];
+        let totals = [];
+        for (let i = 0; i < $scope.recordsPerHour.length; i++) {
+            if ($scope.recordsPerHour[i].hour_range && $scope.recordsPerHour[i].total !== undefined) {
+                hour_ranges.push($scope.recordsPerHour[i].hour_range);
+                totals.push(parseInt($scope.recordsPerHour[i].total) || 0);
+            }
+        }
+        
+        if (hour_ranges.length > 0 && totals.length > 0) {
+            $scope.initChartData('gcReportsByHourRange', hour_ranges, totals, 'line');
+        } else {
+            console.warn('No valid data found for reports by hour range chart');
+        }
     }
 
     $scope.init = function() {
-        $scope.getReportByMonth();
-        $scope.getReportByCrimeType();
-        $scope.getReportByStatus();
-        $scope.getRecordTotals();
-        $scope.getRecordStatusTotals(); 
+        // console.log('Initializing data statistics...');
+        
+        // Load all data in parallel and wait for completion
+        Promise.all([
+            $scope.getReportByMonth(),
+            $scope.getReportByCrimeType(),
+            $scope.getReportByStatus(),
+            $scope.getRecordTotals(),
+            $scope.getRecordStatusTotals(),
+            $scope.getRecordsPerGender(),
+            $scope.getRecordsPerAgeGroup(),
+            $scope.getRecordsPerHour(),
+            $scope.getRecordsPerDayOfWeek()
+        ]).then(function(results) {
+            // console.log('All data loaded successfully');
+            
+            // Initialize charts after all data is loaded
+            $timeout(function() {
+                $scope.initGraphReportsByMonth();
+                $scope.initGraphReportsByGender();
+                $scope.initGraphReportsByAgeGroup();
+                $scope.initGraphReportsByHourRange();
+            }, 100); // Small delay to ensure DOM is ready
+        }).catch(function(error) {
+            console.error('Error loading data:', error);
+        });
     }
+
+    // Function to clear all charts
+    $scope.clearAllCharts = function() {
+        const chartIds = ['barChart', 'pcGender', 'gcReportsByAgeGroup'];
+        chartIds.forEach(function(chartId) {
+            var chartExist = Chart.getChart(chartId);
+            if (chartExist != undefined) {
+                chartExist.destroy();
+            }
+        });
+    }
+
+    // Function to initialize chart data (similar to your getChartData pattern)
+    $scope.initChartData = function(canvasId, labels, data, type) {
+        // Check if chart already exists and destroy it
+        var chartExist = Chart.getChart(canvasId);
+        if (chartExist != undefined) {
+            chartExist.destroy();
+        }
+
+        // Get canvas element and create chart
+        const canvasElement = document.getElementById(canvasId);
+        if (canvasElement) {
+            return new Chart(canvasElement.getContext('2d'), {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Records',
+                        data: data,
+                        backgroundColor: type === 'pie' ? [
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
+                        ] : 'rgba(54, 162, 235, 0.6)',
+                        borderColor: type === 'pie' ? [
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
+                        ] : 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    devicePixelRatio: 1,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: type === 'pie',
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    scales: type !== 'pie' ? {
+                        x: {
+                            ticks: {
+                                maxRotation: 45,
+                                minRotation: 0,
+                                font: {
+                                    size: 11
+                                }
+                            },
+                            grid: {
+                                display: true
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    size: 11
+                                }
+                            },
+                            grid: {
+                                display: true
+                            }
+                        }
+                    } : {}
+                }
+            });
+        }
+    }
+
+    // Function to refresh charts when data changes
+    $scope.refreshCharts = function() {
+        // console.log('Refreshing charts...');
+        // Clear all existing charts first
+        $scope.clearAllCharts();
+        
+        $timeout(function() {
+            $scope.initGraphReportsByMonth();
+            $scope.initGraphReportsByGender();
+            $scope.initGraphReportsByAgeGroup();
+            $scope.initGraphReportsByHourRange();
+        }, 100);
+    }
+
+    // Function to check if all required data is loaded
+    $scope.isDataLoaded = function() {
+        return $scope.reportsByMonth.length > 0 && 
+               $scope.recordsPerGender.length > 0 && 
+               $scope.recordTotals.length > 0 &&
+               $scope.reportsByAgeGroup.length > 0;
+    }
+
+    // Cleanup function for controller destruction
+    $scope.$on('$destroy', function() {
+        $scope.clearAllCharts();
+    });
 
     // Load initial data
     $scope.init();

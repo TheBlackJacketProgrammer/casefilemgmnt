@@ -280,7 +280,7 @@ class Model_Api extends CI_Model
 
     // Get Total Records by Age Group
     public function get_records_per_age_group(){
-        $query = $this->db->query("CALL GetAgeRange(3)");
+        $query = $this->db->query("CALL GetAgeRange(5, 100)");
         return $query->result_array();
     }
 

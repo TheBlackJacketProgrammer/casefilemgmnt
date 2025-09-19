@@ -47,7 +47,7 @@
         </div>
         <!-- Report Tables -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 w-full justify-start items-start" ng-controller="DatatablesOptionsController">
-            <div class="col-span-2">
+            <div class="col-span-2 flex flex-col w-full gap-4">
                 <?php $this->load->view('components/graph-charts/gc_reports_by_month'); ?>
                 <?php $this->load->view('components/graph-charts/gc_reports_by_gender'); ?>
             </div>
@@ -58,9 +58,12 @@
             </div>
         </div>
         <!-- Charts and Graphs Here -->
-        <div class="flex grid-cols-2 gap-4 p-4 w-full justify-start items-start">
-            <!-- Charts and Graphs 1-->
-            <!-- Charts and Graphs 2-->
+        <div class="grid grid-cols-1 gap-4 p-4 w-full justify-start items-start">
+            <!-- Reports by Age Group -->
+            <?php $this->load->view('components/graph-charts/gc_reports_by_age_group'); ?>
+
+            <!-- Reports by Hour Range -->
+            <?php $this->load->view('components/graph-charts/gc_reports_by_hour_range'); ?>
         </div>
     </div>
 </div>

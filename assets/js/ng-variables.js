@@ -11,6 +11,16 @@ app.controller("ng-variables",
             // $scope.loadInitialData();
         };
 
+        $scope.reportsByMonth = [];
+        $scope.reportsByCrimeType = [];
+        $scope.reportsByStatus = [];
+        $scope.recordTotals = [];
+        $scope.recordStatusTotals = [];
+        $scope.recordsPerGender = [];
+        $scope.recordsPerAgeGroup = [];
+        $scope.recordsPerHour = [];
+        $scope.recordsPerDayOfWeek = [];
+
         $scope.section = "";
 
         $scope.baseUrl = window.location.protocol + '//' + window.location.host + '/brgycasefile/';
