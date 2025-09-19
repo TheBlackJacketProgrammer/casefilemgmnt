@@ -3,11 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $autoload['packages'] = array();
 
-$autoload['libraries'] = array('database','email','session','parser','upload');
+$autoload['libraries'] = array('database','email','session','parser','upload','dompdf_lib');
 
 $autoload['drivers'] = array();
 
-$autoload['helper'] = array('html','date','url','file','form','download','file_upload');
+$autoload['helper'] = array('html','date','url','file','form','download','file_upload','dompdf');
 
 $autoload['config'] = array();
 
