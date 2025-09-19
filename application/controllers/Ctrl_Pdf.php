@@ -19,41 +19,18 @@ class Ctrl_Pdf extends CI_Controller {
         // $this->load->helper('dompdf');
     }
     
-    /**
-     * Generate a simple PDF
-     */
+    // Generate PDF
     public function simple() {
-        $html = '
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="utf-8">
-            <title>Simple PDF</title>
-            <style>
-                body { font-family: Arial, sans-serif; margin: 40px; }
-                h1 { color: #333; }
-                .content { margin-top: 20px; }
-            </style>
-        </head>
-        <body>
-            <h1>Hello from DomPDF!</h1>
-            <div class="content">
-                <p>This is a simple PDF generated using DomPDF in CodeIgniter.</p>
-                <p>Current date: ' . date('Y-m-d H:i:s') . '</p>
-            </div>
-        </body>
-        </html>';
+        $html = $this->load->view('pdf/pdf_report_form', [], true);
         
         // Generate PDF using helper function
         generate_pdf($html, 'simple_document.pdf', 'A4', 'portrait', false);
     }
     
-    /**
-     * Generate PDF from view
-     */
+    // View PDF Report Form
     public function from_view() {
         $data = [
-            'title' => 'PDF from View',
+            'title' => 'This is test PDF',
             'content' => 'This PDF was generated from a CodeIgniter view.',
             'date' => date('Y-m-d H:i:s'),
             'items' => [
