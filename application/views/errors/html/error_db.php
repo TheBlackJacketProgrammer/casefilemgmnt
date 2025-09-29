@@ -5,8 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
     <meta charset="utf-8">
     <title>Database Error</title>
-    <link href="/ci3-template/assets/css/tailwind.css" rel="stylesheet">
-    <link href="/ci3-template/assets/css/main.css" rel="stylesheet">
+    <link href="/brgycasefile/assets/css/tailwind.css" rel="stylesheet">
+    <link href="/brgycasefile/assets/css/main.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 min-h-screen flex items-center justify-center">
     <div class="max-w-2xl w-full mx-auto p-8">

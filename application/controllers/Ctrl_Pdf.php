@@ -27,21 +27,63 @@ class Ctrl_Pdf extends CI_Controller {
         generate_pdf($html, 'simple_document.pdf', 'A4', 'portrait', false);
     }
     
-    // View PDF Report Form
-    public function from_view() {
+    // Generate Modern PDF with Puppeteer (Full CSS Grid & Flexbox Support)
+    public function modern() {
+        // Load Puppeteer helper
+        $this->load->helper('puppeteer');
+        
         $data = [
-            'title' => 'This is test PDF',
-            'content' => 'This PDF was generated from a CodeIgniter view.',
-            'date' => date('Y-m-d H:i:s'),
-            'items' => [
-                ['name' => 'Item 1', 'price' => '$10.00'],
-                ['name' => 'Item 2', 'price' => '$20.00'],
-                ['name' => 'Item 3', 'price' => '$30.00']
-            ]
+            'case_number' => 'CASE-2024-001',
+            'date_filed' => date('Y-m-d'),
+            'complainant' => 'Juan Dela Cruz',
+            'respondent' => 'Maria Santos',
+            'case_description' => 'Property boundary dispute between neighbors regarding fence placement. The complainant alleges that the respondent has encroached on their property by building a fence 2 meters beyond the legal boundary line.',
+            'case_type' => 'civil',
+            'status' => 'pending'
         ];
         
+        // Generate PDF using Puppeteer (supports ALL modern CSS)
+        generate_pdf_from_view_puppeteer(
+            'pdf/pdf_report_form_modern', 
+            $data, 
+            'modern_report.pdf', 
+            'A4', 
+            'portrait', 
+            false,
+            [
+                'format' => 'A4',
+                'landscape' => false,
+                'margin' => [
+                    'top' => '20px',
+                    'right' => '20px',
+                    'bottom' => '20px',
+                    'left' => '20px'
+                ],
+                'printBackground' => true,
+                'displayHeaderFooter' => false
+            ]
+        );
+    }
+    
+    // View PDF Report Form
+    public function from_view() {
+        // $data = [
+        //     'title' => 'This is test PDF',
+        //     'content' => 'This PDF was generated from a CodeIgniter view.',
+        //     'date' => date('Y-m-d H:i:s'),
+        //     'items' => [
+        //         ['name' => 'Item 1', 'price' => '$10.00'],
+        //         ['name' => 'Item 2', 'price' => '$20.00'],
+        //         ['name' => 'Item 3', 'price' => '$30.00']
+        //     ]
+        // ];
+
+        // $html = $this->load->view('pdf/pdf_report_form', [], true);
+        
         // Generate PDF using library
-        $this->dompdf_lib->from_view('pdf/sample_pdf', $data, 'view_document.pdf', false);
+        $this->dompdf_lib->from_view('pdf/pdf_report_form', [], 'view_document.pdf', false);
+
+        
     }
     
     /**

@@ -60,4 +60,10 @@ class Ctrl_Main extends CI_Controller {
 		return true;
 	}
 
+	public function view_report_form() {
+		$data = json_decode(file_get_contents('php://input'),true); 
+        // Generate PDF using library
+        $this->dompdf_lib->from_view('pdf/pdf_report_form', [], 'view_document.pdf', false);
+    }
+
 }

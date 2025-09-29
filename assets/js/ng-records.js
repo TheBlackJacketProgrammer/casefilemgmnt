@@ -415,6 +415,10 @@ app.controller('RecordsController', ['$scope', '$http', '$timeout', function($sc
         $scope.complainee_image_preview = $scope.baseUrl + $scope.currentRecord[$scope.recordIndex].complainee_pic;
     };
 
+    $scope.viewReportForm = function() {
+        console.log('Current record:', $scope.currentRecord[$scope.recordIndex]);
+    }
+
     // Load initial data
     $scope.getRecords();
     $scope.getCrimeTypes();

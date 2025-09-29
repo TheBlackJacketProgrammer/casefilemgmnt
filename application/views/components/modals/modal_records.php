@@ -19,7 +19,15 @@
                     </svg>
                     <span class="text-sm font-medium">Save Record</span>
                 </button>
+                <!-- Save as PDF -->
+                <button class="modal-btn-save flex items-center gap-2" ng-click="viewReportForm()" ng-hide="status == 'Add' || status == 'Edit'" >
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
+                    </svg>
+                    <span class="text-sm font-medium">Generate Report Form PDF</span>
+                </button>
             </div>
+            
             <!-- Record Navigation -->
             <div class="flex justify-between items-center gap-2">
                 <div class="text-xs font-medium">Record <b>{{ recordCount }}</b> of <b>{{ recordTotal }}</b></div>
