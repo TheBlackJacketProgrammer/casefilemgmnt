@@ -197,8 +197,8 @@
 
         <div class="section-case-id">
             <div class="section-case-id-title" style="margin-bottom: 8px;">
-                <span style="width: 50%; float: left;">CASE ID: <b>123456</b></span> 
-                <span style="width: 50%; float: right;">STATUS: <b>Pending</b></span> 
+                <span style="width: 50%; float: left;">CASE ID: <b><?php echo $case_id; ?></b></span> 
+                <span style="width: 50%; float: right;">STATUS: <b><?php echo $case_status; ?></b></span> 
             </div>
         </div>
 
@@ -207,34 +207,34 @@
         <!-- COMPLAINANT -->
         <div class="section" style="margin-top: 0px !important;">
             <div class="section-title">Complainant Details</div>
-            <div class="field"><span class="label">Full Name:</span> <span class="value">Daniela Dela Rama</span></div>
-            <div class="field"><span class="label">Age:</span> <span class="value">25</span></div>
-            <div class="field"><span class="label">Birthday:</span> <span class="value">25/01/2000</span></div>
-            <div class="field"><span class="label">Gender:</span> <span class="value">Female</span></div>
-            <div class="field"><span class="label">Address:</span> <span class="value">Valenzuela, Metro Manila</span></div>
-            <div class="field"><span class="label">Contact Number:</span> <span class="value">09186097623</span></div>
+            <div class="field"><span class="label">Full Name:</span> <span class="value"><?php echo $complainant_name; ?></span></div>
+            <div class="field"><span class="label">Age:</span> <span class="value"><?php echo $complainant_age; ?></span></div>
+            <div class="field"><span class="label">Birthday:</span> <span class="value"><?php echo date('F d Y', strtotime($complainant_birthday)); ?></span></div>
+            <div class="field"><span class="label">Gender:</span> <span class="value"><?php echo $complainant_gender; ?></span></div>
+            <div class="field"><span class="label">Address:</span> <span class="value"><?php echo $complainant_address; ?></span></div>
+            <div class="field"><span class="label">Contact Number:</span> <span class="value"><?php echo $complainant_contactNum; ?></span></div>
         </div>
 
         <!-- COMPLAINEE -->
         <div class="section">
             <div class="section-title">Complainee Details</div>
-            <div class="field"><span class="label">Full Name:</span> <span class="value">Billy Masters</span></div>
-            <div class="field"><span class="label">Age:</span> <span class="value">25</span></div>
-            <div class="field"><span class="label">Birthday:</span> <span class="value">10/05/2000</span></div>
-            <div class="field"><span class="label">Gender:</span> <span class="value">Male</span></div>
-            <div class="field"><span class="label">Address:</span> <span class="value">Valenzuela, Metro Manila</span></div>
-            <div class="field"><span class="label">Contact Number:</span> <span class="value">09275060519</span></div>
+            <div class="field"><span class="label">Full Name:</span> <span class="value"><?php echo $complainee_name; ?></span></div>
+            <div class="field"><span class="label">Age:</span> <span class="value"><?php echo $complainee_age; ?></span></div>
+            <div class="field"><span class="label">Birthday:</span> <span class="value"><?php echo date('F d Y', strtotime($complainee_birthday)); ?></span></div>
+            <div class="field"><span class="label">Gender:</span> <span class="value"><?php echo $complainee_gender; ?></span></div>
+            <div class="field"><span class="label">Address:</span> <span class="value"><?php echo $complainee_address; ?></span></div>
+            <div class="field"><span class="label">Contact Number:</span> <span class="value"><?php echo $complainee_contactNum; ?></span></div>
         </div>
 
         <!-- CRIME INFO -->
         <div class="section">
             <div class="section-title">Crime Information</div>
-            <div class="field"><span class="label">Status:</span> <span class="value">Pending</span></div>
-            <div class="field"><span class="label">Date Created:</span> <span class="value">03/09/2025</span></div>
-            <div class="field"><span class="label">Crime Date:</span> <span class="value">03/09/2025 09:12 pm</span></div>
-            <div class="field"><span class="label">Place of Crime:</span> <span class="value">Valenzuela</span></div>
-            <div class="field"><span class="label">Witness:</span> <span class="value">None</span></div>
-            <div class="field"><span class="label">Crime Type:</span> <span class="value">Domestic Violence</span></div>
+            <!-- <div class="field"><span class="label">Status:</span> <span class="value">Pending</span></div> -->
+            <div class="field"><span class="label">Date Created:</span> <span class="value"><?php echo date('F d Y', strtotime($case_dateFiled)); ?></span></div>
+            <div class="field"><span class="label">Crime Date:</span> <span class="value"><?php echo date('F d Y g:i A', strtotime($case_crimeDate)); ?></span></div>
+            <div class="field"><span class="label">Place of Crime:</span> <span class="value"><?php echo $case_crimeScene; ?></span></div>
+            <div class="field"><span class="label">Witness:</span> <span class="value"><?php echo $case_crimeWitness; ?></span></div>
+            <div class="field"><span class="label">Crime Type:</span> <span class="value"><?php echo $case_crimeType; ?></span></div>
             <!-- <div class="field"><span class="label">Last Date Updated:</span> <span class="value">06/09/2025</span></div>
             <div class="field"><span class="label">Last Updated By:</span> <span class="value">Ace Von Bladen</span></div> -->
         </div>
@@ -279,16 +279,14 @@
         <div class="section">
             <div class="section-title">Details of Event</div>
             <div class="event-box">
-            Test only.  
-            If this text becomes long, the content will automatically continue and break into the next page when needed.
+                <?php echo $case_crimeDetails; ?>  
             </div>
         </div>
 
         <!-- PREPARED BY -->
         <div class="section">
-            <div class="field"><span class="label">Prepared By:</span> <span class="value">Juan Dela Cruz</span></div>
-            <div class="field"><span class="label">Position:</span> <span class="value">Barangay Secretary</span></div>
-            <div class="field"><span class="label">Date:</span> <span class="value">06/09/2025</span></div>
+            <div class="field"><span class="label">Prepared By:</span> <span class="value"><?php echo $user_fullname; ?></span></div>
+            <div class="field"><span class="label">Date:</span> <span class="value"><?php echo date('F d Y'); ?></span></div>
 
             <br><br><br>
             <div style="text-align: center; margin-top: 50px;">

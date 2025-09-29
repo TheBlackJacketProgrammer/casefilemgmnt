@@ -416,7 +416,27 @@ app.controller('RecordsController', ['$scope', '$http', '$timeout', function($sc
     };
 
     $scope.viewReportForm = function() {
-        console.log('Current record:', $scope.currentRecord[$scope.recordIndex]);
+        // console.log('Current record:', $scope.currentRecord[$scope.recordIndex]);
+        
+        $http({
+            method: "POST",
+            url: $scope.baseUrl + "ctrl_main/view_report_form",
+            data: $scope.currentRecord[$scope.recordIndex],
+            responseType: 'blob', // Important: tells Angular to expect binary data
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function successCallback(response) {
+            // Create blob link to download
+            var blob = new Blob([response.data], { type: 'application/pdf' });
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = 'report_form.pdf';
+            link.click();
+            window.URL.revokeObjectURL(link.href);
+        }, function errorCallback(response) {
+            console.error('Error generating PDF:', response);
+        });
     }
 
     // Load initial data
