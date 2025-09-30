@@ -173,3 +173,15 @@ REMARKS:
 
 
 < ========== NOTHING TO ADD ========== >
+
+Date: 09 - 30 - 2025
+
+UPDATES:
+    * Generate Report Form PDF - Done
+
+REMARKS:
+    TODO:
+        * Automatic Search option for Complainant and complainee info for Add Record.
+
+
+< ========== NOTHING TO ADD ========== >
