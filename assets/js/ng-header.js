@@ -7,6 +7,29 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
         isExpanded: false
     };
 
+    // Generic nav dropdown (desktop) – only one open at a time
+    $scope.activeNavDropdown = null;
+    $scope.toggleNavDropdown = function(menuKey, $event) {
+        if ($event) $event.stopPropagation();
+        var willOpen = $scope.activeNavDropdown !== menuKey;
+        $scope.activeNavDropdown = willOpen ? menuKey : null;
+        if (willOpen) {
+            $timeout(function() {
+                angular.element(document).one('click', function() {
+                    $scope.$apply(function() {
+                        $scope.activeNavDropdown = null;
+                    });
+                });
+            }, 0);
+        }
+    };
+    $scope.isNavDropdownOpen = function(menuKey) {
+        return $scope.activeNavDropdown === menuKey;
+    };
+    $scope.closeNavDropdown = function() {
+        $scope.activeNavDropdown = null;
+    };
+
     // Touch state for swipe gestures
     $scope.touchStartX = null;
 
@@ -69,8 +92,13 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
 
     // Handle escape key
     $scope.handleKeydown = function($event) {
-        if ($event.key === 'Escape' && $scope.mobileMenu.isOpen) {
-            $scope.closeMobileMenu();
+        if ($event.key === 'Escape') {
+            if ($scope.mobileMenu.isOpen) {
+                $scope.closeMobileMenu();
+            }
+            if ($scope.activeNavDropdown) {
+                $scope.activeNavDropdown = null;
+            }
         }
     };
 
@@ -109,12 +137,34 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
         });
     };
 
+    // Open Incident Records
+    $scope.openIncidentRecords = function() {
+        $scope.$parent.section = "";
+        $http({
+            method: "POST",
+            url:  $scope.baseUrl + "open_incident_records"
+        }).then(function successCallback(response) {
+            $scope.$parent.section = response.data["view"];
+        });
+    };
+
     // Open User Portal
     $scope.openUserPortal = function() {
         $scope.$parent.section = "";
         $http({
             method: "POST",
             url:  $scope.baseUrl + "ctrl_main/open_user_portal"
+        }).then(function successCallback(response) {
+            $scope.$parent.section = response.data["view"];
+        });
+    };
+
+    // Open Citizen Records
+    $scope.openCitizenRecords = function() {
+        $scope.$parent.section = "";
+        $http({
+            method: "POST",
+            url:  $scope.baseUrl + "open_citizen_records"
         }).then(function successCallback(response) {
             $scope.$parent.section = response.data["view"];
         });

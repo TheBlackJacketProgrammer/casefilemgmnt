@@ -17,6 +17,7 @@ class Ctrl_Api extends CI_Controller {
         {
             $this->session->set_userdata('user_id', $response['user_id']);
             $this->session->set_userdata('user_logged_in', true);
+            $this->session->set_userdata('user_type', $response['user_type']);
 
             // Prepare Event Log
             $log["user_id_logged_in"] = $response['user_id'];

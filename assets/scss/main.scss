@@ -13,10 +13,16 @@
 @import 'components/_user-portal.scss';
 @import 'components/_event-logs.scss';
 @import 'components/_data-statistics.scss';
+@import 'components/_modal.scss';
+
+// Buttons
+@import 'components/_buttons.scss';
+
+// Sections
+@import 'sections/_incident-records.scss';
+@import 'sections/_citizen-records.scss';
 
 // Pages
-@import 'pages/_home.scss';
-@import 'pages/_about.scss';
 @import 'pages/_login.scss';
 @import 'pages/_dashboard.scss';
 

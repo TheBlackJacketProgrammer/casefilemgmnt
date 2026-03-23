@@ -15,7 +15,7 @@
         <!-- End Main Menu -->
         <!-- User List -->
         <div class="flex flex-col items-center justify-start p-4 gap-4 w-full">
-            <table id="tbl_users" class="min-w-full divide-y divide-gray-200" datatable="ng" dt-options="dtOptions_users" dt-instance="dtInstance">
+            <table id="tbl_users" class="min-w-full divide-y divide-gray-200" datatable="ng" dt-options="dtOpt_citizenRecords" dt-instance="dtInstance">
                 <thead class="bg-shade-6">
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase">Position</th>

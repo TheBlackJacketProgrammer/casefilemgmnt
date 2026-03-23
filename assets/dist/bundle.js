@@ -153,6 +153,29 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
         isExpanded: false
     };
 
+    // Generic nav dropdown (desktop) – only one open at a time
+    $scope.activeNavDropdown = null;
+    $scope.toggleNavDropdown = function(menuKey, $event) {
+        if ($event) $event.stopPropagation();
+        var willOpen = $scope.activeNavDropdown !== menuKey;
+        $scope.activeNavDropdown = willOpen ? menuKey : null;
+        if (willOpen) {
+            $timeout(function() {
+                angular.element(document).one('click', function() {
+                    $scope.$apply(function() {
+                        $scope.activeNavDropdown = null;
+                    });
+                });
+            }, 0);
+        }
+    };
+    $scope.isNavDropdownOpen = function(menuKey) {
+        return $scope.activeNavDropdown === menuKey;
+    };
+    $scope.closeNavDropdown = function() {
+        $scope.activeNavDropdown = null;
+    };
+
     // Touch state for swipe gestures
     $scope.touchStartX = null;
 
@@ -215,8 +238,13 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
 
     // Handle escape key
     $scope.handleKeydown = function($event) {
-        if ($event.key === 'Escape' && $scope.mobileMenu.isOpen) {
-            $scope.closeMobileMenu();
+        if ($event.key === 'Escape') {
+            if ($scope.mobileMenu.isOpen) {
+                $scope.closeMobileMenu();
+            }
+            if ($scope.activeNavDropdown) {
+                $scope.activeNavDropdown = null;
+            }
         }
     };
 
@@ -255,12 +283,34 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
         });
     };
 
+    // Open Incident Records
+    $scope.openIncidentRecords = function() {
+        $scope.$parent.section = "";
+        $http({
+            method: "POST",
+            url:  $scope.baseUrl + "open_incident_records"
+        }).then(function successCallback(response) {
+            $scope.$parent.section = response.data["view"];
+        });
+    };
+
     // Open User Portal
     $scope.openUserPortal = function() {
         $scope.$parent.section = "";
         $http({
             method: "POST",
             url:  $scope.baseUrl + "ctrl_main/open_user_portal"
+        }).then(function successCallback(response) {
+            $scope.$parent.section = response.data["view"];
+        });
+    };
+
+    // Open Citizen Records
+    $scope.openCitizenRecords = function() {
+        $scope.$parent.section = "";
+        $http({
+            method: "POST",
+            url:  $scope.baseUrl + "open_citizen_records"
         }).then(function successCallback(response) {
             $scope.$parent.section = response.data["view"];
         });
@@ -355,17 +405,32 @@ app.controller("ng-login", ['$scope', '$http', function ($scope, $http) {
 
 
     $scope.login = function() {
+
+
+        if($scope.credentials.username == '' || $scope.credentials.password == '') {
+            toastr.error('Please fill in all fields');
+            return;
+        }
+
         console.log('Login');
         console.log($scope.credentials);
         $http({
             method: "POST",
-            url: $scope.baseUrl + "ctrl_api/login",
+            url: $scope.baseUrl + "login",
             data: $scope.credentials
         }).then(function successCallback(response) {
             // Redirect to dashboard
-            window.location.href = $scope.baseUrl;
+            if(response.data.status == 'success') {
+                toastr.success('Login successful');
+                window.location.href = $scope.baseUrl;
+            } 
+            else {
+                toastr.error('Username or password is incorrect');
+            }
+        }).catch(function errorCallback(response) {
+            toastr.error('An error occurred');
         });
-    }
+    };
 }]);
 app.controller('RecordsController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
     $scope.records = [];
@@ -1787,4 +1852,140 @@ app.controller('DataStatisticsController', ['$scope', '$http', '$timeout', funct
 
     // Load initial data
     $scope.init();
+}]);
+app.controller('CitizenRecordsController', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
+
+    // Variables
+    $scope.citizenRecords = [];
+    $scope.currentProcess = "Add";
+
+    // Datatable options
+    $scope.dtOpt_citizenRecords = {
+        responsive: true,
+        autoWidth: false,
+        scrollX: true,
+        scrollCollapse: true,
+        width: '100%',
+        dom: "<'flex flex-row'<'flex flex-row justify-between items-center w-full'Bf>>" +
+             "<'flex flex-col gap-2 my-3'<tr>>" +
+             "<'grid grid-cols-3 items-center justify-center gap-2 text-sm'<l><'flex flex-row justify-center items-center'i><p>>",
+        order: [[0, 'desc']], 
+            buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'Citizen Records'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'Citizen Records'
+            }
+        ]
+    };
+
+    // Load initial data
+    $scope.init = function() {
+        console.log('Citizen Records Controller Initialized');
+        $scope.getCitizenRecords();
+    }
+
+    // Convert MySQL Date to HTML Date - For Global Function later
+    $scope.convertMySQLDate = function(dateValue) {
+        let date = (dateValue instanceof Date) ? dateValue : new Date(dateValue);
+        let options = { 
+            weekday: 'long',        // Day name
+            year: 'numeric', 
+            month: 'short',         // Abbreviated month (e.g., Aug)
+            day: '2-digit'
+        };
+        return date.toLocaleString('en-US',options);
+    }
+
+    // Get Citizen Records
+    $scope.getCitizenRecords = function() {
+        $http({
+            method: "GET",
+            url: $scope.baseUrl + "get_citizen_records",
+        }).then(function successCallback(response) {
+            $scope.citizenRecords = response.data.citizenRecords;
+        });
+    }
+
+    // Add record
+    $scope.addCitizenProfile = function() {
+        $scope.currentProcess = "Add";
+        $scope.currentCitizenProfile = {
+            citizen_id: null,
+            last_name: "",
+            first_name: "",
+            middle_name: "",
+            birthdate: null,
+            gender: "",
+            address: "",
+            contact_number: "",
+            email_address: "",
+        };
+
+        $('#modalCitizenProfile').removeClass('hidden'); // Remove hidden class to show modal
+        $('#modalCitizenProfile').addClass('flex'); 
+    }
+
+    // Close Modal
+    $scope.closeModal = function() {
+        $scope.currentCitizenProfile = [{
+            citizen_id: null,
+            lastname: "",
+            firstname: "",
+            middlename: "",
+            birthdate: null,
+            gender: "",
+            address: "",
+            contact_number: "",
+            email_address: "",
+        }];
+        $scope.currentProcess = "Add";
+        $('#modalCitizenProfile').removeClass('flex');
+        $('#modalCitizenProfile').addClass('hidden');
+    }
+
+    // Save Citizen Profile
+    $scope.saveCitizenProfile = function() {
+        let payload = angular.copy($scope.currentCitizenProfile);
+        payload.birthdate = $filter('date')(payload.birthdate, 'yyyy-MM-dd');
+        $http({
+            method: "POST",
+            url: $scope.baseUrl + "save_citizen_profile",
+            data: payload
+        }).then(function successCallback(response) {
+            if(response.data.success) {
+                toastr.success("Citizen profile saved successfully");
+                $scope.getCitizenRecords();
+                $scope.closeModal();
+            } 
+            else {
+                toastr.error("Failed to save citizen profile");
+            }
+        });
+    };
+
+    // Edit Citizen Profile
+    $scope.editCitizenProfile = function(citizen) {
+        let tempCitizen = angular.copy(citizen);
+        $scope.currentProcess = "Edit";
+        $scope.currentCitizenProfile = tempCitizen;
+        $scope.currentCitizenProfile.birthdate = new Date( tempCitizen.birthdate + 'T00:00:00');
+        $('#modalCitizenProfile').removeClass('hidden');
+        $('#modalCitizenProfile').addClass('flex'); 
+    }
+
+    // View Citizen Profile
+    $scope.viewCitizenProfile = function(citizen) {
+        let tempCitizen = angular.copy(citizen);
+        $scope.currentProcess = "View";
+        $scope.currentCitizenProfile = tempCitizen;
+        $scope.currentCitizenProfile.birthdate = new Date( tempCitizen.birthdate + 'T00:00:00');
+        console.log($scope.currentCitizenProfile);
+        $('#modalCitizenProfile').removeClass('hidden');
+        $('#modalCitizenProfile').addClass('flex'); 
+    }
+
 }]);

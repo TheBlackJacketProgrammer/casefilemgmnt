@@ -27,9 +27,21 @@ class Ctrl_Main extends CI_Controller {
 		echo json_encode($result);
 	}
 
+	public function open_incident_records()
+	{
+		$result['view'] = $this->load->view('sections/incident_records', '', true);
+		echo json_encode($result);
+	}
+
 	public function open_user_portal()
 	{
 		$result['view'] = $this->load->view('sections/user_portal', '', true);
+		echo json_encode($result);
+	}
+
+	public function open_citizen_records()
+	{
+		$result['view'] = $this->load->view('sections/citizen_records', '', true);
 		echo json_encode($result);
 	}
 

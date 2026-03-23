@@ -296,4 +296,25 @@ class Model_Api extends CI_Model
         return $query->result_array();
     }
 
+    // Save Citizen Profile
+    public function save_citizen_profile($data){
+        $this->db->insert('citizen', $data);
+        return array(
+            'success' => true,
+            'message' => 'Citizen profile saved successfully',
+            'affected_rows' => $this->db->affected_rows()
+        );
+    }
+
+    // Update Citizen Profile
+    public function update_citizen_profile($data){
+        $this->db->where('citizen_id', $data['citizen_id']);
+        $this->db->update('citizen', $data);
+        return array(
+            'success' => true,
+            'message' => 'Citizen profile updated successfully',
+            'affected_rows' => $this->db->affected_rows()
+        );
+    }
+
 }

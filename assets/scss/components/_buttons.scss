@@ -1,0 +1,13 @@
+.btn-sub-menu{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+
+    &:hover{
+        background-color: $blue-3;
+        color: $blue-6;
+        transition: all 0.3s ease;
+    }
+}

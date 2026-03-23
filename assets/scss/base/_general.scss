@@ -79,9 +79,7 @@ html {
   .btn-tertiary {
     @include btn-tertiary;
   }
-  .btn-blog-category {
-    @include btn-blog-category;
-  }
+ 
   
   
   //////////////////////////////
@@ -119,6 +117,10 @@ html {
   }
   .primary-9 {
     color: $primary-9;
+  }
+
+  .text-blue-6 {
+    color: $blue-6;
   }
   
   .text-1-dark {
@@ -272,87 +274,3 @@ html {
     font-weight: 750;
   }
   
-  // Ellipses
-  .ellipses-2-lines {
-    @include ellipses-2-lines;
-  }
-  
-  .ellipses-3-lines {
-    @include ellipses-3-lines;
-  }
-  
-  
-  
-  .sponsored-subtitle {
-    display: block !important;
-    margin-bottom: 0.6rem !important;
-    font-size: 13px !important;
-    font-weight: 600 !important;
-    letter-spacing: 1.2px !important;
-    color: $text-7 !important;
-    text-transform: uppercase !important;
-  }
-  
-  
-  /* header popup */
-  .newsletter-columns {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 0px;
-  
-    @media (max-width: $md) {
-      flex-direction: column;
-      gap: 15px;
-    }
-  }
-  
-  .newsletter-columns > div {
-    flex: 1;
-  
-    @media (max-width: $md) {
-      flex: 0 0 100%;
-      width: 100%;
-    }
-  }
-  
-  .pum-theme-37350 .pum-container, 
-  .pum-theme-default-theme .pum-container {
-    padding: 0px;
-  
-    @media (max-width: $md) {
-      padding: 10px;
-    }
-  }
-  
-  .right-contents {
-    padding: 5px;
-  
-    @media (max-width: $md) {
-      padding: 10px 5px;
-    }
-  }
-  ul {
-    list-style: disc;
-  }
-  
-  #gform_wrapper_6 {
-    text-align: left !important;
-    background-color: transparent !important;
-    padding: 0px !important;
-    border: none !important;
-    border-radius: 0px !important;
-  
-    @media (max-width: $md) {
-      padding: 10px 0 !important;
-    }
-  }
-  
-  section.newsletter-columns {
-    border: 12px solid #f9f9f9;
-  }
-  
-  .pum-theme-37350, .pum-theme-default-theme {
-    background-color: rgb(35 32 32 / 75%);
-  }

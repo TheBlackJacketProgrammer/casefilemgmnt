@@ -2,6 +2,7 @@
   "scripts": {
     "build:scss": "sass assets/scss/main.scss:assets/css/main.css --style compressed",
     "watch:scss": "sass assets/scss/main.scss:assets/css/main.css --watch",
+    "sass:watch": "sass assets/scss/main.scss:assets/css/main.css --watch",
     "build:tailwind": "tailwindcss -i assets/scss/tailwind.scss -o assets/css/tailwind.css --minify",
     "watch:tailwind": "tailwindcss -i assets/scss/tailwind.scss -o assets/css/tailwind.css --watch --poll",
     "dev": "concurrently \"npm run watch:scss\" \"npm run watch:tailwind\"",

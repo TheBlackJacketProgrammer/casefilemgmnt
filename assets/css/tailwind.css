@@ -8902,6 +8902,10 @@ video {
   min-width: 24rem;
 }
 
+.min-w-\[200px\] {
+  min-width: 200px;
+}
+
 .min-w-fit {
   min-width: -moz-fit-content;
   min-width: fit-content;
@@ -629977,11 +629981,6 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.focus\:border-blue-500:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(59 130 246 / var(--tw-border-opacity, 1));
-}
-
 .focus\:text-gray-600:focus {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
@@ -630024,11 +630023,6 @@ video {
 @media (min-width: 640px) {
   .sm\:w-1\/2 {
     width: 50%;
-  }
-
-  .sm\:px-6 {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
   }
 }
 
