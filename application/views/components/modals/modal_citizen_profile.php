@@ -19,14 +19,23 @@
         <div class="modal-body">
             <div class="flex flex-col gap-2">
                 <div class="form-container">
+                    <div class="form-header" ng-hide="currentProcess == 'Add'">
+                        <button class="text-sm modal-btn-default" ng-click="generateBarangayCertificate()">Generate Barangay Certificate</button>
+                    </div>
                     <div class="form-body">
                         <div class="flex flex-row gap-4 w-full">
-                            <div class="flex flex-col gap-2 img-container">
-                                <img src="{{ user_image_preview ? user_image_preview   : baseUrl + 'assets/img/no-image.png' }}" alt="User Image" class="w-full h-full object-cover border">
-                                <button type="button" class="text-sm modal-btn-default" onclick="document.getElementById('btnFileUpload').click();">
+                            <div class="flex flex-col gap-2">
+                                <div class="img-container">
+                                    <img src="{{ citizen_image_preview }}" alt="Citizen Image" loading="lazy">
+                                </div>
+                                <button type="button" class="text-sm modal-btn-default" onclick="document.getElementById('btnFileUpload').click();" ng-hide="currentProcess == 'View'">
                                     <i class="fa fa-file"></i> Upload
                                 </button>
-                                <input id="btnFileUpload" type='file' file-model="currentCitizenProfile.citizen_img_path" accept="image/*" onchange="angular.element(this).scope().previewImage(this)" hidden>
+                                <input id="btnFileUpload" type='file' accept="image/*" onchange="angular.element(this).scope().previewImage(this)" hidden>
+                                <button type="button" class="text-sm modal-btn-default" ng-click="openCamera()" ng-hide="currentProcess == 'View'"> 
+                                    <i class="fa fa-camera"></i>
+                                    Take Photo
+                                </button>
                             </div>
                             <div class="flex flex-col gap-2 w-full">
                                 <div class="grid grid-cols-3 gap-2">
@@ -58,6 +67,22 @@
                                             <option value="" selected>Select Gender</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label class="block text-sm font-bold mb-1">Nationality</label>
+                                        <input type="text" ng-model="currentCitizenProfile.nationality" class="text-sm form-item" ng-disabled="currentProcess == 'View'" ng-required="true">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold mb-1">Civil Status</label>
+                                        <select ng-model="currentCitizenProfile.civil_status" class="text-sm form-item" ng-disabled="currentProcess == 'View'" ng-required="true">
+                                            <option value="" selected>Select Civil Status</option>
+                                            <option value="Single">Single</option>
+                                            <option value="Married">Married</option>
+                                            <option value="Divorced">Divorced</option>
+                                            <option value="Widowed">Widowed</option>
                                         </select>
                                     </div>
                                 </div>

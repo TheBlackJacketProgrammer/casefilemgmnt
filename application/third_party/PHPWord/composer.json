@@ -1,0 +1,7 @@
+{
+	"name": "brgycasefile/phpword-third-party-bridge",
+	"description": "Composer dependencies for bundled PHPWord (phpoffice/math)",
+	"require": {
+		"phpoffice/math": "^0.3"
+	}
+}

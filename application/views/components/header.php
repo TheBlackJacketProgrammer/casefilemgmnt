@@ -8,7 +8,7 @@
           <img class="h-8 w-auto" src="<?php echo base_url('assets/img/brgy_logo.jpg'); ?>" alt="Barangay Logo">
         </div>
         <div class="ml-3">
-          <h1 class="text-xl font-bold text-gray-900">Barangay Incident & Blotter </h1>
+          <h1 class="text-xl font-bold text-gray-900">Barangay Information</h1>
           <p class="text-xs bg-blue-1 text-gray-600 text-center">Management System</p>
         </div>
       </div>
@@ -105,6 +105,9 @@
                   <?php if($this->session->userdata('user_type') == 'Administrator' || $this->session->userdata('user_type') == 'KAPT'): ?>
                   <button type="button" ng-click="openDataStatistics(); closeNavDropdown();" class="nav-dropdown-item flex items-center w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200">
                     Audit Logs
+                  </button>
+                  <button type="button" ng-click="openBarangayMasterlist(); closeNavDropdown();" class="nav-dropdown-item flex items-center w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200">
+                    Barangay Masterlist
                   </button>
                   <?php endif; ?>
               </div>

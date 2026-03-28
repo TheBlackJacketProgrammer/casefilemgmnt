@@ -338,6 +338,12 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
         });
     };
 
+    // Open Barangay Masterlist
+    $scope.openBarangayMasterlist = function() {
+        toastr.success('Ongoing Development');
+        return;
+    };
+
     // Logout
     $scope.logout = function() {
         $http({
@@ -1858,8 +1864,16 @@ app.controller('CitizenRecordsController', ['$scope', '$http', '$filter', functi
     // Variables
     $scope.citizenRecords = [];
     $scope.currentProcess = "Add";
+    $scope.citizen_image_preview = $scope.baseUrl + "assets/img/no-image.png";
+    $scope.currentCitizenProfile = null;
+    $scope.currentImgPath = "";
 
-    // Datatable options
+    // Camera Variables
+    let video = document.getElementById('video');
+    let canvas = document.getElementById('canvas');
+    let context = canvas.getContext('2d');
+    let streamRef = null;
+    
     $scope.dtOpt_citizenRecords = {
         responsive: true,
         autoWidth: false,
@@ -1882,13 +1896,11 @@ app.controller('CitizenRecordsController', ['$scope', '$http', '$filter', functi
         ]
     };
 
-    // Load initial data
     $scope.init = function() {
         console.log('Citizen Records Controller Initialized');
         $scope.getCitizenRecords();
     }
 
-    // Convert MySQL Date to HTML Date - For Global Function later
     $scope.convertMySQLDate = function(dateValue) {
         let date = (dateValue instanceof Date) ? dateValue : new Date(dateValue);
         let options = { 
@@ -1900,7 +1912,6 @@ app.controller('CitizenRecordsController', ['$scope', '$http', '$filter', functi
         return date.toLocaleString('en-US',options);
     }
 
-    // Get Citizen Records
     $scope.getCitizenRecords = function() {
         $http({
             method: "GET",
@@ -1910,7 +1921,6 @@ app.controller('CitizenRecordsController', ['$scope', '$http', '$filter', functi
         });
     }
 
-    // Add record
     $scope.addCitizenProfile = function() {
         $scope.currentProcess = "Add";
         $scope.currentCitizenProfile = {
@@ -1929,7 +1939,6 @@ app.controller('CitizenRecordsController', ['$scope', '$http', '$filter', functi
         $('#modalCitizenProfile').addClass('flex'); 
     }
 
-    // Close Modal
     $scope.closeModal = function() {
         $scope.currentCitizenProfile = [{
             citizen_id: null,
@@ -1942,19 +1951,32 @@ app.controller('CitizenRecordsController', ['$scope', '$http', '$filter', functi
             contact_number: "",
             email_address: "",
         }];
+        $scope.citizen_image_preview = $scope.baseUrl + "assets/img/no-image.png";
         $scope.currentProcess = "Add";
         $('#modalCitizenProfile').removeClass('flex');
         $('#modalCitizenProfile').addClass('hidden');
+        $('#citizen_image_preview').attr('src', $scope.baseUrl + 'assets/img/no-image.png');
     }
 
-    // Save Citizen Profile
     $scope.saveCitizenProfile = function() {
+        let formData = new FormData();
         let payload = angular.copy($scope.currentCitizenProfile);
         payload.birthdate = $filter('date')(payload.birthdate, 'yyyy-MM-dd');
+
+        Object.keys(payload).forEach(function(key) {
+            formData.append(key, payload[key]);
+        });
+
+        formData.append('citizen_img_path', $scope.currentCitizenProfile.citizen_img_path);
+        formData.append('current_img_path', $scope.currentImgPath);
+
         $http({
             method: "POST",
             url: $scope.baseUrl + "save_citizen_profile",
-            data: payload
+            data: formData,
+            headers: {
+                'Content-Type': undefined // Let browser set content type for FormData
+            }
         }).then(function successCallback(response) {
             if(response.data.success) {
                 toastr.success("Citizen profile saved successfully");
@@ -1967,25 +1989,145 @@ app.controller('CitizenRecordsController', ['$scope', '$http', '$filter', functi
         });
     };
 
-    // Edit Citizen Profile
     $scope.editCitizenProfile = function(citizen) {
         let tempCitizen = angular.copy(citizen);
         $scope.currentProcess = "Edit";
         $scope.currentCitizenProfile = tempCitizen;
         $scope.currentCitizenProfile.birthdate = new Date( tempCitizen.birthdate + 'T00:00:00');
+        $scope.citizen_image_preview = (tempCitizen.citizen_img_path != null && tempCitizen.citizen_img_path != "") ? $scope.baseUrl + tempCitizen.citizen_img_path : $scope.baseUrl + 'assets/img/no-image.png';
+        $scope.currentImgPath = tempCitizen.citizen_img_path;
         $('#modalCitizenProfile').removeClass('hidden');
         $('#modalCitizenProfile').addClass('flex'); 
     }
 
-    // View Citizen Profile
     $scope.viewCitizenProfile = function(citizen) {
         let tempCitizen = angular.copy(citizen);
         $scope.currentProcess = "View";
         $scope.currentCitizenProfile = tempCitizen;
         $scope.currentCitizenProfile.birthdate = new Date( tempCitizen.birthdate + 'T00:00:00');
-        console.log($scope.currentCitizenProfile);
+        $scope.citizen_image_preview = (tempCitizen.citizen_img_path != null && tempCitizen.citizen_img_path != "") ? $scope.baseUrl + tempCitizen.citizen_img_path : $scope.baseUrl + 'assets/img/no-image.png';
         $('#modalCitizenProfile').removeClass('hidden');
         $('#modalCitizenProfile').addClass('flex'); 
+    }
+
+    $scope.previewImage = function(input) {
+        var file = input.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $scope.citizen_image_preview = e.target.result;
+                $scope.currentCitizenProfile.citizen_img_path = file;
+                $scope.$apply();
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    $scope.generateBarangayCertificate = function() {
+        var citizenProfile = $scope.currentCitizenProfile;
+
+        if (!citizenProfile || (typeof citizenProfile === 'object' && citizenProfile.length !== undefined && citizenProfile.length)) {
+            toastr.error('Open a citizen profile first.');
+            return;
+        }
+
+        var payload = {
+            first_name: citizenProfile.first_name || '',
+            middle_name: citizenProfile.middle_name || '',
+            last_name: citizenProfile.last_name || '',
+            nationality: citizenProfile.nationality || '',
+            civil_status: citizenProfile.civil_status || '',
+            age: citizenProfile.age != null ? String(citizenProfile.age) : ''
+        };
+
+        $http({
+            method: 'POST',
+            url: $scope.baseUrl + 'generate_barangay_certificate',
+            data: payload,
+            responseType: 'arraybuffer'
+        }).then(function(response) {
+            var contentType = (response.headers('Content-Type') || '').toLowerCase();
+            if (contentType.indexOf('application/json') !== -1) {
+                let decoder = new TextDecoder('utf-8');
+                try {
+                    let err = JSON.parse(decoder.decode(new Uint8Array(response.data)));
+                    toastr.error(err.message || 'Could not generate certificate.');
+                } 
+                catch (e) {
+                    toastr.error('Could not generate certificate.');
+                }
+                return;
+            }
+            var filename = 'barangay_certificate.docx';
+            let contentDisposition = response.headers('Content-Disposition');
+            if (contentDisposition) {
+                let match = contentDisposition.match(/filename\*?=(?:UTF-8'')?["']?([^"';]+)/i);
+                if (match) {
+                    filename = match[1].trim();
+                }
+            }
+            let blob = new Blob([response.data], {
+                type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            });
+            let url = URL.createObjectURL(blob);
+            let link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            toastr.success('Certificate downloaded.');
+        }, function() {
+            toastr.error('Could not generate certificate.');
+        });
+    };
+
+    $scope.openCamera = function() {
+        // Open Cammera
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                streamRef = stream;
+                video.srcObject = stream;
+            })
+            .catch(function(err) {
+                toastr.error("Camera error: " + err);
+            });
+        $('#modalCamera').removeClass('hidden');
+        $('#modalCamera').addClass('flex');
+    }
+
+    $scope.closeCamera = function() {
+        // Stop Camera
+        if (streamRef) {
+            let tracks = streamRef.getTracks();
+            tracks.forEach(track => track.stop());
+        }
+
+        $('#modalCamera').removeClass('flex');
+        $('#modalCamera').addClass('hidden');
+    }
+
+    $scope.dataURLtoFile = function(dataURL, filename) {
+        let byteString = atob(dataURL.split(',')[1]);
+        let mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
+        let arrBuffer = new ArrayBuffer(byteString.length);
+        let uint8Array = new Uint8Array(arrBuffer);
+        for (let i = 0; i < byteString.length; i++) {
+            uint8Array[i] = byteString.charCodeAt(i);
+        }
+        let file = new File([arrBuffer], filename, { type: mimeString });
+        return file;
+    }
+
+    $scope.takePhoto = function() {
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        let dataURL = canvas.toDataURL('image/png');
+        let file = $scope.dataURLtoFile(dataURL, 'citizen_photo.png');
+        context.drawImage(video, 0, 0, 300, 250);
+        $scope.citizen_image_preview = canvas.toDataURL('image/png');
+        $scope.currentCitizenProfile.citizen_img_path = file;
+        $scope.closeCamera();
     }
 
 }]);

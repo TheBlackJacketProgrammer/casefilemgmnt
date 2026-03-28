@@ -67,4 +67,6 @@
 
     <!-- Citizen Profile Modal -->
     <?php $this->load->view('components/modals/modal_citizen_profile'); ?>
+    <!-- Camera Modal -->
+    <?php $this->load->view('components/modals/modal_camera'); ?>
 </section>

@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 function upload_file($file, $person_type, $name, $current_pic)
 {
     // Check if a new file was uploaded
-    if (!isset($_FILES[$file]) || empty($_FILES[$file]['name'])) {
+    if (!isset($_FILES[$file])) {
         if($current_pic == "null" || $current_pic == ""){
             return "assets/img/no-image.png";
         }
@@ -33,24 +33,26 @@ function upload_file($file, $person_type, $name, $current_pic)
         $file_extension = pathinfo($original_filename, PATHINFO_EXTENSION);
         
         // Create the new filename with proper extension
-        $person_pic = $person_type . "_" . $name;
+        $person_pic = $person_type . "_" . $name . "_" . time();
+        
         if (!empty($file_extension)) {
             $person_pic .= "." . $file_extension;
         }
-        
-        $location = "./assets/img/people/" . $person_pic;
-    }
-    
-    if($current_pic != $location) {
+
+        if($person_type == "citizen"){
+            $location = "assets/img/citizens/" . $person_pic;
+        }
+        else{
+            $location = "assets/img/people/" . $person_pic;
+        }
+
         if ($current_pic && $current_pic !== "assets/img/no-image.png" && $current_pic !== "null") {
             unlink($current_pic);
         }
         // Upload new file
         move_uploaded_file($_FILES[$file]['tmp_name'], $location);
+        
         return $location;
     }
-    else{
-        return $current_pic;
-    }
-
+    
 }
