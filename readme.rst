@@ -76,6 +76,13 @@ Citizen Records & Barangay Certificates
 - Photo uploads stored under ``assets/img/citizens/`` (separate from case complainant/complainee images)
 - Barangay certificate generation from a Word template (``.docx``) with merge fields (name, age, nationality, civil status, issue date)
 
+Barangay Masterlist
+~~~~~~~~~~~~~~~~~~~
+- Administrative master list of barangay records (name, city, region, active/inactive status)
+- Data loaded via stored procedure ``GetAllBarangayRecords()``; persisted in ``brgy_info``
+- Partial view ``open_barangay_masterlist`` with DataTables and profile modal (add, edit, view)
+- JSON API for list and create/update (see API Endpoints)
+
 Crime Details & Documentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Crime type categorization with predefined options
@@ -121,16 +128,17 @@ Project Structure
     brgycasefile/
     ├── application/           # Application logic
     │   ├── controllers/       # MVC Controllers
-    │   │   ├── Ctrl_Api.php  # API endpoints and data operations
-    │   │   ├── Ctrl_Api_Citizen.php # Citizen records API and certificate generation
+    │   │   ├── Ctrl_Api.php  # Core API (cases, users, stats, crime types, event logs, etc.)
+    │   │   ├── Ctrl_Api_Citizen.php # Citizen records API and barangay certificate generation
+    │   │   ├── Ctrl_Api_Brgy.php    # Barangay masterlist API (list, save/update profile)
     │   │   ├── Ctrl_Pdf.php  # PDF report generation
-    │   │   └── Ctrl_Main.php # Main application controller and navigation
+    │   │   └── Ctrl_Main.php # Main application controller, partial views, navigation
     │   ├── models/           # Database models
     │   │   ├── Model_Api.php # API data operations and business logic
     │   │   └── Model_Main.php # Main business logic and database processes
     │   ├── views/            # View templates
     │   │   ├── pages/        # Main page templates (dashboard, login)
-    │   │   ├── sections/     # Reusable view sections (records, citizen records, user portal, event logs, data statistics)
+    │   │   ├── sections/     # Reusable sections (incident/blotter records, citizen records, barangay masterlist, user portal, event logs, data statistics)
     │   │   └── components/   # UI components and modals
     │   ├── helpers/          # Custom helper functions
     │   │   ├── file_upload_helper.php # File upload and image handling (including citizen photos)
@@ -143,7 +151,7 @@ Project Structure
     │   └── config/           # Configuration files
     ├── assets/               # Frontend assets
     │   ├── css/             # Compiled CSS files
-    │   ├── js/              # JavaScript modules
+    │   ├── js/              # JavaScript modules (e.g. ng-citizen-records.js, ng-barangay-masterlist.js)
     │   ├── scss/            # SCSS source files
     │   │   ├── base/        # Base styles and variables
     │   │   ├── components/  # Component-specific styles
@@ -219,6 +227,7 @@ The system manages several key entities:
 - **Complainants** - Case initiators with personal details
 - **Complainees** - Case subjects with personal details
 - **Citizens** - Resident profiles for the citizen master list (separate from case parties); supports certificate generation
+- **Barangay info (brgy_info)** - Barangay masterlist records (name, city, region, status)
 - **Crime Types** - Categorization system for cases
 - **Users** - System administrators and staff
 - **Event Logs** - User activity and system event tracking
@@ -265,10 +274,15 @@ API Endpoints
 The system provides RESTful API endpoints for:
 
 - **Authentication**: ``/login`` (routed to ``ctrl_api/login``) — user login and session management
-- **Citizen records**:
+- **Partial views (HTML fragments for the SPA shell)** — returned as JSON with a ``view`` property, for example:
+  - ``/open_incident_records``, ``/open_citizen_records``, ``/open_barangay_masterlist`` (and other ``open_*`` routes served by ``Ctrl_Main``)
+- **Citizen records** (clean routes; map to ``Ctrl_Api_Citizen``):
   - ``/get_citizen_records`` — List citizen/resident profiles (JSON)
   - ``/save_citizen_profile`` — Create or update a citizen profile (multipart form; supports photo upload)
   - ``/generate_barangay_certificate`` — POST JSON body with resident fields; returns a ``.docx`` download when the template is present
+- **Barangay masterlist** (clean routes; map to ``Ctrl_Api_Brgy``):
+  - ``/get_barangay_masterlist`` — List barangay records (JSON; uses ``GetAllBarangayRecords()``)
+  - ``/save_brgy_profile`` — POST JSON body; create when ``brgy_id`` is empty, otherwise update ``brgy_info``
 - **Records**: 
   - ``/ctrl_api/get_records`` - Retrieve case records
   - ``/ctrl_api/save_record`` - Create new case records and update existing ones
@@ -295,13 +309,13 @@ The system provides RESTful API endpoints for:
   - ``/ctrl_api/get_records_per_hour`` - Hour range analytics for incident timing
   - ``/ctrl_api/get_records_per_day_of_week`` - Day-of-week pattern analysis
 
-Additional routes are defined in ``application/config/routes.php`` (for example ``/login`` and the citizen endpoints above). Other API actions typically use the pattern ``/ctrl_api/<method_name>`` unless remapped.
+Additional routes are defined in ``application/config/routes.php`` (login, citizen and barangay endpoints above, and ``open_*`` partial loaders). Other API actions typically use the pattern ``/ctrl_api/<method_name>`` unless remapped.
 
 Core Functionality
 ------------------
 
 **Case Management**
-- Create, read, update, and delete case records
+- Create, read, update, and delete case records (separate entry points in the UI for incident reports vs blotter reports)
 - Associate complainants and complainees with cases
 - Track case status and progression
 - Manage crime type classifications
@@ -383,6 +397,7 @@ Core System
 ~~~~~~~~~~~~
 - ✅ User authentication and session management
 - ✅ Citizen resident master list with profile CRUD and barangay certificate export (v1.3.0)
+- ✅ Barangay masterlist with list/create/update UI and dedicated API (v1.4.0)
 - ✅ Case record creation and management with CRUD operations
 - ✅ Complainant and complainee management with gender field integration
 - ✅ Crime type categorization and management system
@@ -415,6 +430,7 @@ User Interface
 - ✅ Organizational chart display
 - ✅ Advanced form validation and error handling
 - ✅ Citizen records section with profile modal and table workflow
+- ✅ Barangay masterlist section with profile modal, DataTables, and ``ng-barangay-masterlist.js``
 
 File Management
 ~~~~~~~~~~~~~~~~
@@ -435,7 +451,8 @@ Backend Framework
 - ✅ CodeIgniter 3 MVC architecture
 - ✅ RESTful API endpoints
 - ✅ PHPWord (PhpOffice) for Word template processing
-- ✅ Stored procedure database optimization
+- ✅ Stored procedure database optimization (including barangay list aggregation)
+- ✅ Split API controllers: ``Ctrl_Api_Citizen``, ``Ctrl_Api_Brgy``, and core ``Ctrl_Api``
 - ✅ Enhanced user management API endpoints
 - ✅ Advanced event logging system with real-time tracking
 
@@ -485,7 +502,16 @@ Utilities & Helpers
 New Updates
 -----------
 
-**Latest Improvements (March 2026 - Version 1.3.0):**
+**Latest Improvements (March 2026 - Version 1.4.0):**
+
+Barangay masterlist
+~~~~~~~~~~~~~~~~~~~
+- ✅ **Barangay Masterlist UI** — Section ``barangay_masterlist.php``, modal ``modal_brgy_profile.php``, navigation entry under User Management
+- ✅ **Routes** — ``open_barangay_masterlist``, ``get_barangay_masterlist``, ``save_brgy_profile`` in ``routes.php``
+- ✅ **API controller** — ``Ctrl_Api_Brgy`` with JSON list and create/update against ``brgy_info``
+- ✅ **Frontend** — ``assets/js/ng-barangay-masterlist.js`` (AngularJS controller + DataTables)
+
+**Prior release (March 2026 - Version 1.3.0):**
 
 Citizen module & documents
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -494,7 +520,7 @@ Citizen module & documents
 - ✅ **Barangay certificate** — ``generate_barangay_certificate`` fills a ``.docx`` template and streams the file for download
 - ✅ **PHPWord** — Bundled under ``application/third_party/PHPWord/`` with CI autoload helpers and library wrapper
 
-**Prior release (September 2025 - Version 1.2.0):**
+**Earlier release (September 2025 - Version 1.2.0):**
 
 Core Modules
 ~~~~~~~~~~~~~~
@@ -567,10 +593,11 @@ Medium Priority
 Development Roadmap
 -------------------
 
-Current Development Status (September 2025)
+Current Development Status (March 2026)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - ✅ **Core System**: Fully functional case management system
 - ✅ **User Management**: Complete user administration and organizational chart
+- ✅ **Citizen & barangay data**: Resident master list, certificate generation, barangay masterlist (v1.3.0–v1.4.0)
 - ✅ **Event Logging**: Comprehensive activity tracking system
 - ✅ **File Management**: Image upload and handling system
 - ✅ **Form Validation**: Enhanced data validation and error handling
@@ -650,6 +677,7 @@ Known Issues
 - Analytics dashboard fully functional with multiple chart types and real-time data
 - PDF report generation system completed (09-30-2025)
 - Citizen records module and barangay certificate generation added (v1.3.0, March 2026)
+- Barangay masterlist module added (v1.4.0, March 2026)
 - Next priority: Implement automatic search option for complainant and complainee info in Add Record modal
 
 Troubleshooting
@@ -736,6 +764,7 @@ This system represents a comprehensive solution for barangay-level case manageme
 
 **Current Version Features:**
 - Citizen resident records with photo uploads and barangay certificate ``.docx`` generation (v1.3.0)
+- Barangay masterlist CRUD with dedicated API and stored procedure-backed listing (v1.4.0)
 - Complete case management system with CRUD operations
 - User authentication and role-based access control
 - Event logging and activity tracking

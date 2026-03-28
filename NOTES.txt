@@ -185,3 +185,18 @@ REMARKS:
 
 
 < ========== NOTHING TO ADD ========== >
+
+Date: 03 - 28 - 2026
+
+UPDATES:
+    * Citizen Module - Done
+        -> Take Photo Feature - Done
+        -> Certificate Generation - Done
+    * Barangay Masterlist Module - Done
+
+REMARKS:
+    TODO:
+        * Implement Citizen Module on the Add Records Module for Advance Screening and searching.
+
+
+< ========== NOTHING TO ADD ========== >
