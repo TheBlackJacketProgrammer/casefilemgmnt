@@ -62,7 +62,7 @@ class Ctrl_Api_Citizen extends CI_Controller {
         if (!is_file($templatePath)) {
             $this->output->set_status_header(404);
             $this->output->set_content_type('application/json');
-            echo json_encode(['success' => false, 'message' => 'Certificate template not found (assets/templates/test_template.docx).']);
+            echo json_encode(['success' => false, 'message' => 'Certificate template not found (assets/templates/template_brgy_cert.docx).']);
             return;
         }
 

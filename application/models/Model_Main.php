@@ -12,4 +12,12 @@ class Model_Main extends CI_Model
         return $result;
     }
 
+    public function get_barangay_masterlist()
+    {
+        $query = $this->db->query("CALL GetAllBarangayRecords()");
+        $result = $query->result_array();
+        $query->free_result();
+        return $result;
+    }
+
 }

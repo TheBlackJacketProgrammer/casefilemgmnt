@@ -194,8 +194,13 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
 
     // Open Barangay Masterlist
     $scope.openBarangayMasterlist = function() {
-        toastr.success('Ongoing Development');
-        return;
+        $scope.$parent.section = "";
+        $http({
+            method: "POST",
+            url:  $scope.baseUrl + "open_barangay_masterlist"
+        }).then(function successCallback(response) {
+            $scope.$parent.section = response.data["view"];
+        });
     };
 
     // Logout

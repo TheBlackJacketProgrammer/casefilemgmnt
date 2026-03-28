@@ -317,4 +317,24 @@ class Model_Api extends CI_Model
         );
     }
 
+    // Save Barangay Profile
+    public function save_brgy_profile($data){
+        $this->db->insert('brgy_info', $data);
+        return array(
+            'success' => true,
+            'message' => 'Barangay profile saved successfully',
+            'affected_rows' => $this->db->affected_rows()
+        );
+    }
+
+    // Update Barangay Profile
+    public function update_brgy_profile($data){
+        $this->db->where('brgy_id', $data['brgy_id']);
+        $this->db->update('brgy_info', $data);
+        return array(
+            'success' => true,
+            'message' => 'Barangay profile updated successfully',
+            'affected_rows' => $this->db->affected_rows()
+        );
+    }
 }

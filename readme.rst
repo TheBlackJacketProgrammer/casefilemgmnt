@@ -45,6 +45,7 @@ Development Tools
 - **Gulp Concat 2.6.1** - JavaScript file concatenation
 - **Gulp Uglify 3.0.2** - JavaScript minification
 - **Custom Helpers** - File upload and utility functions
+- **PHPWord (PhpOffice)** - Word (``.docx``) template processing; barangay certificate generation
 
 Key Features
 ------------
@@ -67,6 +68,13 @@ Complainant & Complainee Management
 - Address and demographic data
 - Bulk operations support
 - Individual record editing and updates
+
+Citizen Records & Barangay Certificates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Resident (citizen) master list with CRUD via dedicated UI and API
+- Profile fields including name, birthdate, age, gender, and related demographics
+- Photo uploads stored under ``assets/img/citizens/`` (separate from case complainant/complainee images)
+- Barangay certificate generation from a Word template (``.docx``) with merge fields (name, age, nationality, civil status, issue date)
 
 Crime Details & Documentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -94,7 +102,7 @@ Advanced Data Management
 - Image preview and management
 - Real-time data updates
 - Touch-friendly interface for mobile devices
-- File upload handling with custom helper functions
+- File upload handling with custom helper functions (complainant/complainee under ``assets/img/people/``, citizens under ``assets/img/citizens/``)
 - Image compression and optimization
 
 Event Logging System
@@ -114,16 +122,24 @@ Project Structure
     ├── application/           # Application logic
     │   ├── controllers/       # MVC Controllers
     │   │   ├── Ctrl_Api.php  # API endpoints and data operations
+    │   │   ├── Ctrl_Api_Citizen.php # Citizen records API and certificate generation
+    │   │   ├── Ctrl_Pdf.php  # PDF report generation
     │   │   └── Ctrl_Main.php # Main application controller and navigation
     │   ├── models/           # Database models
     │   │   ├── Model_Api.php # API data operations and business logic
     │   │   └── Model_Main.php # Main business logic and database processes
     │   ├── views/            # View templates
     │   │   ├── pages/        # Main page templates (dashboard, login)
-    │   │   ├── sections/     # Reusable view sections (records, user portal, event logs, data statistics)
+    │   │   ├── sections/     # Reusable view sections (records, citizen records, user portal, event logs, data statistics)
     │   │   └── components/   # UI components and modals
     │   ├── helpers/          # Custom helper functions
-    │   │   └── file_upload_helper.php # File upload and image handling
+    │   │   ├── file_upload_helper.php # File upload and image handling (including citizen photos)
+    │   │   ├── phpword_helper.php    # PHPWord bootstrap and helpers
+    │   │   └── dompdf_helper.php     # PDF helpers (existing)
+    │   ├── libraries/        # CI library wrappers
+    │   │   ├── Phpword_lib.php
+    │   │   └── Dompdf_lib.php
+    │   ├── third_party/      # Vendored libraries (e.g. PHPWord, Dompdf)
     │   └── config/           # Configuration files
     ├── assets/               # Frontend assets
     │   ├── css/             # Compiled CSS files
@@ -133,7 +149,8 @@ Project Structure
     │   │   ├── components/  # Component-specific styles
     │   │   └── pages/       # Page-specific styles
     │   ├── dist/            # Compiled and minified JavaScript bundles
-    │   └── img/             # Image assets
+    │   ├── templates/       # Word templates (e.g. barangay certificate)
+    │   └── img/             # Image assets (incl. citizens/, people/)
     ├── system/               # CodeIgniter core files
     └── index.php            # Application entry point
 
@@ -157,7 +174,8 @@ Setup Steps
 5. **Build frontend assets**: ``npm run build``
 6. **Set up web server** to point to the project directory
 7. **Configure URL rewriting** for CodeIgniter
-8. **Set proper permissions** for upload directories
+8. **Set proper permissions** for upload directories (including ``assets/img/citizens/`` for citizen photos)
+9. **Deploy certificate template**: place the barangay certificate Word template at ``assets/templates/template_brgy_cert.docx`` with merge fields expected by the API (e.g. ``fullname``, ``age``, ``nationality``, ``civil_status``, ``day``, ``month``, ``year``)
 
 Development Commands
 ~~~~~~~~~~~~~~~~~~~~
@@ -200,6 +218,7 @@ The system manages several key entities:
 - **Cases (records)** - Main case records with status and metadata
 - **Complainants** - Case initiators with personal details
 - **Complainees** - Case subjects with personal details
+- **Citizens** - Resident profiles for the citizen master list (separate from case parties); supports certificate generation
 - **Crime Types** - Categorization system for cases
 - **Users** - System administrators and staff
 - **Event Logs** - User activity and system event tracking
@@ -245,7 +264,11 @@ API Endpoints
 
 The system provides RESTful API endpoints for:
 
-- **Authentication**: ``/ctrl_api/login`` - User login and session management
+- **Authentication**: ``/login`` (routed to ``ctrl_api/login``) — user login and session management
+- **Citizen records**:
+  - ``/get_citizen_records`` — List citizen/resident profiles (JSON)
+  - ``/save_citizen_profile`` — Create or update a citizen profile (multipart form; supports photo upload)
+  - ``/generate_barangay_certificate`` — POST JSON body with resident fields; returns a ``.docx`` download when the template is present
 - **Records**: 
   - ``/ctrl_api/get_records`` - Retrieve case records
   - ``/ctrl_api/save_record`` - Create new case records and update existing ones
@@ -272,6 +295,7 @@ The system provides RESTful API endpoints for:
   - ``/ctrl_api/get_records_per_hour`` - Hour range analytics for incident timing
   - ``/ctrl_api/get_records_per_day_of_week`` - Day-of-week pattern analysis
 
+Additional routes are defined in ``application/config/routes.php`` (for example ``/login`` and the citizen endpoints above). Other API actions typically use the pattern ``/ctrl_api/<method_name>`` unless remapped.
 
 Core Functionality
 ------------------
@@ -298,6 +322,10 @@ Core Functionality
 - Touch-friendly interface
 - JavaScript date parsing and conversion
 - Multi-format date handling
+
+**Citizen & certificates**
+- Maintain resident profiles independent of case complainants/complainees
+- Generate barangay certificates from a controlled Word template for consistent formatting
 
 **Analytics & Reporting**
 - Comprehensive data statistics module with interactive charts and graphs
@@ -354,6 +382,7 @@ Current Implementation Status
 Core System
 ~~~~~~~~~~~~
 - ✅ User authentication and session management
+- ✅ Citizen resident master list with profile CRUD and barangay certificate export (v1.3.0)
 - ✅ Case record creation and management with CRUD operations
 - ✅ Complainant and complainee management with gender field integration
 - ✅ Crime type categorization and management system
@@ -385,11 +414,14 @@ User Interface
 - ✅ Toast notifications for user feedback
 - ✅ Organizational chart display
 - ✅ Advanced form validation and error handling
+- ✅ Citizen records section with profile modal and table workflow
 
 File Management
 ~~~~~~~~~~~~~~~~
 - ✅ File upload, image handling, and preview system
 - ✅ Custom file upload helper with validation
+- ✅ Citizen photo uploads and dedicated storage directory
+- ✅ Word (``.docx``) certificate generation via PHPWord and ``template_brgy_cert.docx``
 
 System Administration
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -402,6 +434,7 @@ Backend Framework
 ~~~~~~~~~~~~~~~~~~
 - ✅ CodeIgniter 3 MVC architecture
 - ✅ RESTful API endpoints
+- ✅ PHPWord (PhpOffice) for Word template processing
 - ✅ Stored procedure database optimization
 - ✅ Enhanced user management API endpoints
 - ✅ Advanced event logging system with real-time tracking
@@ -447,11 +480,21 @@ Utilities & Helpers
 - ✅ JavaScript date parsing utilities
 - ✅ Image upload and management system
 - ✅ Toastr notification system
+- ✅ PHPWord integration (``phpword_helper``, ``Phpword_lib``) for document templates
 
 New Updates
 -----------
 
-**Latest Improvements (September 2025 - Current Version 1.2.0):**
+**Latest Improvements (March 2026 - Version 1.3.0):**
+
+Citizen module & documents
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- ✅ **Citizen records** — Master list UI (``open_citizen_records``), AngularJS controller, DataTables integration
+- ✅ **Citizen API** — ``get_citizen_records``, ``save_citizen_profile`` (create/update with optional image)
+- ✅ **Barangay certificate** — ``generate_barangay_certificate`` fills a ``.docx`` template and streams the file for download
+- ✅ **PHPWord** — Bundled under ``application/third_party/PHPWord/`` with CI autoload helpers and library wrapper
+
+**Prior release (September 2025 - Version 1.2.0):**
 
 Core Modules
 ~~~~~~~~~~~~~~
@@ -606,6 +649,7 @@ Known Issues
 - Gulp build system implemented for JavaScript bundling and minification
 - Analytics dashboard fully functional with multiple chart types and real-time data
 - PDF report generation system completed (09-30-2025)
+- Citizen records module and barangay certificate generation added (v1.3.0, March 2026)
 - Next priority: Implement automatic search option for complainant and complainee info in Add Record modal
 
 Troubleshooting
@@ -618,6 +662,11 @@ Common Issues and Solutions
 - Ensure upload directory has proper write permissions (755 or 777)
 - Check PHP upload_max_filesize and post_max_size settings
 - Verify file types are allowed in the upload helper configuration
+- Citizen photos require a writable ``assets/img/citizens/`` directory
+
+**Barangay certificate (404 / JSON error):**
+- Confirm ``assets/templates/template_brgy_cert.docx`` exists and merge field names match what the API sets (``fullname``, ``age``, ``nationality``, ``civil_status``, ``day``, ``month``, ``year``)
+- Ensure PHPWord can load (project root ``vendor/autoload.php`` if used, or bundled bootstrap under ``application/third_party/PHPWord/``)
 
 **Database Connection Issues:**
 - Verify database credentials in application/config/database.php
@@ -686,6 +735,7 @@ This system represents a comprehensive solution for barangay-level case manageme
 - Real-time data updates and bulk operations
 
 **Current Version Features:**
+- Citizen resident records with photo uploads and barangay certificate ``.docx`` generation (v1.3.0)
 - Complete case management system with CRUD operations
 - User authentication and role-based access control
 - Event logging and activity tracking

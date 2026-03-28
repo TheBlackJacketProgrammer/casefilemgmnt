@@ -340,8 +340,13 @@ app.controller("ng-header", ['$scope', '$window', '$timeout', '$compile', '$http
 
     // Open Barangay Masterlist
     $scope.openBarangayMasterlist = function() {
-        toastr.success('Ongoing Development');
-        return;
+        $scope.$parent.section = "";
+        $http({
+            method: "POST",
+            url:  $scope.baseUrl + "open_barangay_masterlist"
+        }).then(function successCallback(response) {
+            $scope.$parent.section = response.data["view"];
+        });
     };
 
     // Logout
@@ -2130,4 +2135,99 @@ app.controller('CitizenRecordsController', ['$scope', '$http', '$filter', functi
         $scope.closeCamera();
     }
 
+}]);
+app.controller('BarangayMasterlistController', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
+
+    // Variables
+    $scope.barangayMasterlist = [];
+    $scope.currentProcess = "Add";
+    $scope.currentBrgyProfile = null;
+
+    $scope.dtOpt_barangayMasterlist = {
+        responsive: true,
+        autoWidth: false,
+        scrollX: true,
+        scrollCollapse: true,
+        width: '100%',
+        dom: "<'flex flex-row'<'flex flex-row justify-between items-center w-full'Bf>>" +
+             "<'flex flex-col gap-2 my-3'<tr>>" +
+             "<'grid grid-cols-3 items-center justify-center gap-2 text-sm'<l><'flex flex-row justify-center items-center'i><p>>",
+        order: [[0, 'desc']], 
+            buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'Barangay Masterlist'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'Barangay Masterlist'
+            }
+        ]
+    };
+
+    $scope.init = function() {
+        console.log('Barangay Masterlist Controller Initialized');
+        $scope.getBarangayMasterlist();
+    }
+
+    $scope.getBarangayMasterlist = function() {
+        $http({
+            method: "POST",
+            url: $scope.baseUrl + "get_barangay_masterlist",
+        }).then(function successCallback(response) {
+            $scope.barangayMasterlist = response.data.barangayMasterlist;
+        });
+    }
+    
+    $scope.addBarangayInformation = function() {
+        $scope.currentProcess = "Add";
+        $scope.currentBrgyProfile = {
+            brgy_id: null,
+            brgy_name: "",
+            brgy_city: "",
+            brgy_region: "",
+            brgy_status: "Active"
+        };
+        $('#modalBrgyProfile').removeClass('hidden'); // Remove hidden class to show modal
+        $('#modalBrgyProfile').addClass('flex'); 
+    }
+
+    $scope.editBarangayInformation = function(brgy) {
+        $scope.currentProcess = "Edit";
+        $scope.currentBrgyProfile = brgy;
+        $('#modalBrgyProfile').removeClass('hidden'); // Remove hidden class to show modal
+        $('#modalBrgyProfile').addClass('flex'); 
+    }
+
+    $scope.viewBarangayInformation = function(brgy) {
+        $scope.currentProcess = "View";
+        $scope.currentBrgyProfile = brgy;
+        $('#modalBrgyProfile').removeClass('hidden'); // Remove hidden class to show modal
+        $('#modalBrgyProfile').addClass('flex'); 
+    }
+
+    $scope.saveBrgyProfile = function() {
+        let payload = angular.copy($scope.currentBrgyProfile);
+        $http({
+            method: "POST",
+            url: $scope.baseUrl + "save_brgy_profile",
+            data: payload
+        }).then(function successCallback(response) {
+            if(response.data.success) {
+                toastr.success("Barangay profile saved successfully");
+                $scope.getBarangayMasterlist();
+                $scope.closeModal();
+            }
+            else {
+                toastr.error("Failed to save barangay profile");
+            }
+        });
+    }
+
+    $scope.closeModal = function() {
+        $scope.currentBrgyProfile = null;
+        $scope.currentProcess = "Add";
+        $('#modalBrgyProfile').removeClass('flex');
+        $('#modalBrgyProfile').addClass('hidden');
+    }
 }]);

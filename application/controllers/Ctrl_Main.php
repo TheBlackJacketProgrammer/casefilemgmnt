@@ -45,6 +45,12 @@ class Ctrl_Main extends CI_Controller {
 		echo json_encode($result);
 	}
 
+	public function open_barangay_masterlist()
+	{
+		$result['view'] = $this->load->view('sections/barangay_masterlist', '', true);
+		echo json_encode($result);
+	}
+
 	public function open_event_logs()
 	{
 		$result['view'] = $this->load->view('sections/event_logs', '', true);
